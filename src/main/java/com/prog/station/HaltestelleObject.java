@@ -263,6 +263,25 @@ public class HaltestelleObject {
     return info;
   }
 
+  public ObservableList<LinkObject> getLink(){
+    ObservableList<LinkObject> info = FXCollections.observableArrayList();
+    info.add(new LinkObject("Haltestelle Foto", HaltestelleTotale_Foto));
+    info.add(new LinkObject("Sitze/Unterstand Foto", SitzeOderUnterstand_Foto));
+    info.add(new LinkObject("Umgebung Sitze/Unterstand",SitzeOderUnterstandUmgebung_Foto));
+    info.add(new LinkObject("Fahrplananzeigetafel",Fahrplananzeigetafel_Foto));
+    info.add(new LinkObject("Defibrillator Foto", Defibrillator_Foto));
+    info.add(new LinkObject("Gepäckaufbewahrung Foto", Gepaeckaufbewahrung_Foto));
+    info.add(new LinkObject("Info-/Notrufsäule Foto", InfoNotrufsaeule_Foto));
+    info.add(new LinkObject("Bahnhofsmission Foto", Bahnhofsmision_Foto));
+    info.add(new LinkObject("Weg zu Bahnhofsmission Foto", BahnhofsmissionWeg_Foto));
+    info.add(new LinkObject("Bahnhofsmission Öffnungszeiten Foto:", BahnhofsmissionOeffunungszeiten_Foto));
+    info.add(new LinkObject("Weiteres Foto 1", WeitereBilder1_Foto));
+    info.add(new LinkObject("Weiteres Foto 2", WeitereBilder2_Foto));
+    info.add(new LinkObject("Weiteres Foto 3", WeitereBilder3_Foto));
+    info.add(new LinkObject("Haltestellenposition OpenStreetMaps", getPosLink()));
+    return info;
+  }
+
   public String getPosLink(){
     return "https://www.openstreetmap.org/?mlat="
             + this.getPos()[0]
