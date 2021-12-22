@@ -9,4 +9,6 @@ module com.example.simpleopendataviewerfx {
 
     opens com.example.simpleopendataviewerfx to javafx.fxml;
     exports com.example.simpleopendataviewerfx;
+    exports com.prog.station;
+    opens com.prog.station to javafx.fxml;
 }

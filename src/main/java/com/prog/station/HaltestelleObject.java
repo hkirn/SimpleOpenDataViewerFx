@@ -1,5 +1,8 @@
 package com.prog.station;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.util.Arrays;
 
 public class HaltestelleObject {
@@ -234,6 +237,32 @@ public class HaltestelleObject {
     return WeitereBilder3_Foto;
   }
 
+  public ObservableList<InfoObject> getInfo(){
+    ObservableList<InfoObject> info = FXCollections.observableArrayList();
+    info.add(new InfoObject("ID", this.ID));
+    info.add(new InfoObject("Name", HST_Name));
+    info.add(new InfoObject("Datenquelle", Datenquelle));
+    info.add(new InfoObject("Datenstatus", Datenstatus));
+    info.add(new InfoObject("GPS-Position", Latitude+" : "+Longitude));
+    info.add(new InfoObject("Koordinatenquelle", Koordinatenquelle));
+    info.add(new InfoObject("OSM-ID", OSM_ID));
+    info.add(new InfoObject("Sitzplätze", boolToString(Sitzplaetze)));
+    info.add(new InfoObject("Unterstand", boolToString(Unterstand)));
+    info.add(new InfoObject("Rollstuhlfäche Unterstand", boolToString(RollstuhlflaecheImUnterstand)));
+    info.add(new InfoObject("Fahrplananzeigetafel", boolToString(Fahrplananzeigetafel)));
+    info.add(new InfoObject("Fahrplananzeigetafel akkustisch", boolToString(Fahrplananzeigetafel_akustisch)));
+    info.add(new InfoObject("Ansagen vorhanden", boolToString(Ansagen_vorhanden)));
+    info.add(new InfoObject("Defibrillator vorhanden", boolToString(Defibrillator)));
+    info.add(new InfoObject("Defibrillator Lagebeschreibung", Defibrilator_Lagebeschreibung));
+    info.add(new InfoObject("Gepäckaufbewahrung:", boolToString(Gepaeckaufbewahrung)));
+    info.add(new InfoObject("Gepäcktransport", boolToString(Gepaecktransport)));
+    info.add(new InfoObject("induktive Höranlage", boolToString(InduktiveHoeranlage)));
+    info.add(new InfoObject("Standort induktive Höranlage", InduktiveHoeranlageStandort));
+    info.add(new InfoObject("Info Notrufsäule", InfoNotrufsaeule));
+    info.add(new InfoObject("Bahnhofsmission", boolToString(Bahnhofsmission)));
+    return info;
+  }
+
   public String getPosLink(){
     return "https://www.openstreetmap.org/?mlat="
             + this.getPos()[0]
@@ -243,5 +272,14 @@ public class HaltestelleObject {
             + this.getPos()[0]
             + "/"
             + this.getPos()[1];
+  }
+
+  private String boolToString(Boolean boolToConvert){
+    if (boolToConvert==true){
+      return "Ja";
+    }
+    else {
+      return "Nein";
+    }
   }
 }
