@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Separator;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -29,7 +30,7 @@ public class HaltestelleController implements Initializable {
 
   public HaltestelleController() {
     StationManager manager = new StationManager();
-    this.haltestelleObject = manager.searchById("de:08121:26");
+    this.haltestelleObject = manager.searchById("de:08125:1939");
   }
 
   @FXML private Label lbl_hstName;
@@ -59,6 +60,7 @@ public class HaltestelleController implements Initializable {
     webView.getEngine().load(haltestelleObject.getHaltestelleTotale_Foto());
     pane_pictureView.getChildren().add(webView);
     Button btn_test = new Button();
+    //vboxRight.getChildren().clear();
     createInfoTableView();
     createLinkListView();
   }
@@ -75,8 +77,11 @@ public class HaltestelleController implements Initializable {
     infoObjectTableView = new TableView<>();
     infoObjectTableView.setItems(haltestelleObject.getInfo());
     infoObjectTableView.getColumns().addAll(infoTypeColumn, infoColumn);
-
+    Separator separator1 = new Separator();
+    vboxRight.getChildren().add(separator1);
     vboxRight.getChildren().add(infoObjectTableView);
+    Separator separator2 = new Separator();
+    vboxRight.getChildren().add(separator2);
   }
 
   private void createLinkListView() {

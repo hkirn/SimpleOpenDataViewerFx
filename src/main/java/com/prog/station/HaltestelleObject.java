@@ -137,7 +137,7 @@ public class HaltestelleObject {
     return Unterstand;
   }
 
-  public boolean isRollstuhlflächeImUnterstand() {
+  public boolean isRollstuhlflaecheImUnterstand() {
     return RollstuhlflaecheImUnterstand;
   }
 
@@ -237,20 +237,23 @@ public class HaltestelleObject {
     return WeitereBilder3_Foto;
   }
 
-  public ObservableList<InfoObject> getInfo(){
+  public ObservableList<InfoObject> getInfo() {
     ObservableList<InfoObject> info = FXCollections.observableArrayList();
     info.add(new InfoObject("ID", this.ID));
     info.add(new InfoObject("Name", HST_Name));
     info.add(new InfoObject("Datenquelle", Datenquelle));
     info.add(new InfoObject("Datenstatus", Datenstatus));
-    info.add(new InfoObject("GPS-Position", Latitude+" : "+Longitude));
+    info.add(new InfoObject("GPS-Position", Latitude + " : " + Longitude));
     info.add(new InfoObject("Koordinatenquelle", Koordinatenquelle));
     info.add(new InfoObject("OSM-ID", OSM_ID));
     info.add(new InfoObject("Sitzplätze", boolToString(Sitzplaetze)));
     info.add(new InfoObject("Unterstand", boolToString(Unterstand)));
-    info.add(new InfoObject("Rollstuhlfäche Unterstand", boolToString(RollstuhlflaecheImUnterstand)));
+    info.add(
+        new InfoObject("Rollstuhlfäche Unterstand", boolToString(RollstuhlflaecheImUnterstand)));
     info.add(new InfoObject("Fahrplananzeigetafel", boolToString(Fahrplananzeigetafel)));
-    info.add(new InfoObject("Fahrplananzeigetafel akkustisch", boolToString(Fahrplananzeigetafel_akustisch)));
+    info.add(
+        new InfoObject(
+            "Fahrplananzeigetafel akkustisch", boolToString(Fahrplananzeigetafel_akustisch)));
     info.add(new InfoObject("Ansagen vorhanden", boolToString(Ansagen_vorhanden)));
     info.add(new InfoObject("Defibrillator vorhanden", boolToString(Defibrillator)));
     info.add(new InfoObject("Defibrillator Lagebeschreibung", Defibrilator_Lagebeschreibung));
@@ -263,18 +266,20 @@ public class HaltestelleObject {
     return info;
   }
 
-  public ObservableList<LinkObject> getLink(){
+  public ObservableList<LinkObject> getLink() {
     ObservableList<LinkObject> info = FXCollections.observableArrayList();
     info.add(new LinkObject("Haltestelle Foto", HaltestelleTotale_Foto));
     info.add(new LinkObject("Sitze/Unterstand Foto", SitzeOderUnterstand_Foto));
-    info.add(new LinkObject("Umgebung Sitze/Unterstand",SitzeOderUnterstandUmgebung_Foto));
-    info.add(new LinkObject("Fahrplananzeigetafel",Fahrplananzeigetafel_Foto));
+    info.add(new LinkObject("Umgebung Sitze/Unterstand", SitzeOderUnterstandUmgebung_Foto));
+    info.add(new LinkObject("Fahrplananzeigetafel", Fahrplananzeigetafel_Foto));
     info.add(new LinkObject("Defibrillator Foto", Defibrillator_Foto));
     info.add(new LinkObject("Gepäckaufbewahrung Foto", Gepaeckaufbewahrung_Foto));
     info.add(new LinkObject("Info-/Notrufsäule Foto", InfoNotrufsaeule_Foto));
     info.add(new LinkObject("Bahnhofsmission Foto", Bahnhofsmision_Foto));
     info.add(new LinkObject("Weg zu Bahnhofsmission Foto", BahnhofsmissionWeg_Foto));
-    info.add(new LinkObject("Bahnhofsmission Öffnungszeiten Foto:", BahnhofsmissionOeffunungszeiten_Foto));
+    info.add(
+        new LinkObject(
+            "Bahnhofsmission Öffnungszeiten Foto:", BahnhofsmissionOeffunungszeiten_Foto));
     info.add(new LinkObject("Weiteres Foto 1", WeitereBilder1_Foto));
     info.add(new LinkObject("Weiteres Foto 2", WeitereBilder2_Foto));
     info.add(new LinkObject("Weiteres Foto 3", WeitereBilder3_Foto));
@@ -282,22 +287,32 @@ public class HaltestelleObject {
     return info;
   }
 
-  public String getPosLink(){
-    return "https://www.openstreetmap.org/?mlat="
-            + this.getPos()[0]
-            + "&mlon="
-            + this.getPos()[1]
-            + "&zoom=15#map=15/"
-            + this.getPos()[0]
-            + "/"
-            + this.getPos()[1];
+  public String getPosLink() {
+    double posOffset = 0.001;
+    return "https://www.openstreetmap.org/export/embed.html?bbox="
+        + (this.getPos()[1] - posOffset)
+        + ","
+        + (this.getPos()[0] - posOffset)
+        + ","
+        + (this.getPos()[1] + posOffset)
+        + ","
+        + (this.getPos()[0] + posOffset)
+        + "&layer=mapnik&marker="+this.getPos()[0]+","+this.getPos()[1];
+
+    // return "https://www.openstreetmap.org/?mlat="
+    //        + this.getPos()[0]
+    //        + "&mlon="
+    //        + this.getPos()[1]
+    //        + "&zoom=15#map=15/"
+    //        + this.getPos()[0]
+    //        + "/"
+    //        + this.getPos()[1];
   }
 
-  private String boolToString(Boolean boolToConvert){
-    if (boolToConvert==true){
+  private String boolToString(Boolean boolToConvert) {
+    if (boolToConvert == true) {
       return "Ja";
-    }
-    else {
+    } else {
       return "Nein";
     }
   }

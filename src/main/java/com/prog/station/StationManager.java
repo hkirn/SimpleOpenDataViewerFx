@@ -2,7 +2,6 @@ package com.prog.station;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
@@ -83,7 +82,7 @@ public class StationManager {
     System.out.println("Sitzplätze: " + haltestelleObject.isSitzplaetze());
     System.out.println("Unterstand: " + haltestelleObject.isUnterstand());
     System.out.println(
-        "Rollstuhlflaeche Unterstand: " + haltestelleObject.isRollstuhlflächeImUnterstand());
+        "Rollstuhlflaeche Unterstand: " + haltestelleObject.isRollstuhlflaecheImUnterstand());
     System.out.println("Fahrplananzeigetafel: " + haltestelleObject.isFahrplananzeigetafel());
     System.out.println(
         "Fahrplananzeigetafel akustisch: " + haltestelleObject.isFahrplananzeigetafel_akustisch());

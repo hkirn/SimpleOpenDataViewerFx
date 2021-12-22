@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.simpleopendataviewerfx.HaltestelleController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1050.0" prefWidth="1680.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.simpleopendataviewerfx.HaltestelleController">
    <children>
-      <VBox prefHeight="720.0" prefWidth="650.0">
+      <VBox prefHeight="1050.0" prefWidth="1042.0">
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
@@ -26,9 +26,9 @@
                </children>
             </HBox>
             <StackPane fx:id="pane_pictureView" disable="true" />
+            <Separator orientation="VERTICAL" prefHeight="200.0" />
          </children>
       </VBox>
-      <Separator orientation="VERTICAL" prefHeight="200.0" />
-      <VBox fx:id="vboxRight" prefHeight="720.0" prefWidth="623.0" />
+      <VBox fx:id="vboxRight" prefHeight="1050.0" prefWidth="874.0" />
    </children>
 </HBox>
