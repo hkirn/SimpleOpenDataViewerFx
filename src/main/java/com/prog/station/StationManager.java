@@ -43,7 +43,7 @@ public class StationManager {
 
   public ObservableList<InfoObject> getHaltestelleList() {
     ObservableList<InfoObject> info = FXCollections.observableArrayList();
-    for (HaltestelleObject haltestelleObject: this.haltestelleList){
+    for (HaltestelleObject haltestelleObject : this.haltestelleList) {
       info.add(new InfoObject(haltestelleObject.getID(), haltestelleObject.getHST_Name()));
     }
     return info;

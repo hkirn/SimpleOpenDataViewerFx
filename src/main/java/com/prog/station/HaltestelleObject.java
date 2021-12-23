@@ -5,15 +5,8 @@ import javafx.collections.ObservableList;
 
 import java.util.Arrays;
 
-public class HaltestelleObject {
-  private String ID;
-  private String HST_Name;
-  private String Datenquelle;
-  private String Datenstatus;
-  private double Longitude;
-  private double Latitude;
-  private String Koordinatenquelle;
-  private String OSM_ID;
+public class HaltestelleObject extends ObjectTemplate {
+
   private boolean Sitzplaetze;
   private boolean Unterstand;
   private boolean RollstuhlflaecheImUnterstand;
@@ -45,80 +38,39 @@ public class HaltestelleObject {
   public HaltestelleObject(String[] valueString) {
     System.out.println(this + "angelegt");
     String[] newValueString = Arrays.copyOf(valueString, 36);
+    setSameVariables(newValueString);
+    setSameVariablesNotHaltesteig(valueString);
     setVariables(newValueString);
   }
 
   private void setVariables(String[] valueString) {
-    this.ID = convertToNull(valueString[0]);
-    this.HST_Name = convertToNull(valueString[2]);
-    this.Datenquelle = convertToNull(valueString[3]);
-    this.Datenstatus = convertToNull(valueString[4]);
-    this.Longitude = Double.valueOf(valueString[5].replace(",", "."));
-    Latitude = Double.valueOf(valueString[6].replace(",", "."));
-    Koordinatenquelle = convertToNull(valueString[7]);
-    OSM_ID = convertToNull(valueString[8]);
-    Sitzplaetze = convertToBool(valueString[9]);
-    Unterstand = convertToBool(valueString[10]);
-    RollstuhlflaecheImUnterstand = convertToBool(valueString[11]);
-    Fahrplananzeigetafel = convertToBool(valueString[12]);
-    Fahrplananzeigetafel_akustisch = convertToBool(valueString[13]);
-    Ansagen_vorhanden = convertToBool(valueString[14]);
-    Defibrillator = convertToBool(valueString[15]);
-    Defibrilator_Lagebeschreibung = convertToNull(valueString[16]);
-    Gepaeckaufbewahrung = convertToBool(valueString[17]);
-    Gepaecktransport = convertToBool(valueString[18]);
-    InduktiveHoeranlage = convertToBool(valueString[19]);
-    InduktiveHoeranlageStandort = convertToNull(valueString[20]);
-    InfoNotrufsaeule = convertToNull(valueString[21]);
-    Bahnhofsmission = convertToBool(valueString[22]);
-    HaltestelleTotale_Foto = convertToNull(valueString[23]);
-    SitzeOderUnterstand_Foto = convertToNull(valueString[24]);
-    SitzeOderUnterstandUmgebung_Foto = convertToNull(valueString[25]);
-    Fahrplananzeigetafel_Foto = convertToNull(valueString[26]);
-    Defibrillator_Foto = convertToNull(valueString[27]);
-    Gepaeckaufbewahrung_Foto = convertToNull(valueString[28]);
-    InfoNotrufsaeule_Foto = convertToNull(valueString[29]);
-    Bahnhofsmision_Foto = convertToNull(valueString[30]);
-    BahnhofsmissionWeg_Foto = convertToNull(valueString[31]);
-    BahnhofsmissionOeffunungszeiten_Foto = convertToNull(valueString[32]);
-    WeitereBilder1_Foto = convertToNull(valueString[33]);
-    WeitereBilder2_Foto = convertToNull(valueString[34]);
-    WeitereBilder3_Foto = convertToNull(valueString[35]);
-  }
-
-  private boolean convertToBool(String stringToCovert) {
-    if (stringToCovert.equals("ja")) {
-      return true;
-    } else return false;
-  }
-
-  private String convertToNull(String stringToConvert) {
-    if ((stringToConvert == null) || (stringToConvert.trim().equals(""))) {
-      return null;
-    } else {
-      return stringToConvert;
-    }
-  }
-
-  public String getID() {
-    return ID;
-  }
-
-  public String getHST_Name() {
-    return HST_Name;
-  }
-
-  public String getDatenquelle() {
-    return Datenquelle;
-  }
-
-  public String getDatenstatus() {
-    return Datenstatus;
-  }
-
-  public double[] getPos() {
-    double[] arr = {Latitude, Longitude};
-    return arr;
+    this.Sitzplaetze = convertToBool(valueString[9]);
+    this.Unterstand = convertToBool(valueString[10]);
+    this.RollstuhlflaecheImUnterstand = convertToBool(valueString[11]);
+    this.Fahrplananzeigetafel = convertToBool(valueString[12]);
+    this.Fahrplananzeigetafel_akustisch = convertToBool(valueString[13]);
+    this.Ansagen_vorhanden = convertToBool(valueString[14]);
+    this.Defibrillator = convertToBool(valueString[15]);
+    this.Defibrilator_Lagebeschreibung = convertToNull(valueString[16]);
+    this.Gepaeckaufbewahrung = convertToBool(valueString[17]);
+    this.Gepaecktransport = convertToBool(valueString[18]);
+    this.InduktiveHoeranlage = convertToBool(valueString[19]);
+    this.InduktiveHoeranlageStandort = convertToNull(valueString[20]);
+    this.InfoNotrufsaeule = convertToNull(valueString[21]);
+    this.Bahnhofsmission = convertToBool(valueString[22]);
+    this.HaltestelleTotale_Foto = convertToNull(valueString[23]);
+    this.SitzeOderUnterstand_Foto = convertToNull(valueString[24]);
+    this.SitzeOderUnterstandUmgebung_Foto = convertToNull(valueString[25]);
+    this.Fahrplananzeigetafel_Foto = convertToNull(valueString[26]);
+    this.Defibrillator_Foto = convertToNull(valueString[27]);
+    this.Gepaeckaufbewahrung_Foto = convertToNull(valueString[28]);
+    this.InfoNotrufsaeule_Foto = convertToNull(valueString[29]);
+    this.Bahnhofsmision_Foto = convertToNull(valueString[30]);
+    this.BahnhofsmissionWeg_Foto = convertToNull(valueString[31]);
+    this.BahnhofsmissionOeffunungszeiten_Foto = convertToNull(valueString[32]);
+    this.WeitereBilder1_Foto = convertToNull(valueString[33]);
+    this.WeitereBilder2_Foto = convertToNull(valueString[34]);
+    this.WeitereBilder3_Foto = convertToNull(valueString[35]);
   }
 
   public String getKoordinatenquelle() {
@@ -285,29 +237,5 @@ public class HaltestelleObject {
     info.add(new LinkObject("Weiteres Foto 3", WeitereBilder3_Foto));
     info.add(new LinkObject("Haltestellenposition OpenStreetMaps", getPosLink()));
     return info;
-  }
-
-  public String getPosLink() {
-    double posOffset = 0.001;
-    return "https://www.openstreetmap.org/export/embed.html?bbox="
-        + (this.getPos()[1] - posOffset)
-        + ","
-        + (this.getPos()[0] - posOffset)
-        + ","
-        + (this.getPos()[1] + posOffset)
-        + ","
-        + (this.getPos()[0] + posOffset)
-        + "&layer=mapnik&marker="
-        + this.getPos()[0]
-        + ","
-        + this.getPos()[1];
-  }
-
-  private String boolToString(Boolean boolToConvert) {
-    if (boolToConvert) {
-      return "Ja";
-    } else {
-      return "Nein";
-    }
   }
 }
