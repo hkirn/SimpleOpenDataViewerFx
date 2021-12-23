@@ -4,6 +4,7 @@ import com.prog.station.HaltestelleObject;
 import com.prog.station.InfoObject;
 import com.prog.station.LinkObject;
 import com.prog.station.StationManager;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -24,8 +25,8 @@ public class HaltestelleController implements Initializable {
   HaltestelleObject haltestelleObject;
 
   public HaltestelleController() {
-    StationManager manager = new StationManager();
-    this.haltestelleObject = manager.searchById("de:08415:28710");
+    manager = new StationManager();
+    this.haltestelleObject = manager.searchById("de:08415:28716");
   }
 
   @FXML private Label lbl_hstName;
@@ -34,37 +35,54 @@ public class HaltestelleController implements Initializable {
 
   @FXML private VBox vboxRight;
 
+  @FXML private Button btn_otherStation;
+
+  private StationManager manager;
   private TableView<InfoObject> infoObjectTableView;
 
   private ListView<LinkObject> linkListView;
 
   private WebView webView;
 
-  // @FXML
-  // protected void onHelloButtonClick() {
-  //  welcomeText.setText("Welcome to JavaFX Application!");
-  // }
+  @FXML
+  protected void onActionBtnOtherStationPressed() {
+    System.out.println("Bahnhof wechseln...");
+    this.haltestelleObject = manager.searchById("de:08125:1438");
+    refreshStation();
+  }
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    lbl_hstName.setText(haltestelleObject.getHST_Name());
     webView = new WebView();
     webView.getEngine().load(haltestelleObject.getHaltestelleTotale_Foto());
     pane_pictureView.getChildren().add(webView);
-    createInfoTableView();
+    refreshStation();
+  }
+
+  private void refreshStation() {
+    this.vboxRight.getChildren().clear();
+    lbl_hstName.setText(haltestelleObject.getHST_Name());
+    webView.getEngine().load(haltestelleObject.getHaltestelleTotale_Foto());
+    createInfoTableView("Art der Information", "infoType", "Information", "info", haltestelleObject.getInfo());
     createLinkListView();
   }
 
-  private void createInfoTableView() {
-    TableColumn<InfoObject, String> infoTypeColumn = new TableColumn<>("Art der Information");
-    infoTypeColumn.setCellValueFactory(new PropertyValueFactory<InfoObject, String>("infoType"));
+  private void createInfoTableView(
+      String description1stColumn,
+      String name1stColumn,
+      String description2ndColumn,
+      String name2ndColumn,
+      ObservableList<InfoObject> listToShow
+  ) {
+    TableColumn<InfoObject, String> infoTypeColumn = new TableColumn<>(description1stColumn);
+    infoTypeColumn.setCellValueFactory(new PropertyValueFactory<InfoObject, String>(name1stColumn));
 
-    TableColumn<InfoObject, String> infoColumn = new TableColumn<>("Information");
+    TableColumn<InfoObject, String> infoColumn = new TableColumn<>(description2ndColumn);
     infoColumn.setMinWidth(500);
-    infoColumn.setCellValueFactory(new PropertyValueFactory<InfoObject, String>("info"));
+    infoColumn.setCellValueFactory(new PropertyValueFactory<InfoObject, String>(name2ndColumn));
 
     infoObjectTableView = new TableView<>();
-    infoObjectTableView.setItems(haltestelleObject.getInfo());
+    infoObjectTableView.setItems(listToShow);
     infoObjectTableView.getColumns().addAll(infoTypeColumn, infoColumn);
     Separator separator1 = new Separator();
     vboxRight.getChildren().add(separator1);
@@ -80,30 +98,29 @@ public class HaltestelleController implements Initializable {
     vboxRight.getChildren().add(linkListView);
   }
 
-  static class LinkCell extends ListCell<LinkObject>{
+  static class LinkCell extends ListCell<LinkObject> {
     private final HaltestelleController controller;
 
-    public LinkCell(final HaltestelleController haltestelleController){
+    public LinkCell(final HaltestelleController haltestelleController) {
       this.controller = haltestelleController;
     }
+
     @Override
-    public void updateItem(LinkObject item, boolean empty){
+    public void updateItem(LinkObject item, boolean empty) {
       super.updateItem(item, empty);
-      if (empty||item==null){
+      if (empty || item == null) {
         textProperty().setValue(null);
         setGraphic(null);
-      }
-      else if(item.getLink()==null){
+      } else if (item.getLink() == null) {
         Button removeButton = new Button("Anzeigen");
         removeButton.setOnAction((event) -> controller.onActionShow(item, controller));
         removeButton.setDisable(true);
-        textProperty().setValue("NICHT VORHANDEN "+item.getBezeichnung());
+        textProperty().setValue("NICHT VORHANDEN " + item.getBezeichnung());
         setGraphic(removeButton);
-      }
-      else {
+      } else {
         Button removeButton = new Button("Anzeigen");
         removeButton.setOnAction((event) -> controller.onActionShow(item, controller));
-        textProperty().setValue(""+item.getBezeichnung());
+        textProperty().setValue("" + item.getBezeichnung());
         setGraphic(removeButton);
       }
     }
