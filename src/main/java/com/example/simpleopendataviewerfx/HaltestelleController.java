@@ -28,7 +28,7 @@ public class HaltestelleController implements Initializable {
 
   public HaltestelleController() {
     manager = new StationManager();
-    this.haltestelleObject = manager.searchById("de:08415:28716");
+    this.haltestelleObject = manager.searchById("de:08111:6115");
   }
 
   @FXML private Label lbl_hstName;
@@ -76,7 +76,11 @@ public class HaltestelleController implements Initializable {
   private void refreshStation() {
     this.vboxRight.getChildren().clear();
     lbl_hstName.setText(haltestelleObject.getHST_Name());
-    webView.getEngine().load(haltestelleObject.getHaltestelleTotale_Foto());
+    if(haltestelleObject.getHaltestelleTotale_Foto()!=null){
+      webView.getEngine().load(haltestelleObject.getHaltestelleTotale_Foto());}
+    else {
+      webView.getEngine().load(haltestelleObject.getPosLink());
+    }
     createInfoTableView(
         "Art der Information", "infoType", "Information", "info", haltestelleObject.getInfo());
     createLinkListView();
@@ -89,11 +93,11 @@ public class HaltestelleController implements Initializable {
       String name2ndColumn,
       ObservableList<InfoObject> listToShow) {
     TableColumn<InfoObject, String> infoTypeColumn = new TableColumn<>(description1stColumn);
-    infoTypeColumn.setCellValueFactory(new PropertyValueFactory<InfoObject, String>(name1stColumn));
+    infoTypeColumn.setCellValueFactory(new PropertyValueFactory<>(name1stColumn));
 
     TableColumn<InfoObject, String> infoColumn = new TableColumn<>(description2ndColumn);
     infoColumn.setMinWidth(500);
-    infoColumn.setCellValueFactory(new PropertyValueFactory<InfoObject, String>(name2ndColumn));
+    infoColumn.setCellValueFactory(new PropertyValueFactory<>(name2ndColumn));
 
     infoObjectTableView = new TableView<>();
     infoObjectTableView.setItems(listToShow);
