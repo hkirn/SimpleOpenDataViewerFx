@@ -5,6 +5,8 @@ import com.prog.station.InfoObject;
 import com.prog.station.LinkObject;
 import com.prog.station.StationManager;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -46,9 +48,21 @@ public class HaltestelleController implements Initializable {
 
   @FXML
   protected void onActionBtnOtherStationPressed() {
-    System.out.println("Bahnhof wechseln...");
-    this.haltestelleObject = manager.searchById("de:08125:1438");
-    refreshStation();
+    System.out.println("btn_otherStation pressed...");
+    vboxRight.getChildren().clear();
+    createInfoTableView("Bahnhof ID", "infoType", "Bahnhof Name", "info", manager.getHaltestelleList());
+    Button btnOk = new Button("Bahnhof aufrufen");
+    btnOk.setOnAction(new ButtonOkClickHandler());
+    vboxRight.getChildren().add(btnOk);
+  }
+
+  class ButtonOkClickHandler implements EventHandler<ActionEvent>{
+    @Override
+    public void handle(final ActionEvent event){
+      System.out.println("btn_ok pressed");
+      haltestelleObject = manager.searchById(infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
+      refreshStation();
+    }
   }
 
   @Override
@@ -63,7 +77,8 @@ public class HaltestelleController implements Initializable {
     this.vboxRight.getChildren().clear();
     lbl_hstName.setText(haltestelleObject.getHST_Name());
     webView.getEngine().load(haltestelleObject.getHaltestelleTotale_Foto());
-    createInfoTableView("Art der Information", "infoType", "Information", "info", haltestelleObject.getInfo());
+    createInfoTableView(
+        "Art der Information", "infoType", "Information", "info", haltestelleObject.getInfo());
     createLinkListView();
   }
 
@@ -72,8 +87,7 @@ public class HaltestelleController implements Initializable {
       String name1stColumn,
       String description2ndColumn,
       String name2ndColumn,
-      ObservableList<InfoObject> listToShow
-  ) {
+      ObservableList<InfoObject> listToShow) {
     TableColumn<InfoObject, String> infoTypeColumn = new TableColumn<>(description1stColumn);
     infoTypeColumn.setCellValueFactory(new PropertyValueFactory<InfoObject, String>(name1stColumn));
 

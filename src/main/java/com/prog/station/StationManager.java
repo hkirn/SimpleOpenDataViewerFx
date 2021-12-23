@@ -1,5 +1,8 @@
 package com.prog.station;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -36,6 +39,14 @@ public class StationManager {
       HaltestelleObject haltestelleObject = new HaltestelleObject(valueString);
       haltestelleList.add(haltestelleObject);
     }
+  }
+
+  public ObservableList<InfoObject> getHaltestelleList() {
+    ObservableList<InfoObject> info = FXCollections.observableArrayList();
+    for (HaltestelleObject haltestelleObject: this.haltestelleList){
+      info.add(new InfoObject(haltestelleObject.getID(), haltestelleObject.getHST_Name()));
+    }
+    return info;
   }
 
   private ArrayList<String[]> readCsv(String url) {

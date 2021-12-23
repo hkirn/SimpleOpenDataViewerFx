@@ -301,15 +301,6 @@ public class HaltestelleObject {
         + this.getPos()[0]
         + ","
         + this.getPos()[1];
-
-    // return "https://www.openstreetmap.org/?mlat="
-    //        + this.getPos()[0]
-    //        + "&mlon="
-    //        + this.getPos()[1]
-    //        + "&zoom=15#map=15/"
-    //        + this.getPos()[0]
-    //        + "/"
-    //        + this.getPos()[1];
   }
 
   private String boolToString(Boolean boolToConvert) {
