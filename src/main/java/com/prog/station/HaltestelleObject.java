@@ -313,7 +313,7 @@ public class HaltestelleObject {
   }
 
   private String boolToString(Boolean boolToConvert) {
-    if (boolToConvert == true) {
+    if (boolToConvert) {
       return "Ja";
     } else {
       return "Nein";
