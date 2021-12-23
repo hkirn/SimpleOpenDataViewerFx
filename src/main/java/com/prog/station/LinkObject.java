@@ -10,7 +10,6 @@ public class LinkObject {
     this.link = link;
   }
 
-
   public String getBezeichnung() {
     return bezeichnung;
   }

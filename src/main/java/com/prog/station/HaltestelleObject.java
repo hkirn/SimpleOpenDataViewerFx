@@ -297,7 +297,10 @@ public class HaltestelleObject {
         + (this.getPos()[1] + posOffset)
         + ","
         + (this.getPos()[0] + posOffset)
-        + "&layer=mapnik&marker="+this.getPos()[0]+","+this.getPos()[1];
+        + "&layer=mapnik&marker="
+        + this.getPos()[0]
+        + ","
+        + this.getPos()[1];
 
     // return "https://www.openstreetmap.org/?mlat="
     //        + this.getPos()[0]
