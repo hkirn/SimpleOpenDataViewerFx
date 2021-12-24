@@ -10,6 +10,7 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
@@ -73,7 +74,7 @@ public class StationManager {
       e.printStackTrace();
     }
     try (BufferedReader br =
-        new BufferedReader(new InputStreamReader(nvbwConnect.getInputStream()))) {
+        new BufferedReader(new InputStreamReader(nvbwConnect.getInputStream(), Charset.forName("UTF-8")))) {
       String line;
       while ((line = br.readLine()) != null) {
         if (firstLine) {
