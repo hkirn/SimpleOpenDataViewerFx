@@ -2,11 +2,9 @@ package com.prog.station;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import java.util.Arrays;
 
 public class HaltestelleObject extends ObjectTemplate {
-
   private boolean Sitzplaetze;
   private boolean Unterstand;
   private boolean RollstuhlflaecheImUnterstand;
@@ -39,7 +37,7 @@ public class HaltestelleObject extends ObjectTemplate {
     System.out.println(this + "angelegt");
     String[] newValueString = Arrays.copyOf(valueString, 36);
     setSameVariables(newValueString);
-    setSameVariablesNotHaltesteig(valueString);
+    setSameVariablesWithOffset(valueString,0);
     setVariables(newValueString);
   }
 
@@ -71,14 +69,6 @@ public class HaltestelleObject extends ObjectTemplate {
     this.WeitereBilder1_Foto = convertToNull(valueString[33]);
     this.WeitereBilder2_Foto = convertToNull(valueString[34]);
     this.WeitereBilder3_Foto = convertToNull(valueString[35]);
-  }
-
-  public String getKoordinatenquelle() {
-    return Koordinatenquelle;
-  }
-
-  public String getOSM_ID() {
-    return OSM_ID;
   }
 
   public boolean isSitzplaetze() {
@@ -190,14 +180,7 @@ public class HaltestelleObject extends ObjectTemplate {
   }
 
   public ObservableList<InfoObject> getInfo() {
-    ObservableList<InfoObject> info = FXCollections.observableArrayList();
-    info.add(new InfoObject("ID", this.ID));
-    info.add(new InfoObject("Name", HST_Name));
-    info.add(new InfoObject("Datenquelle", Datenquelle));
-    info.add(new InfoObject("Datenstatus", Datenstatus));
-    info.add(new InfoObject("GPS-Position", Latitude + " : " + Longitude));
-    info.add(new InfoObject("Koordinatenquelle", Koordinatenquelle));
-    info.add(new InfoObject("OSM-ID", OSM_ID));
+    ObservableList<InfoObject> info = getInfoTemplate();
     info.add(new InfoObject("Sitzplätze", boolToString(Sitzplaetze)));
     info.add(new InfoObject("Unterstand", boolToString(Unterstand)));
     info.add(
@@ -219,23 +202,23 @@ public class HaltestelleObject extends ObjectTemplate {
   }
 
   public ObservableList<LinkObject> getLink() {
-    ObservableList<LinkObject> info = FXCollections.observableArrayList();
-    info.add(new LinkObject("Haltestelle Foto", HaltestelleTotale_Foto));
-    info.add(new LinkObject("Sitze/Unterstand Foto", SitzeOderUnterstand_Foto));
-    info.add(new LinkObject("Umgebung Sitze/Unterstand", SitzeOderUnterstandUmgebung_Foto));
-    info.add(new LinkObject("Fahrplananzeigetafel", Fahrplananzeigetafel_Foto));
-    info.add(new LinkObject("Defibrillator Foto", Defibrillator_Foto));
-    info.add(new LinkObject("Gepäckaufbewahrung Foto", Gepaeckaufbewahrung_Foto));
-    info.add(new LinkObject("Info-/Notrufsäule Foto", InfoNotrufsaeule_Foto));
-    info.add(new LinkObject("Bahnhofsmission Foto", Bahnhofsmision_Foto));
-    info.add(new LinkObject("Weg zu Bahnhofsmission Foto", BahnhofsmissionWeg_Foto));
-    info.add(
+    ObservableList<LinkObject> link = FXCollections.observableArrayList();
+    link.add(new LinkObject("Haltestelle Foto", HaltestelleTotale_Foto));
+    link.add(new LinkObject("Sitze/Unterstand Foto", SitzeOderUnterstand_Foto));
+    link.add(new LinkObject("Umgebung Sitze/Unterstand", SitzeOderUnterstandUmgebung_Foto));
+    link.add(new LinkObject("Fahrplananzeigetafel", Fahrplananzeigetafel_Foto));
+    link.add(new LinkObject("Defibrillator Foto", Defibrillator_Foto));
+    link.add(new LinkObject("Gepäckaufbewahrung Foto", Gepaeckaufbewahrung_Foto));
+    link.add(new LinkObject("Info-/Notrufsäule Foto", InfoNotrufsaeule_Foto));
+    link.add(new LinkObject("Bahnhofsmission Foto", Bahnhofsmision_Foto));
+    link.add(new LinkObject("Weg zu Bahnhofsmission Foto", BahnhofsmissionWeg_Foto));
+    link.add(
         new LinkObject(
             "Bahnhofsmission Öffnungszeiten Foto:", BahnhofsmissionOeffunungszeiten_Foto));
-    info.add(new LinkObject("Weiteres Foto 1", WeitereBilder1_Foto));
-    info.add(new LinkObject("Weiteres Foto 2", WeitereBilder2_Foto));
-    info.add(new LinkObject("Weiteres Foto 3", WeitereBilder3_Foto));
-    info.add(new LinkObject("Haltestellenposition OpenStreetMaps", getPosLink()));
-    return info;
+    link.add(new LinkObject("Weiteres Foto 1", WeitereBilder1_Foto));
+    link.add(new LinkObject("Weiteres Foto 2", WeitereBilder2_Foto));
+    link.add(new LinkObject("Weiteres Foto 3", WeitereBilder3_Foto));
+    link.add(new LinkObject("Haltestellenposition OpenStreetMaps", getPosLink()));
+    return link;
   }
 }

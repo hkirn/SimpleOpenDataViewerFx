@@ -16,11 +16,15 @@ import java.util.NoSuchElementException;
 public class StationManager {
 
   private ArrayList<HaltestelleObject> haltestelleList = new ArrayList<>();
+  private ArrayList<HaltesteigObject> haltesteigList = new ArrayList<>();
 
   public StationManager() {
     createHaltestellen(
         readCsv(
             "https://www.nvbw.de/fileadmin/user_upload/service/open_data/haltestellen/SPNV/BFRK_Haltestelle.csv"));
+    createHaltesteig(
+        readCsv(
+            "https://www.nvbw.de/fileadmin/user_upload/service/open_data/haltestellen/SPNV/BFRK_Haltesteig.csv"));
   }
 
   public HaltestelleObject searchById(String id) {
@@ -38,6 +42,13 @@ public class StationManager {
     for (String[] valueString : list) {
       HaltestelleObject haltestelleObject = new HaltestelleObject(valueString);
       haltestelleList.add(haltestelleObject);
+    }
+  }
+
+  private void createHaltesteig(ArrayList<String[]> list) {
+    for (String[] valueString : list) {
+      HaltesteigObject haltesteigObject = new HaltesteigObject(valueString);
+      haltesteigList.add(haltesteigObject);
     }
   }
 
