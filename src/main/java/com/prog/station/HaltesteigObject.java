@@ -12,6 +12,6 @@ public class HaltesteigObject extends ObjectTemplate{
     }
 
     private void setVariables(String[] valueString){
-        System.out.println("unique variables set...");
+        //System.out.println("unique variables set...");
     }
 }
