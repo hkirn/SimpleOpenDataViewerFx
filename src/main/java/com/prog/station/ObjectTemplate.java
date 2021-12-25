@@ -23,14 +23,13 @@ public class ObjectTemplate {
   protected void setSameVariablesWithOffset(String[] valueString, int offset) {
     this.Datenquelle = convertToNull(valueString[3+offset]);
     this.Datenstatus = convertToNull(valueString[4+offset]);
-    System.out.println(valueString[5+offset]);
     if ((convertToNull(valueString[5+offset])==null)||(convertToNull(valueString[5+offset])==null)){
       this.Longitude = 0;
       this.Latitude = 0;
     }
     else{
-      this.Longitude = Double.valueOf(valueString[5+offset].replace(",", "."));
-      this.Latitude = Double.valueOf(valueString[6+offset].replace(",", "."));
+      this.Longitude = convertToDouble(valueString[5+offset]);
+      this.Latitude = convertToDouble(valueString[6+offset]);
     }
     this.Koordinatenquelle = convertToNull(valueString[7+offset]);
     this.OSM_ID = convertToNull(valueString[8+offset]);
@@ -73,20 +72,26 @@ public class ObjectTemplate {
     return arr;
   }
 
-  public String getPosLink() {
+  public String getPosLink(double[] pos) {
+    System.out.println(pos[0]);
+    if (pos[0]==0){
+      System.out.println("Keine Position...");
+      return null;
+    }
+    else {
     double posOffset = 0.001;
     return "https://www.openstreetmap.org/export/embed.html?bbox="
-        + (this.getPos()[1] - posOffset)
+        + (pos[1] - posOffset)
         + ","
-        + (this.getPos()[0] - posOffset)
+        + (pos[0] - posOffset)
         + ","
-        + (this.getPos()[1] + posOffset)
+        + (pos[1] + posOffset)
         + ","
-        + (this.getPos()[0] + posOffset)
+        + (pos[0] + posOffset)
         + "&layer=mapnik&marker="
-        + this.getPos()[0]
+        + pos[0]
         + ","
-        + this.getPos()[1];
+        + pos[1];}
   }
 
   public String getKoordinatenquelle() {
@@ -117,5 +122,16 @@ public class ObjectTemplate {
     } else {
       return "Nein";
     }
+  }
+
+  protected double convertToDouble(String toConvert){
+    if (convertToNull(toConvert)==null){
+      return 0;
+    }
+    else return Double.valueOf(toConvert.replace(",", "."));
+  }
+
+  protected int convertToInt(String toConvert){
+    return (int)convertToDouble(toConvert);
   }
 }

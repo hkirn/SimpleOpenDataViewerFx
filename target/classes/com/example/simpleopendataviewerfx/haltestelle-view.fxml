@@ -26,11 +26,12 @@
                   </Label>
                </children>
             </HBox>
-            <StackPane fx:id="pane_pictureView" disable="true" />
+            <StackPane fx:id="pane_pictureView" />
             <Separator orientation="VERTICAL" prefHeight="200.0" />
             <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="291.0">
                <children>
-                  <Button fx:id="btn_otherStation" mnemonicParsing="false" onAction="#onActionBtnOtherStationPressed" prefHeight="47.0" prefWidth="144.0" text="Bahnhof wechseln" />
+                  <Button fx:id="btn_displayHaltesteig" mnemonicParsing="false" onAction="#onActionBtnDisplayHaltesteig" prefHeight="47.0" prefWidth="144.0" text="Bahnsteige anzeigen" />
+                  <Button fx:id="btn_otherStation1" mnemonicParsing="false" onAction="#onActionBtnOtherStationPressed" prefHeight="47.0" prefWidth="144.0" text="Bahnhof wechseln" />
                </children>
             </HBox>
          </children>

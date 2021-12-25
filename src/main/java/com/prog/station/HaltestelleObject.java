@@ -218,7 +218,7 @@ public class HaltestelleObject extends ObjectTemplate {
     link.add(new LinkObject("Weiteres Foto 1", WeitereBilder1_Foto));
     link.add(new LinkObject("Weiteres Foto 2", WeitereBilder2_Foto));
     link.add(new LinkObject("Weiteres Foto 3", WeitereBilder3_Foto));
-    link.add(new LinkObject("Haltestellenposition OpenStreetMaps", getPosLink()));
+    link.add(new LinkObject("Haltestellenposition OpenStreetMaps", getPosLink(getPos())));
     return link;
   }
 }

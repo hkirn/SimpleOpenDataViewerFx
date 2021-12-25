@@ -39,6 +39,15 @@ public class StationManager {
     throw new NoSuchElementException("Haltestelle: " + id + " not found");
   }
 
+  public HaltesteigObject searchHaltesteigById(String id){
+    for (HaltesteigObject haltesteigObject : haltesteigList){
+      if (haltesteigObject.getID().equals(id)){
+        return haltesteigObject;
+      }
+    }
+    throw new NoSuchElementException("Object: " + id + "not found");
+  }
+
   private void createHaltestellen(ArrayList<String[]> list) {
     for (String[] valueString : list) {
       HaltestelleObject haltestelleObject = new HaltestelleObject(valueString);
@@ -61,6 +70,25 @@ public class StationManager {
     return info;
   }
 
+  public ObservableList<InfoObject> getObjekteList(String dhid, String type) {
+    ObservableList<InfoObject> info = FXCollections.observableArrayList();
+    switch (type) {
+      case "Haltesteig":
+        for (HaltesteigObject haltesteigObject : this.haltesteigList) {
+          if (haltesteigObject.HST_DHID.equals(dhid)) {
+            if (haltesteigObject.getSteig_Name() != null) {
+              info.add(new InfoObject(haltesteigObject.getID(), haltesteigObject.getSteig_Name()));
+            } else {
+              info.add(
+                  new InfoObject(
+                      haltesteigObject.getID(), "Bahnsteigbezeichnung fehlt in Datensatz"));
+            }
+          }
+        }
+    }
+    return info;
+  }
+
   private ArrayList<String[]> readCsv(String url) {
     ArrayList<String[]> listToReturn = new ArrayList<>();
     Boolean firstLine = true;
@@ -74,7 +102,8 @@ public class StationManager {
       e.printStackTrace();
     }
     try (BufferedReader br =
-        new BufferedReader(new InputStreamReader(nvbwConnect.getInputStream(), Charset.forName("UTF-8")))) {
+        new BufferedReader(
+            new InputStreamReader(nvbwConnect.getInputStream(), Charset.forName("UTF-8")))) {
       String line;
       while ((line = br.readLine()) != null) {
         if (firstLine) {
