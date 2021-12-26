@@ -41,7 +41,7 @@ public class ObjectTemplate {
     info.add(new InfoObject("Name", HST_Name));
     info.add(new InfoObject("Datenquelle", Datenquelle));
     info.add(new InfoObject("Datenstatus", Datenstatus));
-    info.add(new InfoObject("GPS-Position", Latitude + " : " + Longitude));
+    info.add(new InfoObject("GPS-Position", convertToPosString(getPos())));
     info.add(new InfoObject("Koordinatenquelle", Koordinatenquelle));
     info.add(new InfoObject("OSM-ID", OSM_ID));
     return info;
@@ -73,9 +73,7 @@ public class ObjectTemplate {
   }
 
   public String getPosLink(double[] pos) {
-    System.out.println(pos[0]);
     if (pos[0]==0){
-      System.out.println("Keine Position...");
       return null;
     }
     else {
@@ -133,5 +131,12 @@ public class ObjectTemplate {
 
   protected int convertToInt(String toConvert){
     return (int)convertToDouble(toConvert);
+  }
+
+  protected String convertToPosString(double[] pos){
+    if (pos[0]==0){
+      return null;
+    }
+    else return pos[0]+" : "+pos[1];
   }
 }
