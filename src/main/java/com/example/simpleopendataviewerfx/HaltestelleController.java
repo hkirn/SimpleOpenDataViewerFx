@@ -1,5 +1,6 @@
 package com.example.simpleopendataviewerfx;
 
+import com.prog.station.AufzugObject;
 import com.prog.station.HaltesteigObject;
 import com.prog.station.HaltestelleObject;
 import com.prog.station.InfoObject;
@@ -28,6 +29,7 @@ import java.util.ResourceBundle;
 public class HaltestelleController implements Initializable {
   HaltestelleObject haltestelleObject;
   HaltesteigObject haltesteigObject;
+  AufzugObject aufzugObject;
 
   public HaltestelleController() {
     this.manager = new StationManager();
@@ -37,14 +39,16 @@ public class HaltestelleController implements Initializable {
   @FXML private Label lbl_hstName;
   @FXML private StackPane pane_pictureView;
   @FXML private VBox vboxRight;
-  @FXML private Button btn_otherStation;
+  @FXML private Button btn_otherStation1;
   @FXML private Button btn_displayHaltesteig;
+  @FXML private Button btn_displayAufzug;
 
   private StationManager manager;
   private TableView<InfoObject> infoObjectTableView;
   private ListView<LinkObject> linkListView;
   private WebView webView;
   private VBox infoDisplay;
+  private String activeObject;
 
   @FXML
   protected void onActionBtnDisplayHaltesteig() {
@@ -53,6 +57,7 @@ public class HaltestelleController implements Initializable {
   }
 
   private void createHaltesteigMenu() {
+    activeObject = "Haltesteig";
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
         createInfoTableView(
@@ -71,10 +76,36 @@ public class HaltestelleController implements Initializable {
     createLinkListView(null, infoDisplay);
   }
 
+  @FXML
+  protected void onActionBtnDisplayAufzug() {
+    System.out.println("displayHaltesteig pressed");
+    createAufzugMenu();
+  }
+
+  private void createAufzugMenu() {
+    activeObject = "Aufzug";
+    vboxRight.getChildren().clear();
+    this.infoObjectTableView =
+        createInfoTableView(
+            "Object-ID",
+            "infoType",
+            "Bezeichnung",
+            "info",
+            manager.getObjekteList(this.haltestelleObject.getID(), "Aufzug"),
+            300,
+            vboxRight);
+    createButtons();
+    infoDisplay = new VBox();
+    vboxRight.getChildren().add(infoDisplay);
+    createInfoTableView(
+        "Art der Information", "infoType", "Information", "info", null, 400, infoDisplay);
+    createLinkListView(null, infoDisplay);
+  }
+
   private void createButtons() {
     HBox buttonbox = new HBox();
     Button btnSelect = new Button("ausgewähltes Objekt anzeigen");
-    btnSelect.setOnAction(new ButtonSelectHaltesteigClickHandler());
+    btnSelect.setOnAction(new ButtonSelectObjectClickHandler());
     Button btnBack = new Button("Zurück zu Bahnhof");
     btnBack.setOnAction(new ButtonBackClickHandler());
     vboxRight.getChildren().add(buttonbox);
@@ -108,25 +139,19 @@ public class HaltestelleController implements Initializable {
     }
   }
 
-  class ButtonSelectHaltesteigClickHandler implements EventHandler<ActionEvent> {
+  class ButtonSelectObjectClickHandler implements EventHandler<ActionEvent> {
     @Override
     public void handle(final ActionEvent event) {
       System.out.println("btnSelect pressed");
-      System.out.println(infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
-      haltesteigObject =
-          manager.searchHaltesteigById(
-              infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
-      infoDisplay.getChildren().clear();
-      createInfoTableView(
-          "Art der Information",
-          "infoType",
-          "Information",
-          "info",
-          haltesteigObject.getInfo(),
-          400,
-          infoDisplay);
-      createLinkListView(haltesteigObject.getLink(), infoDisplay);
-      webView.getEngine().load(haltesteigObject.getPosLink(haltesteigObject.getPos()));
+      System.out.println(activeObject);
+      switch (activeObject) {
+        case "Haltesteig":
+            refreshHaltesteig();
+            break;
+        case "Aufzug":
+            refreshAufzug();
+            break;
+      }
     }
   }
 
@@ -166,6 +191,42 @@ public class HaltestelleController implements Initializable {
         400,
         vboxRight);
     createLinkListView(haltestelleObject.getLink(), vboxRight);
+  }
+
+  private void refreshHaltesteig() {
+    System.out.println(infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
+    haltesteigObject =
+        manager.searchHaltesteigById(
+            infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
+    webView.getEngine().load(haltesteigObject.getPosLink(haltesteigObject.getPos()));
+    infoDisplay.getChildren().clear();
+    createInfoTableView(
+        "Art der Information",
+        "infoType",
+        "Information",
+        "info",
+        haltesteigObject.getInfo(),
+        400,
+        infoDisplay);
+    createLinkListView(haltesteigObject.getLink(), infoDisplay);
+  }
+
+  private void refreshAufzug() {
+    System.out.println(infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
+    aufzugObject =
+            manager.searchAufzugById(
+                    infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
+    webView.getEngine().load(aufzugObject.getPosLink(aufzugObject.getPos()));
+    infoDisplay.getChildren().clear();
+    createInfoTableView(
+            "Art der Information",
+            "infoType",
+            "Information",
+            "info",
+            aufzugObject.getInfo(),
+            400,
+            infoDisplay);
+    createLinkListView(aufzugObject.getLink(), infoDisplay);
   }
 
   private TableView createInfoTableView(

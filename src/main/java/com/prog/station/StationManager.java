@@ -18,6 +18,7 @@ public class StationManager {
 
   private ArrayList<HaltestelleObject> haltestelleList = new ArrayList<>();
   private ArrayList<HaltesteigObject> haltesteigList = new ArrayList<>();
+  private ArrayList<AufzugObject> aufzugObjectList = new ArrayList<>();
 
   public StationManager() {
     createHaltestellen(
@@ -26,23 +27,35 @@ public class StationManager {
     createHaltesteig(
         readCsv(
             "https://www.nvbw.de/fileadmin/user_upload/service/open_data/haltestellen/SPNV/BFRK_Haltesteig.csv"));
+
+    createAufzug(
+        readCsv(
+            "https://www.nvbw.de/fileadmin/user_upload/service/open_data/haltestellen/SPNV/BFRK_Aufzug.csv"));
   }
 
   public HaltestelleObject searchById(String id) {
     for (HaltestelleObject haltestelleObject : haltestelleList) {
       if (haltestelleObject.getID().equals(id)) {
         System.out.println("Haltestelle found");
-        printObject(haltestelleObject);
         return haltestelleObject;
       }
     }
     throw new NoSuchElementException("Haltestelle: " + id + " not found");
   }
 
-  public HaltesteigObject searchHaltesteigById(String id){
-    for (HaltesteigObject haltesteigObject : haltesteigList){
-      if (haltesteigObject.getID().equals(id)){
+  public HaltesteigObject searchHaltesteigById(String id) {
+    for (HaltesteigObject haltesteigObject : haltesteigList) {
+      if (haltesteigObject.getID().equals(id)) {
         return haltesteigObject;
+      }
+    }
+    throw new NoSuchElementException("Object: " + id + "not found");
+  }
+
+  public AufzugObject searchAufzugById(String id) {
+    for (AufzugObject aufzugObject : aufzugObjectList) {
+      if (aufzugObject.getID().equals(id)) {
+        return aufzugObject;
       }
     }
     throw new NoSuchElementException("Object: " + id + "not found");
@@ -62,6 +75,13 @@ public class StationManager {
     }
   }
 
+  private void createAufzug(ArrayList<String[]> list) {
+    for (String[] valueString : list) {
+      AufzugObject aufzugObject = new AufzugObject(valueString);
+      aufzugObjectList.add(aufzugObject);
+    }
+  }
+
   public ObservableList<InfoObject> getHaltestelleList() {
     ObservableList<InfoObject> info = FXCollections.observableArrayList();
     for (HaltestelleObject haltestelleObject : this.haltestelleList) {
@@ -75,16 +95,29 @@ public class StationManager {
     switch (type) {
       case "Haltesteig":
         for (HaltesteigObject haltesteigObject : this.haltesteigList) {
-          if (haltesteigObject.HST_DHID.equals(dhid)) {
+          if (haltesteigObject.getHST_ID().equals(dhid)) {
             if (haltesteigObject.getSteig_Name() != null) {
               info.add(new InfoObject(haltesteigObject.getID(), haltesteigObject.getSteig_Name()));
             } else {
               info.add(
                   new InfoObject(
-                      haltesteigObject.getID(), "Bahnsteigbezeichnung fehlt in Datensatz"));
+                      haltesteigObject.getID(), "Objektbezeichnung fehlt in Datensatz"));
             }
           }
         }
+        break;
+      case "Aufzug":
+        for (AufzugObject aufzugObject : this.aufzugObjectList) {
+          if (aufzugObject.getHST_ID().equals(dhid)) {
+            if (aufzugObject.getHST_Name() != null) {
+              info.add(new InfoObject(aufzugObject.getID(), aufzugObject.getVerbindungsfunktion()));
+            } else {
+              info.add(
+                  new InfoObject(aufzugObject.getID(), "Objektbezeichnung fehlt in Datensatz"));
+            }
+          }
+        }
+        break;
     }
     return info;
   }
@@ -120,54 +153,5 @@ public class StationManager {
       e.printStackTrace();
     }
     return listToReturn;
-  }
-
-  private void printObject(HaltestelleObject haltestelleObject) {
-    System.out.println("ID: " + haltestelleObject.getID());
-    System.out.println("HST_Name: " + haltestelleObject.getHST_Name());
-    System.out.println("Datenquelle: " + haltestelleObject.getDatenquelle());
-    System.out.println("Datenstatus: " + haltestelleObject.getDatenstatus());
-    System.out.println(
-        "GPS-Pos: " + haltestelleObject.getPos()[0] + " " + haltestelleObject.getPos()[1]);
-    System.out.println("Koordinatenquelle: " + haltestelleObject.getKoordinatenquelle());
-    System.out.println("OSM_ID: " + haltestelleObject.getOSM_ID());
-    System.out.println("Sitzplätze: " + haltestelleObject.isSitzplaetze());
-    System.out.println("Unterstand: " + haltestelleObject.isUnterstand());
-    System.out.println(
-        "Rollstuhlflaeche Unterstand: " + haltestelleObject.isRollstuhlflaecheImUnterstand());
-    System.out.println("Fahrplananzeigetafel: " + haltestelleObject.isFahrplananzeigetafel());
-    System.out.println(
-        "Fahrplananzeigetafel akustisch: " + haltestelleObject.isFahrplananzeigetafel_akustisch());
-    System.out.println("Ansagen vorhanden: " + haltestelleObject.isAnsagen_vorhanden());
-    System.out.println("Defibrillator vorhanden: " + haltestelleObject.isDefibrillator());
-    System.out.println(
-        "Defibrillator Lage: " + haltestelleObject.getDefibrilator_Lagebeschreibung());
-    System.out.println("Gepäckaufbewahrung: " + haltestelleObject.isGepaeckaufbewahrung());
-    System.out.println("Gepäcktransport: " + haltestelleObject.isGepaeckaufbewahrung());
-    System.out.println("InduktiveHöranlage: " + haltestelleObject.isInduktiveHoeranlage());
-    System.out.println(
-        "InduktiveHöranlageStandort: " + haltestelleObject.getInduktiveHoeranlageStandort());
-    System.out.println("Info Notrufsäule: " + haltestelleObject.getInfoNotrufsaeule());
-    System.out.println("Bahnhofsmission: " + haltestelleObject.isBahnhofsmission());
-    System.out.println("HaltestelleTotale_Foto: " + haltestelleObject.getHaltestelleTotale_Foto());
-    System.out.println(
-        "SitzeOderUnterstand_Foto: " + haltestelleObject.getSitzeOderUnterstand_Foto());
-    System.out.println(
-        "SitzeOderUnterstandUmgebung_Foto: "
-            + haltestelleObject.getSitzeOderUnterstandUmgebung_Foto());
-    System.out.println(
-        "Fahrplananzeigetafel_Foto_ " + haltestelleObject.getFahrplananzeigetafel_Foto());
-    System.out.println("Defibrillator_Foto: " + haltestelleObject.getDefibrillator_Foto());
-    System.out.println(
-        "Gepaeckaufbewahrung_Foto: " + haltestelleObject.getGepaeckaufbewahrung_Foto());
-    System.out.println("InfoNotrufsaeule_Foto: " + haltestelleObject.getInfoNotrufsaeule_Foto());
-    System.out.println("Bahnhofsmision_Foto: " + haltestelleObject.getBahnhofsmision_Foto());
-    System.out.println("BahnhofsmissionWeg_Foto " + haltestelleObject.getBahnhofsmissionWeg_Foto());
-    System.out.println(
-        "BahnhofsmissionOeffunungszeiten_Foto: "
-            + haltestelleObject.getBahnhofsmissionOeffunungszeiten_Foto());
-    System.out.println("WeitereBilder1_Foto: " + haltestelleObject.getWeitereBilder1_Foto());
-    System.out.println("WeitereBilder2_Foto: " + haltestelleObject.getWeitereBilder2_Foto());
-    System.out.println("WeitereBilder3_Foto: " + haltestelleObject.getWeitereBilder3_Foto());
   }
 }

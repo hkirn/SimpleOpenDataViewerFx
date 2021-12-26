@@ -23,7 +23,7 @@ public class ObjectTemplate {
   protected void setSameVariablesWithOffset(String[] valueString, int offset) {
     this.Datenquelle = convertToNull(valueString[3+offset]);
     this.Datenstatus = convertToNull(valueString[4+offset]);
-    if ((convertToNull(valueString[5+offset])==null)||(convertToNull(valueString[5+offset])==null)){
+    if ((convertToNull(valueString[5+offset])==null)||(convertToNull(valueString[6+offset])==null)){
       this.Longitude = 0;
       this.Latitude = 0;
     }
