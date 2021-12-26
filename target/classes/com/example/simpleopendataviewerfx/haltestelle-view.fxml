@@ -30,6 +30,8 @@
             <Separator orientation="VERTICAL" prefHeight="200.0" />
             <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="291.0">
                <children>
+                  <Button fx:id="btn_displayEngstelle" layoutX="502.0" layoutY="10.0" mnemonicParsing="false" onAction="#onActionBtnDisplayEngstelle" prefHeight="47.0" prefWidth="144.0" text="Engstellen anzeigen" />
+                  <Button fx:id="btn_displayAufzug" layoutX="646.0" layoutY="10.0" mnemonicParsing="false" onAction="#onActionBtnDisplayAufzug" prefHeight="47.0" prefWidth="144.0" text="Aufzüge anzeigen" />
                   <Button fx:id="btn_displayHaltesteig" mnemonicParsing="false" onAction="#onActionBtnDisplayHaltesteig" prefHeight="47.0" prefWidth="144.0" text="Bahnsteige anzeigen" />
                   <Button fx:id="btn_otherStation1" mnemonicParsing="false" onAction="#onActionBtnOtherStationPressed" prefHeight="47.0" prefWidth="144.0" text="Bahnhof wechseln" />
                </children>

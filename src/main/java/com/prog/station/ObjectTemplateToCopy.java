@@ -10,7 +10,7 @@ public class ObjectTemplateToCopy extends ObjectTemplate{
     public ObjectTemplateToCopy(String[] valueString) {
         String[] newValueString = Arrays.copyOf(valueString, 18);
         setSameVariables(newValueString);
-        setSameVariablesWithOffset(newValueString, 1);
+        setSameVariablesWithOffset(newValueString, 0);
         setVariables(newValueString);
         System.out.println(this + "angelegt");
     }

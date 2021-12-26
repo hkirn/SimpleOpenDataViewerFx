@@ -19,6 +19,7 @@ public class StationManager {
   private ArrayList<HaltestelleObject> haltestelleList = new ArrayList<>();
   private ArrayList<HaltesteigObject> haltesteigList = new ArrayList<>();
   private ArrayList<AufzugObject> aufzugObjectList = new ArrayList<>();
+  private ArrayList<EngstelleObject> engstelleObjectList = new ArrayList<>();
 
   public StationManager() {
     createHaltestellen(
@@ -31,6 +32,10 @@ public class StationManager {
     createAufzug(
         readCsv(
             "https://www.nvbw.de/fileadmin/user_upload/service/open_data/haltestellen/SPNV/BFRK_Aufzug.csv"));
+
+    createEngstelle(
+        readCsv(
+            "https://www.nvbw.de/fileadmin/user_upload/service/open_data/haltestellen/SPNV/BFRK_Engstelle.csv"));
   }
 
   public HaltestelleObject searchById(String id) {
@@ -61,6 +66,15 @@ public class StationManager {
     throw new NoSuchElementException("Object: " + id + "not found");
   }
 
+  public EngstelleObject searchEngstelleById(String id) {
+    for (EngstelleObject engstelleObject : engstelleObjectList) {
+      if (engstelleObject.getID().equals(id)) {
+        return engstelleObject;
+      }
+    }
+    throw new NoSuchElementException("Object: " + id + "not found");
+  }
+
   private void createHaltestellen(ArrayList<String[]> list) {
     for (String[] valueString : list) {
       HaltestelleObject haltestelleObject = new HaltestelleObject(valueString);
@@ -82,6 +96,13 @@ public class StationManager {
     }
   }
 
+  private void createEngstelle(ArrayList<String[]> list) {
+    for (String[] valueString : list) {
+      EngstelleObject engstelleObject = new EngstelleObject(valueString);
+      engstelleObjectList.add(engstelleObject);
+    }
+  }
+
   public ObservableList<InfoObject> getHaltestelleList() {
     ObservableList<InfoObject> info = FXCollections.observableArrayList();
     for (HaltestelleObject haltestelleObject : this.haltestelleList) {
@@ -96,25 +117,22 @@ public class StationManager {
       case "Haltesteig":
         for (HaltesteigObject haltesteigObject : this.haltesteigList) {
           if (haltesteigObject.getHST_ID().equals(dhid)) {
-            if (haltesteigObject.getSteig_Name() != null) {
-              info.add(new InfoObject(haltesteigObject.getID(), haltesteigObject.getSteig_Name()));
-            } else {
-              info.add(
-                  new InfoObject(
-                      haltesteigObject.getID(), "Objektbezeichnung fehlt in Datensatz"));
-            }
+            info.add(createInfoObject(haltesteigObject.getID(), haltesteigObject.getSteig_Name()));
           }
         }
         break;
       case "Aufzug":
         for (AufzugObject aufzugObject : this.aufzugObjectList) {
           if (aufzugObject.getHST_ID().equals(dhid)) {
-            if (aufzugObject.getHST_Name() != null) {
-              info.add(new InfoObject(aufzugObject.getID(), aufzugObject.getVerbindungsfunktion()));
-            } else {
-              info.add(
-                  new InfoObject(aufzugObject.getID(), "Objektbezeichnung fehlt in Datensatz"));
-            }
+            info.add(createInfoObject(aufzugObject.getID(), aufzugObject.getVerbindungsfunktion()));
+          }
+        }
+        break;
+
+      case "Engstelle":
+        for (EngstelleObject engstelleObject : this.engstelleObjectList) {
+          if (engstelleObject.getHST_ID().equals(dhid)) {
+            info.add(createInfoObject(engstelleObject.getID(), "keine Beschreibung verfügbar"));
           }
         }
         break;
@@ -153,5 +171,13 @@ public class StationManager {
       e.printStackTrace();
     }
     return listToReturn;
+  }
+
+  private InfoObject createInfoObject(String id, String text) {
+    if (text != null) {
+      return new InfoObject(id, text);
+    } else {
+      return new InfoObject(id, "Objektbezeichnung fehlt in Datensatz");
+    }
   }
 }

@@ -1,6 +1,7 @@
 package com.example.simpleopendataviewerfx;
 
 import com.prog.station.AufzugObject;
+import com.prog.station.EngstelleObject;
 import com.prog.station.HaltesteigObject;
 import com.prog.station.HaltestelleObject;
 import com.prog.station.InfoObject;
@@ -27,9 +28,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class HaltestelleController implements Initializable {
-  HaltestelleObject haltestelleObject;
-  HaltesteigObject haltesteigObject;
-  AufzugObject aufzugObject;
+  private HaltestelleObject haltestelleObject;
+  private HaltesteigObject haltesteigObject;
+  private AufzugObject aufzugObject;
+  private EngstelleObject engstelleObject;
 
   public HaltestelleController() {
     this.manager = new StationManager();
@@ -42,13 +44,22 @@ public class HaltestelleController implements Initializable {
   @FXML private Button btn_otherStation1;
   @FXML private Button btn_displayHaltesteig;
   @FXML private Button btn_displayAufzug;
+  @FXML private Button btn_displayEngstelle;
 
-  private StationManager manager;
+  private final StationManager manager;
   private TableView<InfoObject> infoObjectTableView;
   private ListView<LinkObject> linkListView;
   private WebView webView;
   private VBox infoDisplay;
   private String activeObject;
+
+  @Override
+  public void initialize(URL location, ResourceBundle resources) {
+    webView = new WebView();
+    webView.getEngine().load(haltestelleObject.getHaltestelleTotale_Foto());
+    pane_pictureView.getChildren().add(webView);
+    refreshStation();
+  }
 
   @FXML
   protected void onActionBtnDisplayHaltesteig() {
@@ -102,6 +113,32 @@ public class HaltestelleController implements Initializable {
     createLinkListView(null, infoDisplay);
   }
 
+  @FXML
+  protected void onActionBtnDisplayEngstelle(){
+    System.out.println("displayEngstelle pressed");
+    createEngstelleMenu();
+  }
+
+  private void createEngstelleMenu() {
+    activeObject = "Engstelle";
+    vboxRight.getChildren().clear();
+    this.infoObjectTableView =
+            createInfoTableView(
+                    "Object-ID",
+                    "infoType",
+                    "Bezeichnung",
+                    "info",
+                    manager.getObjekteList(this.haltestelleObject.getID(), "Engstelle"),
+                    300,
+                    vboxRight);
+    createButtons();
+    infoDisplay = new VBox();
+    vboxRight.getChildren().add(infoDisplay);
+    createInfoTableView(
+            "Art der Information", "infoType", "Information", "info", null, 400, infoDisplay);
+    createLinkListView(null, infoDisplay);
+  }
+
   private void createButtons() {
     HBox buttonbox = new HBox();
     Button btnSelect = new Button("ausgewähltes Objekt anzeigen");
@@ -151,6 +188,9 @@ public class HaltestelleController implements Initializable {
         case "Aufzug":
             refreshAufzug();
             break;
+        case "Engstelle":
+          refreshEngstelle();
+          break;
       }
     }
   }
@@ -166,13 +206,7 @@ public class HaltestelleController implements Initializable {
     }
   }
 
-  @Override
-  public void initialize(URL location, ResourceBundle resources) {
-    webView = new WebView();
-    webView.getEngine().load(haltestelleObject.getHaltestelleTotale_Foto());
-    pane_pictureView.getChildren().add(webView);
-    refreshStation();
-  }
+
 
   private void refreshStation() {
     this.vboxRight.getChildren().clear();
@@ -227,6 +261,24 @@ public class HaltestelleController implements Initializable {
             400,
             infoDisplay);
     createLinkListView(aufzugObject.getLink(), infoDisplay);
+  }
+
+  private void refreshEngstelle() {
+    System.out.println(infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
+    engstelleObject =
+            manager.searchEngstelleById(
+                    infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
+    webView.getEngine().load(engstelleObject.getPosLink(engstelleObject.getPos()));
+    infoDisplay.getChildren().clear();
+    createInfoTableView(
+            "Art der Information",
+            "infoType",
+            "Information",
+            "info",
+            engstelleObject.getInfo(),
+            400,
+            infoDisplay);
+    createLinkListView(engstelleObject.getLink(), infoDisplay);
   }
 
   private TableView createInfoTableView(
