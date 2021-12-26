@@ -30,7 +30,7 @@ public class HaltestelleController implements Initializable {
   HaltesteigObject haltesteigObject;
 
   public HaltestelleController() {
-    manager = new StationManager();
+    this.manager = new StationManager();
     this.haltestelleObject = manager.searchById("de:08111:6115");
   }
 
@@ -44,6 +44,7 @@ public class HaltestelleController implements Initializable {
   private TableView<InfoObject> infoObjectTableView;
   private ListView<LinkObject> linkListView;
   private WebView webView;
+  private VBox infoDisplay;
 
   @FXML
   protected void onActionBtnDisplayHaltesteig() {
@@ -60,15 +61,19 @@ public class HaltestelleController implements Initializable {
             "Bezeichnung",
             "info",
             manager.getObjekteList(this.haltestelleObject.getID(), "Haltesteig"),
-            200);
+            300,
+            vboxRight);
     createButtons();
-    createInfoTableView("Art der Information", "infoType", "Information", "info", null, 400);
-    createLinkListView(null);
+    infoDisplay = new VBox();
+    vboxRight.getChildren().add(infoDisplay);
+    createInfoTableView(
+        "Art der Information", "infoType", "Information", "info", null, 400, infoDisplay);
+    createLinkListView(null, infoDisplay);
   }
 
   private void createButtons() {
     HBox buttonbox = new HBox();
-    Button btnSelect = new Button("Haltesteig anzeigen");
+    Button btnSelect = new Button("ausgewähltes Objekt anzeigen");
     btnSelect.setOnAction(new ButtonSelectHaltesteigClickHandler());
     Button btnBack = new Button("Zurück zu Bahnhof");
     btnBack.setOnAction(new ButtonBackClickHandler());
@@ -83,7 +88,13 @@ public class HaltestelleController implements Initializable {
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
         createInfoTableView(
-            "Bahnhof ID", "infoType", "Bahnhof Name", "info", manager.getHaltestelleList(), 800);
+            "Bahnhof ID",
+            "infoType",
+            "Bahnhof Name",
+            "info",
+            manager.getHaltestelleList(),
+            800,
+            vboxRight);
     Button btnOk = new Button("Bahnhof aufrufen");
     btnOk.setOnAction(new ButtonOkClickHandler());
     vboxRight.getChildren().add(btnOk);
@@ -105,24 +116,16 @@ public class HaltestelleController implements Initializable {
       haltesteigObject =
           manager.searchHaltesteigById(
               infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
-      vboxRight.getChildren().clear();
-      infoObjectTableView =
-          createInfoTableView(
-              "Steig-ID",
-              "infoType",
-              "Bezeichnung",
-              "info",
-              manager.getObjekteList(haltestelleObject.getID(), "Haltesteig"),
-              200);
-      createButtons();
+      infoDisplay.getChildren().clear();
       createInfoTableView(
           "Art der Information",
           "infoType",
           "Information",
           "info",
           haltesteigObject.getInfo(),
-          400);
-      createLinkListView(haltesteigObject.getLink());
+          400,
+          infoDisplay);
+      createLinkListView(haltesteigObject.getLink(), infoDisplay);
       webView.getEngine().load(haltesteigObject.getPosLink(haltesteigObject.getPos()));
     }
   }
@@ -155,8 +158,14 @@ public class HaltestelleController implements Initializable {
       webView.getEngine().load(haltestelleObject.getPosLink(haltestelleObject.getPos()));
     }
     createInfoTableView(
-        "Art der Information", "infoType", "Information", "info", haltestelleObject.getInfo(), 400);
-    createLinkListView(haltestelleObject.getLink());
+        "Art der Information",
+        "infoType",
+        "Information",
+        "info",
+        haltestelleObject.getInfo(),
+        400,
+        vboxRight);
+    createLinkListView(haltestelleObject.getLink(), vboxRight);
   }
 
   private TableView createInfoTableView(
@@ -165,7 +174,8 @@ public class HaltestelleController implements Initializable {
       String description2ndColumn,
       String name2ndColumn,
       ObservableList<InfoObject> listToShow,
-      int hight) {
+      int hight,
+      VBox positionToDisplay) {
     TableView infoObjectTableView;
     TableColumn<InfoObject, String> infoTypeColumn = new TableColumn<>(description1stColumn);
     infoTypeColumn.setCellValueFactory(new PropertyValueFactory<>(name1stColumn));
@@ -178,18 +188,18 @@ public class HaltestelleController implements Initializable {
     infoObjectTableView.setItems(listToShow);
     infoObjectTableView.getColumns().addAll(infoTypeColumn, infoColumn);
     Separator separator1 = new Separator();
-    vboxRight.getChildren().add(separator1);
-    vboxRight.getChildren().add(infoObjectTableView);
+    positionToDisplay.getChildren().add(separator1);
+    positionToDisplay.getChildren().add(infoObjectTableView);
     Separator separator2 = new Separator();
-    vboxRight.getChildren().add(separator2);
+    positionToDisplay.getChildren().add(separator2);
     return infoObjectTableView;
   }
 
-  private void createLinkListView(ObservableList<LinkObject> linkObjects) {
+  private void createLinkListView(ObservableList<LinkObject> linkObjects, VBox positionToDisplay) {
     linkListView = new ListView<>();
     linkListView.setCellFactory(list -> new LinkCell(HaltestelleController.this));
     linkListView.setItems(linkObjects);
-    vboxRight.getChildren().add(linkListView);
+    positionToDisplay.getChildren().add(linkListView);
   }
 
   static class LinkCell extends ListCell<LinkObject> {
