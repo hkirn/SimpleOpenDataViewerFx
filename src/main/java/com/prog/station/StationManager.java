@@ -2,7 +2,6 @@ package com.prog.station;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -10,32 +9,36 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 public class StationManager {
 
-  private ArrayList<HaltestelleObject> haltestelleList = new ArrayList<>();
-  private ArrayList<HaltesteigObject> haltesteigList = new ArrayList<>();
-  private ArrayList<AufzugObject> aufzugObjectList = new ArrayList<>();
-  private ArrayList<EngstelleObject> engstelleObjectList = new ArrayList<>();
+  private final ArrayList<HaltestelleObject> haltestelleList = new ArrayList<>();
+  private final ArrayList<HaltesteigObject> haltesteigList = new ArrayList<>();
+  private final ArrayList<AufzugObject> aufzugObjectList = new ArrayList<>();
+  private final ArrayList<EngstelleObject> engstelleObjectList = new ArrayList<>();
+  private final ArrayList<FahrkartenautomatObject> fahrkartenautomatObjects = new ArrayList<>();
+  private final ArrayList<FahrradanlageObject> fahrradanlageObjects = new ArrayList<>();
+  private final ArrayList<GleisquerungObject> gleisquerungObjects = new ArrayList<>();
+  private final ArrayList<InformationsstelleObject> informationsstelleObjects = new ArrayList<>();
+  private final ArrayList<LeihradanlageObject> leihradanlageObjects = new ArrayList<>();
+  private final ArrayList<ParkplatzObject> parkplatzObjects = new ArrayList<>();
+  private final ArrayList<RampeObject> rampeObjects = new ArrayList<>();
+  private final ArrayList<RolltreppeObject> rolltreppeObjects = new ArrayList<>();
+  private final ArrayList<StationsplanObject> stationsplanObjects = new ArrayList<>();
+  private final ArrayList<TaxiObject> taxiObjects = new ArrayList<>();
+  private final ArrayList<ToiletteObject> toiletteObjects = new ArrayList<>();
+  private final ArrayList<TreppeObject> treppeObjects = new ArrayList<>();
+  private final ArrayList<TuerObject> tuerObjects = new ArrayList<>();
+  private final ArrayList<VerkaufsstelleObject> verkaufsstelleObjects = new ArrayList<>();
+  private final ArrayList<WegObject> wegObjects = new ArrayList<>();
+  private final String urlNvbw = "https://www.nvbw.de/fileadmin/user_upload/service/open_data/haltestellen/SPNV/";
 
   public StationManager() {
-    createHaltestellen(
-        readCsv(
-            "https://www.nvbw.de/fileadmin/user_upload/service/open_data/haltestellen/SPNV/BFRK_Haltestelle.csv"));
-    createHaltesteig(
-        readCsv(
-            "https://www.nvbw.de/fileadmin/user_upload/service/open_data/haltestellen/SPNV/BFRK_Haltesteig.csv"));
-
-    createAufzug(
-        readCsv(
-            "https://www.nvbw.de/fileadmin/user_upload/service/open_data/haltestellen/SPNV/BFRK_Aufzug.csv"));
-
-    createEngstelle(
-        readCsv(
-            "https://www.nvbw.de/fileadmin/user_upload/service/open_data/haltestellen/SPNV/BFRK_Engstelle.csv"));
+    createHaltestellen(readCsv(urlNvbw + "BFRK_Haltestelle.csv"));
   }
 
   public HaltestelleObject searchById(String id) {
@@ -78,28 +81,133 @@ public class StationManager {
   private void createHaltestellen(ArrayList<String[]> list) {
     for (String[] valueString : list) {
       HaltestelleObject haltestelleObject = new HaltestelleObject(valueString);
-      haltestelleList.add(haltestelleObject);
+      this.haltestelleList.add(haltestelleObject);
     }
   }
 
   private void createHaltesteig(ArrayList<String[]> list) {
     for (String[] valueString : list) {
       HaltesteigObject haltesteigObject = new HaltesteigObject(valueString);
-      haltesteigList.add(haltesteigObject);
+      this.haltesteigList.add(haltesteigObject);
     }
   }
 
   private void createAufzug(ArrayList<String[]> list) {
     for (String[] valueString : list) {
       AufzugObject aufzugObject = new AufzugObject(valueString);
-      aufzugObjectList.add(aufzugObject);
+      this.aufzugObjectList.add(aufzugObject);
     }
   }
 
   private void createEngstelle(ArrayList<String[]> list) {
     for (String[] valueString : list) {
       EngstelleObject engstelleObject = new EngstelleObject(valueString);
-      engstelleObjectList.add(engstelleObject);
+      this.engstelleObjectList.add(engstelleObject);
+    }
+  }
+
+  private void createFahrkartenautomat(ArrayList<String[]> list) {
+    for (String[] valueString : list) {
+      FahrkartenautomatObject createdObject = new FahrkartenautomatObject(valueString);
+      this.fahrkartenautomatObjects.add(createdObject);
+    }
+  }
+
+  private void createFahrradanlage(ArrayList<String[]> list) {
+    for (String[] valueString : list) {
+      FahrradanlageObject createdObject = new FahrradanlageObject(valueString);
+      this.fahrradanlageObjects.add(createdObject);
+    }
+  }
+
+  private void createGleisquerung(ArrayList<String[]> list) {
+    for (String[] valueString : list) {
+      GleisquerungObject createdObject = new GleisquerungObject(valueString);
+      this.gleisquerungObjects.add(createdObject);
+    }
+  }
+
+  private void createInformationsstelle(ArrayList<String[]> list) {
+    for (String[] valueString : list) {
+      InformationsstelleObject createdObject = new InformationsstelleObject(valueString);
+      this.informationsstelleObjects.add(createdObject);
+    }
+  }
+
+  private void createLeihradanlage(ArrayList<String[]> list) {
+    for (String[] valueString : list) {
+      LeihradanlageObject createdObject = new LeihradanlageObject(valueString);
+      this.leihradanlageObjects.add(createdObject);
+    }
+  }
+
+  private void createParkplatz(ArrayList<String[]> list) {
+    for (String[] valueString : list) {
+      ParkplatzObject createdObject = new ParkplatzObject(valueString);
+      this.parkplatzObjects.add(createdObject);
+    }
+  }
+
+  private void createRampe(ArrayList<String[]> list) {
+    for (String[] valueString : list) {
+      RampeObject createdObject = new RampeObject(valueString);
+      this.rampeObjects.add(createdObject);
+    }
+  }
+
+  private void createRollteppe(ArrayList<String[]> list) {
+    for (String[] valueString : list) {
+      RolltreppeObject createdObject = new RolltreppeObject(valueString);
+      this.rolltreppeObjects.add(createdObject);
+    }
+  }
+
+  private void createStationsplan(ArrayList<String[]> list) {
+    for (String[] valueString : list) {
+      StationsplanObject createdObject = new StationsplanObject(valueString);
+      this.stationsplanObjects.add(createdObject);
+    }
+  }
+
+  private void createTaxi(ArrayList<String[]> list) {
+    for (String[] valueString : list) {
+      TaxiObject createdObject = new TaxiObject(valueString);
+      this.taxiObjects.add(createdObject);
+    }
+  }
+
+  private void createToilette(ArrayList<String[]> list) {
+    for (String[] valueString : list) {
+      ToiletteObject createdObject = new ToiletteObject(valueString);
+      this.toiletteObjects.add(createdObject);
+    }
+  }
+
+  private void createTreppe(ArrayList<String[]> list) {
+    for (String[] valueString : list) {
+      TreppeObject createdObject = new TreppeObject(valueString);
+      this.treppeObjects.add(createdObject);
+    }
+  }
+
+  private void createTuer(ArrayList<String[]> list) {
+    for (String[] valueString : list) {
+      TuerObject createdObject = new TuerObject(valueString);
+      this.tuerObjects.add(createdObject);
+    }
+  }
+
+  private void createVerkaufsstelle(ArrayList<String[]> list) {
+    for (String[] valueString : list) {
+      VerkaufsstelleObject createdObject = new VerkaufsstelleObject(valueString);
+      this.verkaufsstelleObjects.add(createdObject);
+    }
+  }
+
+  private void createWeg(ArrayList<String[]> list) {
+    for (String[] valueString : list) {
+      WegObject createdObject = new WegObject(valueString);
+      this.wegObjects.add(createdObject);
     }
   }
 
@@ -114,28 +222,186 @@ public class StationManager {
   public ObservableList<InfoObject> getObjekteList(String dhid, String type) {
     ObservableList<InfoObject> info = FXCollections.observableArrayList();
     switch (type) {
-      case "Haltesteig":
+      case "Haltesteig" -> {
+        if (haltesteigList.isEmpty()) {
+          createHaltesteig(readCsv(urlNvbw + "BFRK_Haltesteig.csv"));
+        }
         for (HaltesteigObject haltesteigObject : this.haltesteigList) {
           if (haltesteigObject.getHST_ID().equals(dhid)) {
             info.add(createInfoObject(haltesteigObject.getID(), haltesteigObject.getSteig_Name()));
           }
         }
-        break;
-      case "Aufzug":
+      }
+      case "Aufzug" -> {
+        if (aufzugObjectList.isEmpty()) {
+          createAufzug(readCsv(urlNvbw + "BFRK_Aufzug.csv"));
+        }
         for (AufzugObject aufzugObject : this.aufzugObjectList) {
           if (aufzugObject.getHST_ID().equals(dhid)) {
             info.add(createInfoObject(aufzugObject.getID(), aufzugObject.getVerbindungsfunktion()));
           }
         }
-        break;
-
-      case "Engstelle":
+      }
+      case "Engstelle" -> {
+        if (engstelleObjectList.isEmpty()) {
+          createEngstelle(readCsv(urlNvbw + "BFRK_Engstelle.csv"));
+        }
         for (EngstelleObject engstelleObject : this.engstelleObjectList) {
           if (engstelleObject.getHST_ID().equals(dhid)) {
             info.add(createInfoObject(engstelleObject.getID(), "keine Beschreibung verfügbar"));
           }
         }
-        break;
+      }
+      case "Fahrkartenautomat" -> {
+        if (fahrkartenautomatObjects.isEmpty()) {
+          createFahrkartenautomat(readCsv(urlNvbw + "BFRK_Fahrkartenautomat.csv"));
+        }
+        for (FahrkartenautomatObject foundObject : this.fahrkartenautomatObjects) {
+          if (foundObject.getHST_ID().equals(dhid)) {
+            info.add(createInfoObject(foundObject.getID(), "keine Beschreibung verfügbar"));
+          }
+        }
+      }
+      case "Fahrradanlage" -> {
+        if (fahrradanlageObjects.isEmpty()) {
+          createFahrradanlage(readCsv(urlNvbw + "BFRK_Fahrradanlage.csv"));
+        }
+        for (FahrradanlageObject foundObject : this.fahrradanlageObjects) {
+          if (foundObject.getHST_ID().equals(dhid)) {
+            info.add(createInfoObject(foundObject.getID(), "keine Beschreibung verfügbar"));
+          }
+        }
+      }
+      case "Gleisquerung" -> {
+        if (gleisquerungObjects.isEmpty()) {
+          createGleisquerung(readCsv(urlNvbw + "BFRK_Gleisquerung.csv"));
+        }
+        for (GleisquerungObject foundObject : this.gleisquerungObjects) {
+          if (foundObject.getHST_ID().equals(dhid)) {
+            info.add(createInfoObject(foundObject.getID(), "keine Beschreibung verfügbar"));
+          }
+        }
+      }
+      case "Informationsstelle" -> {
+        if (informationsstelleObjects.isEmpty()) {
+          createInformationsstelle(readCsv(urlNvbw + "BFRK_Informationsstelle.csv"));
+        }
+        for (InformationsstelleObject foundObject : this.informationsstelleObjects) {
+          if (foundObject.getHST_ID().equals(dhid)) {
+            info.add(createInfoObject(foundObject.getID(), "keine Beschreibung verfügbar"));
+          }
+        }
+      }
+      case "Leihradanlage" -> {
+        if (leihradanlageObjects.isEmpty()) {
+          createLeihradanlage(readCsv(urlNvbw + "BFRK_Leihradanlage.csv"));
+        }
+        for (LeihradanlageObject foundObject : this.leihradanlageObjects) {
+          if (foundObject.getHST_ID().equals(dhid)) {
+            info.add(createInfoObject(foundObject.getID(), "keine Beschreibung verfügbar"));
+          }
+        }
+      }
+      case "Parkplatz" -> {
+        if (parkplatzObjects.isEmpty()) {
+          createParkplatz(readCsv(urlNvbw + "BFRK_Parkplatz.csv"));
+        }
+        for (ParkplatzObject foundObject : this.parkplatzObjects) {
+          if (foundObject.getHST_ID().equals(dhid)) {
+            info.add(createInfoObject(foundObject.getID(), "keine Beschreibung verfügbar"));
+          }
+        }
+      }
+      case "Rampe" -> {
+        if (rampeObjects.isEmpty()) {
+          createRampe(readCsv(urlNvbw + "BFRK_Rampe.csv"));
+        }
+        for (RampeObject foundObject : this.rampeObjects) {
+          if (foundObject.getHST_ID().equals(dhid)) {
+            info.add(createInfoObject(foundObject.getID(), "keine Beschreibung verfügbar"));
+          }
+        }
+      }
+      case "Rolltreppe" -> {
+        if (rolltreppeObjects.isEmpty()) {
+          createRollteppe(readCsv(urlNvbw + "BFRK_Rolltreppe.csv"));
+        }
+        for (RolltreppeObject foundObject : this.rolltreppeObjects) {
+          if (foundObject.getHST_ID().equals(dhid)) {
+            info.add(createInfoObject(foundObject.getID(), "keine Beschreibung verfügbar"));
+          }
+        }
+      }
+      case "Stationsplan" -> {
+        if (stationsplanObjects.isEmpty()) {
+          createRollteppe(readCsv(urlNvbw + "BFRK_Rolltreppe.csv"));
+        }
+        for (StationsplanObject foundObject : this.stationsplanObjects) {
+          if (foundObject.getHST_ID().equals(dhid)) {
+            info.add(createInfoObject(foundObject.getID(), "keine Beschreibung verfügbar"));
+          }
+        }
+      }
+      case "Taxi" -> {
+        if (rolltreppeObjects.isEmpty()) {
+          createRollteppe(readCsv(urlNvbw + "BFRK_Rolltreppe.csv"));
+        }
+        for (TaxiObject foundObject : this.taxiObjects) {
+          if (foundObject.getHST_ID().equals(dhid)) {
+            info.add(createInfoObject(foundObject.getID(), "keine Beschreibung verfügbar"));
+          }
+        }
+      }
+      case "Toilette" -> {
+        if (toiletteObjects.isEmpty()) {
+          createToilette(readCsv(urlNvbw + "BFRK_Toilette.csv"));
+        }
+        for (ToiletteObject foundObject : this.toiletteObjects) {
+          if (foundObject.getHST_ID().equals(dhid)) {
+            info.add(createInfoObject(foundObject.getID(), "keine Beschreibung verfügbar"));
+          }
+        }
+      }
+      case "Treppe" -> {
+        if (treppeObjects.isEmpty()) {
+          createTreppe(readCsv(urlNvbw + "BFRK_Treppe.csv"));
+        }
+        for (TreppeObject foundObject : this.treppeObjects) {
+          if (foundObject.getHST_ID().equals(dhid)) {
+            info.add(createInfoObject(foundObject.getID(), "keine Beschreibung verfügbar"));
+          }
+        }
+      }
+      case "Tuer" -> {
+        if (tuerObjects.isEmpty()) {
+          createTuer(readCsv(urlNvbw + "BFRK_Tuer.csv"));
+        }
+        for (TuerObject foundObject : this.tuerObjects) {
+          if (foundObject.getHST_ID().equals(dhid)) {
+            info.add(createInfoObject(foundObject.getID(), "keine Beschreibung verfügbar"));
+          }
+        }
+      }
+      case "Verkaufsstelle" -> {
+        if (verkaufsstelleObjects.isEmpty()) {
+          createVerkaufsstelle(readCsv(urlNvbw + "BFRK_Verkaufsstelle.csv"));
+        }
+        for (VerkaufsstelleObject foundObject : this.verkaufsstelleObjects) {
+          if (foundObject.getHST_ID().equals(dhid)) {
+            info.add(createInfoObject(foundObject.getID(), "keine Beschreibung verfügbar"));
+          }
+        }
+      }
+      case "Weg" -> {
+        if (wegObjects.isEmpty()) {
+          createWeg(readCsv(urlNvbw + "BFRK_Weg.csv"));
+        }
+        for (WegObject foundObject : this.wegObjects) {
+          if (foundObject.getHST_ID().equals(dhid)) {
+            info.add(createInfoObject(foundObject.getID(), "keine Beschreibung verfügbar"));
+          }
+        }
+      }
     }
     return info;
   }
@@ -152,17 +418,20 @@ public class StationManager {
     } catch (IOException e) {
       e.printStackTrace();
     }
-    try (BufferedReader br =
-        new BufferedReader(
-            new InputStreamReader(nvbwConnect.getInputStream(), Charset.forName("UTF-8")))) {
-      String line;
-      while ((line = br.readLine()) != null) {
-        if (firstLine) {
-          System.out.println("first Line - ignored");
-          firstLine = false;
-        } else {
-          String[] values = line.split(";");
-          listToReturn.add(values);
+    try {
+      assert nvbwConnect != null;
+      try (BufferedReader br =
+          new BufferedReader(
+              new InputStreamReader(nvbwConnect.getInputStream(), StandardCharsets.UTF_8))) {
+        String line;
+        while ((line = br.readLine()) != null) {
+          if (firstLine) {
+            System.out.println("first Line - ignored");
+            firstLine = false;
+          } else {
+            String[] values = line.split(";");
+            listToReturn.add(values);
+          }
         }
       }
     } catch (FileNotFoundException e) {
@@ -174,10 +443,6 @@ public class StationManager {
   }
 
   private InfoObject createInfoObject(String id, String text) {
-    if (text != null) {
-      return new InfoObject(id, text);
-    } else {
-      return new InfoObject(id, "Objektbezeichnung fehlt in Datensatz");
-    }
+    return new InfoObject(id, Objects.requireNonNullElse(text, "Objektbezeichnung fehlt in Datensatz"));
   }
 }
