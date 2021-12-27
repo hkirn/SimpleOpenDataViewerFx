@@ -4,6 +4,7 @@ import com.prog.station.AufzugObject;
 import com.prog.station.EngstelleObject;
 import com.prog.station.FahrkartenautomatObject;
 import com.prog.station.FahrradanlageObject;
+import com.prog.station.GleisquerungObject;
 import com.prog.station.HaltesteigObject;
 import com.prog.station.HaltestelleObject;
 import com.prog.station.InfoObject;
@@ -36,6 +37,7 @@ public class HaltestelleController implements Initializable {
   private EngstelleObject engstelleObject;
   private FahrkartenautomatObject fahrkartenautomatObject;
   private FahrradanlageObject fahrradanlageObject;
+  private GleisquerungObject gleisquerungObject;
 
   public HaltestelleController() {
     this.manager = new StationManager();
@@ -51,6 +53,7 @@ public class HaltestelleController implements Initializable {
   @FXML private Button btn_displayEngstelle;
   @FXML private Button btn_displayFahrkartenautomat;
   @FXML private Button btn_displayFahrradanlage;
+  @FXML private Button btn_displayGleisquerung;
 
   private final StationManager manager;
   private TableView<InfoObject> infoObjectTableView;
@@ -152,6 +155,23 @@ public class HaltestelleController implements Initializable {
     createMenuFooter(true,null, null);
   }
 
+  @FXML
+  protected void onActionBtnDisplayGleisquerung() {
+    System.out.println("displayGleisquerung pressed");
+    this.activeObject = "Gleisquerung";
+    vboxRight.getChildren().clear();
+    this.infoObjectTableView =
+            createInfoTableView(
+                    "Object-ID",
+                    "infoType",
+                    "Bezeichnung",
+                    "info",
+                    manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
+                    300,
+                    vboxRight);
+    createMenuFooter(true,null, null);
+  }
+
 
   @FXML
   protected void onActionBtnOtherStationPressed() {
@@ -199,6 +219,9 @@ public class HaltestelleController implements Initializable {
           break;
         case "Fahrradanlage":
           refreshFahrradanlage();
+          break;
+        case "Gleisquerung":
+          refreshGleisquerung();
           break;
       }
     }
@@ -274,6 +297,16 @@ public class HaltestelleController implements Initializable {
     webView.getEngine().load(fahrradanlageObject.getPosLink(fahrradanlageObject.getPos()));
     infoDisplay.getChildren().clear();
     createMenuFooter(false,fahrradanlageObject.getInfo(),fahrradanlageObject.getLink());
+  }
+
+  private void refreshGleisquerung() {
+    System.out.println(infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
+    gleisquerungObject =
+            manager.searchGleisquerungById(
+                    infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
+    webView.getEngine().load(gleisquerungObject.getPosLink(gleisquerungObject.getPos()));
+    infoDisplay.getChildren().clear();
+    createMenuFooter(false,gleisquerungObject.getInfo(),gleisquerungObject.getLink());
   }
 
   static class LinkCell extends ListCell<LinkObject> {

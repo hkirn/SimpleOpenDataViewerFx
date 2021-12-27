@@ -96,6 +96,123 @@ public class StationManager {
     throw new NoSuchElementException("Object: " + id + "not found");
   }
 
+  public GleisquerungObject searchGleisquerungById(String id) {
+    for (GleisquerungObject foundObject : gleisquerungObjects) {
+      if (foundObject.getID().equals(id)) {
+        return foundObject;
+      }
+    }
+    throw new NoSuchElementException("Object: " + id + "not found");
+  }
+
+  public InformationsstelleObject searchInformationsstelleById(String id) {
+    for (InformationsstelleObject foundObject : informationsstelleObjects) {
+      if (foundObject.getID().equals(id)) {
+        return foundObject;
+      }
+    }
+    throw new NoSuchElementException("Object: " + id + "not found");
+  }
+
+  public LeihradanlageObject searchLeihradanlageById(String id) {
+    for (LeihradanlageObject foundObject : leihradanlageObjects) {
+      if (foundObject.getID().equals(id)) {
+        return foundObject;
+      }
+    }
+    throw new NoSuchElementException("Object: " + id + "not found");
+  }
+
+  public ParkplatzObject searchParkplatzById(String id) {
+    for (ParkplatzObject foundObject : parkplatzObjects) {
+      if (foundObject.getID().equals(id)) {
+        return foundObject;
+      }
+    }
+    throw new NoSuchElementException("Object: " + id + "not found");
+  }
+
+  public RampeObject searchRampeById(String id) {
+    for (RampeObject foundObject : rampeObjects) {
+      if (foundObject.getID().equals(id)) {
+        return foundObject;
+      }
+    }
+    throw new NoSuchElementException("Object: " + id + "not found");
+  }
+
+  public RolltreppeObject searchRolltreppeById(String id) {
+    for (RolltreppeObject foundObject : rolltreppeObjects) {
+      if (foundObject.getID().equals(id)) {
+        return foundObject;
+      }
+    }
+    throw new NoSuchElementException("Object: " + id + "not found");
+  }
+
+  public StationsplanObject searchStationsplanById(String id) {
+    for (StationsplanObject foundObject : stationsplanObjects) {
+      if (foundObject.getID().equals(id)) {
+        return foundObject;
+      }
+    }
+    throw new NoSuchElementException("Object: " + id + "not found");
+  }
+
+  public TaxiObject searchTaxiById(String id) {
+    for (TaxiObject foundObject : taxiObjects) {
+      if (foundObject.getID().equals(id)) {
+        return foundObject;
+      }
+    }
+    throw new NoSuchElementException("Object: " + id + "not found");
+  }
+
+  public ToiletteObject searchToiletteById(String id) {
+    for (ToiletteObject foundObject : toiletteObjects) {
+      if (foundObject.getID().equals(id)) {
+        return foundObject;
+      }
+    }
+    throw new NoSuchElementException("Object: " + id + "not found");
+  }
+
+  public TreppeObject searchTreppeById(String id) {
+    for (TreppeObject foundObject : treppeObjects) {
+      if (foundObject.getID().equals(id)) {
+        return foundObject;
+      }
+    }
+    throw new NoSuchElementException("Object: " + id + "not found");
+  }
+
+  public TuerObject searchTuerById(String id) {
+    for (TuerObject foundObject : tuerObjects) {
+      if (foundObject.getID().equals(id)) {
+        return foundObject;
+      }
+    }
+    throw new NoSuchElementException("Object: " + id + "not found");
+  }
+
+  public VerkaufsstelleObject searchVerkaufsstelleById(String id) {
+    for (VerkaufsstelleObject foundObject : verkaufsstelleObjects) {
+      if (foundObject.getID().equals(id)) {
+        return foundObject;
+      }
+    }
+    throw new NoSuchElementException("Object: " + id + "not found");
+  }
+
+  public WegObject searchWegById(String id) {
+    for (WegObject foundObject : wegObjects) {
+      if (foundObject.getID().equals(id)) {
+        return foundObject;
+      }
+    }
+    throw new NoSuchElementException("Object: " + id + "not found");
+  }
+
   private void createHaltestellen(ArrayList<String[]> list) {
     for (String[] valueString : list) {
       HaltestelleObject haltestelleObject = new HaltestelleObject(valueString);
@@ -296,7 +413,7 @@ public class StationManager {
         }
         for (GleisquerungObject foundObject : this.gleisquerungObjects) {
           if (foundObject.getHST_ID().equals(dhid)) {
-            info.add(createInfoObject(foundObject.getID(), "keine Beschreibung verfügbar"));
+            info.add(createInfoObject(foundObject.getID(), foundObject.getVerbindungsfunktion()));
           }
         }
       }
