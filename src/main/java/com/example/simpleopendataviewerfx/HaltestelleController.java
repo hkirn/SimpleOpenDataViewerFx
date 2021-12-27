@@ -8,6 +8,8 @@ import com.prog.station.GleisquerungObject;
 import com.prog.station.HaltesteigObject;
 import com.prog.station.HaltestelleObject;
 import com.prog.station.InfoObject;
+import com.prog.station.InformationsstelleObject;
+import com.prog.station.LeihradanlageObject;
 import com.prog.station.LinkObject;
 import com.prog.station.StationManager;
 import javafx.collections.ObservableList;
@@ -38,6 +40,8 @@ public class HaltestelleController implements Initializable {
   private FahrkartenautomatObject fahrkartenautomatObject;
   private FahrradanlageObject fahrradanlageObject;
   private GleisquerungObject gleisquerungObject;
+  private InformationsstelleObject informationsstelleObject;
+  private LeihradanlageObject leihradanlageObject;
 
   public HaltestelleController() {
     this.manager = new StationManager();
@@ -54,6 +58,8 @@ public class HaltestelleController implements Initializable {
   @FXML private Button btn_displayFahrkartenautomat;
   @FXML private Button btn_displayFahrradanlage;
   @FXML private Button btn_displayGleisquerung;
+  @FXML private Button btn_displayInformationsstelle;
+  @FXML private Button btn_displayLeihradanlage;
 
   private final StationManager manager;
   private TableView<InfoObject> infoObjectTableView;
@@ -172,6 +178,38 @@ public class HaltestelleController implements Initializable {
     createMenuFooter(true,null, null);
   }
 
+  @FXML
+  protected void onActionBtnDisplayInformationsstelle() {
+    System.out.println("displayInformationsstelle pressed");
+    this.activeObject = "Informationsstelle";
+    vboxRight.getChildren().clear();
+    this.infoObjectTableView =
+            createInfoTableView(
+                    "Object-ID",
+                    "infoType",
+                    "Bezeichnung",
+                    "info",
+                    manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
+                    300,
+                    vboxRight);
+    createMenuFooter(true,null, null);
+  }
+  @FXML
+  protected void onActionBtnDisplayLeihradanlage() {
+    System.out.println("displayInformationsstelle pressed");
+    this.activeObject = "Leihradanlage";
+    vboxRight.getChildren().clear();
+    this.infoObjectTableView =
+            createInfoTableView(
+                    "Object-ID",
+                    "infoType",
+                    "Bezeichnung",
+                    "info",
+                    manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
+                    300,
+                    vboxRight);
+    createMenuFooter(true,null, null);
+  }
 
   @FXML
   protected void onActionBtnOtherStationPressed() {
@@ -223,6 +261,13 @@ public class HaltestelleController implements Initializable {
         case "Gleisquerung":
           refreshGleisquerung();
           break;
+        case "Informationsstelle":
+          refreshInformationsstelle();
+          break;
+        case "Leihradanlage":
+          refreshLeihradanlage();
+          break;
+
       }
     }
   }
@@ -307,6 +352,27 @@ public class HaltestelleController implements Initializable {
     webView.getEngine().load(gleisquerungObject.getPosLink(gleisquerungObject.getPos()));
     infoDisplay.getChildren().clear();
     createMenuFooter(false,gleisquerungObject.getInfo(),gleisquerungObject.getLink());
+  }
+
+  private void refreshInformationsstelle() {
+    System.out.println(infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
+    informationsstelleObject =
+            manager.searchInformationsstelleById(
+                    infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
+    webView.getEngine().load(informationsstelleObject.getPosLink(informationsstelleObject.getPos()));
+    infoDisplay.getChildren().clear();
+    createMenuFooter(false,informationsstelleObject.getInfo(),informationsstelleObject.getLink());
+  }
+
+  private void refreshLeihradanlage() {
+    System.out.println(infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
+    leihradanlageObject =
+            manager.searchLeihradanlageById(
+                    infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
+    webView.getEngine().load(leihradanlageObject.getPosLink(leihradanlageObject.getPos()));
+    infoDisplay.getChildren().clear();
+    createMenuFooter(false,leihradanlageObject.getInfo(),leihradanlageObject.getLink());
+    webView.getEngine().load(leihradanlageObject.getPosLink(leihradanlageObject.getPos()));
   }
 
   static class LinkCell extends ListCell<LinkObject> {

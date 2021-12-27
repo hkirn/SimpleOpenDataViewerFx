@@ -423,7 +423,7 @@ public class StationManager {
         }
         for (InformationsstelleObject foundObject : this.informationsstelleObjects) {
           if (foundObject.getHST_ID().equals(dhid)) {
-            info.add(createInfoObject(foundObject.getID(), "keine Beschreibung verfügbar"));
+            info.add(createInfoObject(foundObject.getID(), foundObject.getInfostelleName()));
           }
         }
       }
@@ -433,7 +433,7 @@ public class StationManager {
         }
         for (LeihradanlageObject foundObject : this.leihradanlageObjects) {
           if (foundObject.getHST_ID().equals(dhid)) {
-            info.add(createInfoObject(foundObject.getID(), "keine Beschreibung verfügbar"));
+            info.add(createInfoObject(foundObject.getID(), foundObject.getNotizen()));
           }
         }
       }
