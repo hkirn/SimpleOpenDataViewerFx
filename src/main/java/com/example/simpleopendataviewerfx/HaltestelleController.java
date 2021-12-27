@@ -1,17 +1,6 @@
 package com.example.simpleopendataviewerfx;
 
-import com.prog.station.AufzugObject;
-import com.prog.station.EngstelleObject;
-import com.prog.station.FahrkartenautomatObject;
-import com.prog.station.FahrradanlageObject;
-import com.prog.station.GleisquerungObject;
-import com.prog.station.HaltesteigObject;
-import com.prog.station.HaltestelleObject;
-import com.prog.station.InfoObject;
-import com.prog.station.InformationsstelleObject;
-import com.prog.station.LeihradanlageObject;
-import com.prog.station.LinkObject;
-import com.prog.station.StationManager;
+import com.prog.station.*;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -35,13 +24,11 @@ import java.util.ResourceBundle;
 public class HaltestelleController implements Initializable {
   private HaltestelleObject haltestelleObject;
   private HaltesteigObject haltesteigObject;
-  private AufzugObject aufzugObject;
   private EngstelleObject engstelleObject;
   private FahrkartenautomatObject fahrkartenautomatObject;
   private FahrradanlageObject fahrradanlageObject;
   private GleisquerungObject gleisquerungObject;
   private InformationsstelleObject informationsstelleObject;
-  private LeihradanlageObject leihradanlageObject;
 
   public HaltestelleController() {
     this.manager = new StationManager();
@@ -51,17 +38,21 @@ public class HaltestelleController implements Initializable {
   @FXML private Label lbl_hstName;
   @FXML private StackPane pane_pictureView;
   @FXML private VBox vboxRight;
-  @FXML private Button btn_otherStation1;
-  @FXML private Button btn_displayHaltesteig;
-  @FXML private Button btn_displayAufzug;
-  @FXML private Button btn_displayEngstelle;
-  @FXML private Button btn_displayFahrkartenautomat;
-  @FXML private Button btn_displayFahrradanlage;
-  @FXML private Button btn_displayGleisquerung;
-  @FXML private Button btn_displayInformationsstelle;
-  @FXML private Button btn_displayLeihradanlage;
-
+  /**
+   * Not needed at the moment, for futere use!
+   * @FXML private Button btn_otherStation1; @FXML private Button btn_displayHaltesteig; @FXML
+   * private Button btn_displayAufzug; @FXML private Button btn_displayEngstelle; @FXML private
+   * Button btn_displayFahrkartenautomat; @FXML private Button btn_displayFahrradanlage; @FXML
+   * private Button btn_displayGleisquerung; @FXML private Button
+   * btn_displayInformationsstelle; @FXML private Button btn_displayLeihradanlage; @FXML private
+   * Button btn_displayParkplatz; @FXML private Button btn_displayRampe; @FXML private Button
+   * btn_displayRolltreppe; @FXML private Button btn_displayStationsplan; @FXML private Button
+   * btn_displayTaxi; @FXML private Button btn_displayToilette; @FXML private Button
+   * btn_displayTreppe; @FXML private Button btn_display_Tuer; @FXML private Button
+   * btn_display_Verkaufsstelle; @FXML private Button btn_displayWeg;
+   */
   private final StationManager manager;
+
   private TableView<InfoObject> infoObjectTableView;
   private ListView<LinkObject> linkListView;
   private WebView webView;
@@ -124,7 +115,7 @@ public class HaltestelleController implements Initializable {
             manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
             300,
             vboxRight);
-    createMenuFooter(true,null, null);
+    createMenuFooter(true, null, null);
   }
 
   @FXML
@@ -133,15 +124,15 @@ public class HaltestelleController implements Initializable {
     activeObject = "Fahrkartenautomat";
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
-            createInfoTableView(
-                    "Object-ID",
-                    "infoType",
-                    "Bezeichnung",
-                    "info",
-                    manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
-                    300,
-                    vboxRight);
-    createMenuFooter(true,null, null);
+        createInfoTableView(
+            "Object-ID",
+            "infoType",
+            "Bezeichnung",
+            "info",
+            manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
+            300,
+            vboxRight);
+    createMenuFooter(true, null, null);
   }
 
   @FXML
@@ -150,15 +141,15 @@ public class HaltestelleController implements Initializable {
     this.activeObject = "Fahrradanlage";
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
-            createInfoTableView(
-                    "Object-ID",
-                    "infoType",
-                    "Bezeichnung",
-                    "info",
-                    manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
-                    300,
-                    vboxRight);
-    createMenuFooter(true,null, null);
+        createInfoTableView(
+            "Object-ID",
+            "infoType",
+            "Bezeichnung",
+            "info",
+            manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
+            300,
+            vboxRight);
+    createMenuFooter(true, null, null);
   }
 
   @FXML
@@ -167,15 +158,15 @@ public class HaltestelleController implements Initializable {
     this.activeObject = "Gleisquerung";
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
-            createInfoTableView(
-                    "Object-ID",
-                    "infoType",
-                    "Bezeichnung",
-                    "info",
-                    manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
-                    300,
-                    vboxRight);
-    createMenuFooter(true,null, null);
+        createInfoTableView(
+            "Object-ID",
+            "infoType",
+            "Bezeichnung",
+            "info",
+            manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
+            300,
+            vboxRight);
+    createMenuFooter(true, null, null);
   }
 
   @FXML
@@ -184,31 +175,202 @@ public class HaltestelleController implements Initializable {
     this.activeObject = "Informationsstelle";
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
-            createInfoTableView(
-                    "Object-ID",
-                    "infoType",
-                    "Bezeichnung",
-                    "info",
-                    manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
-                    300,
-                    vboxRight);
-    createMenuFooter(true,null, null);
+        createInfoTableView(
+            "Object-ID",
+            "infoType",
+            "Bezeichnung",
+            "info",
+            manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
+            300,
+            vboxRight);
+    createMenuFooter(true, null, null);
   }
+
   @FXML
   protected void onActionBtnDisplayLeihradanlage() {
     System.out.println("displayInformationsstelle pressed");
     this.activeObject = "Leihradanlage";
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
-            createInfoTableView(
-                    "Object-ID",
-                    "infoType",
-                    "Bezeichnung",
-                    "info",
-                    manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
-                    300,
-                    vboxRight);
-    createMenuFooter(true,null, null);
+        createInfoTableView(
+            "Object-ID",
+            "infoType",
+            "Bezeichnung",
+            "info",
+            manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
+            300,
+            vboxRight);
+    createMenuFooter(true, null, null);
+  }
+
+  @FXML
+  protected void onActionBtnDisplayParkplatz() {
+    System.out.println("displayParkplatz pressed");
+    this.activeObject = "Parkplatz";
+    vboxRight.getChildren().clear();
+    this.infoObjectTableView =
+        createInfoTableView(
+            "Object-ID",
+            "infoType",
+            "Bezeichnung",
+            "info",
+            manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
+            300,
+            vboxRight);
+    createMenuFooter(true, null, null);
+  }
+
+  @FXML
+  protected void onActionBtnDisplayRampe() {
+    System.out.println("displayRampe pressed");
+    this.activeObject = "Rampe";
+    vboxRight.getChildren().clear();
+    this.infoObjectTableView =
+        createInfoTableView(
+            "Object-ID",
+            "infoType",
+            "Bezeichnung",
+            "info",
+            manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
+            300,
+            vboxRight);
+    createMenuFooter(true, null, null);
+  }
+
+  @FXML
+  protected void onActionBtnDisplayRolltreppe() {
+    System.out.println("displayRolltreppe pressed");
+    this.activeObject = "Rolltreppe";
+    vboxRight.getChildren().clear();
+    this.infoObjectTableView =
+        createInfoTableView(
+            "Object-ID",
+            "infoType",
+            "Bezeichnung",
+            "info",
+            manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
+            300,
+            vboxRight);
+    createMenuFooter(true, null, null);
+  }
+
+  @FXML
+  protected void onActionBtnDisplayStationsplan() {
+    System.out.println("displayStationsplan pressed");
+    this.activeObject = "Stationsplan";
+    vboxRight.getChildren().clear();
+    this.infoObjectTableView =
+        createInfoTableView(
+            "Object-ID",
+            "infoType",
+            "Bezeichnung",
+            "info",
+            manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
+            300,
+            vboxRight);
+    createMenuFooter(true, null, null);
+  }
+
+  @FXML
+  protected void onActionBtnDisplayTaxi() {
+    System.out.println("displayTaxi pressed");
+    this.activeObject = "Taxi";
+    vboxRight.getChildren().clear();
+    this.infoObjectTableView =
+        createInfoTableView(
+            "Object-ID",
+            "infoType",
+            "Bezeichnung",
+            "info",
+            manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
+            300,
+            vboxRight);
+    createMenuFooter(true, null, null);
+  }
+
+  @FXML
+  protected void onActionBtnDisplayToilette() {
+    System.out.println("displayToilette pressed");
+    this.activeObject = "Toilette";
+    vboxRight.getChildren().clear();
+    this.infoObjectTableView =
+        createInfoTableView(
+            "Object-ID",
+            "infoType",
+            "Bezeichnung",
+            "info",
+            manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
+            300,
+            vboxRight);
+    createMenuFooter(true, null, null);
+  }
+
+  @FXML
+  protected void onActionBtnDisplayTreppe() {
+    System.out.println("displayTreppe pressed");
+    this.activeObject = "Treppe";
+    vboxRight.getChildren().clear();
+    this.infoObjectTableView =
+        createInfoTableView(
+            "Object-ID",
+            "infoType",
+            "Bezeichnung",
+            "info",
+            manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
+            300,
+            vboxRight);
+    createMenuFooter(true, null, null);
+  }
+
+  @FXML
+  protected void onActionBtnDisplayTuer() {
+    System.out.println("displayTuer pressed");
+    this.activeObject = "Tuer";
+    vboxRight.getChildren().clear();
+    this.infoObjectTableView =
+        createInfoTableView(
+            "Object-ID",
+            "infoType",
+            "Bezeichnung",
+            "info",
+            manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
+            300,
+            vboxRight);
+    createMenuFooter(true, null, null);
+  }
+
+  @FXML
+  protected void onActionBtnDisplayVerkaufsstelle() {
+    System.out.println("displayVerkaufsstelle pressed");
+    this.activeObject = "Verkaufsstelle";
+    vboxRight.getChildren().clear();
+    this.infoObjectTableView =
+        createInfoTableView(
+            "Object-ID",
+            "infoType",
+            "Bezeichnung",
+            "info",
+            manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
+            300,
+            vboxRight);
+    createMenuFooter(true, null, null);
+  }
+
+  @FXML
+  protected void onActionBtnDisplayWeg() {
+    System.out.println("displayInformationsstelle pressed");
+    this.activeObject = "Weg";
+    vboxRight.getChildren().clear();
+    this.infoObjectTableView =
+        createInfoTableView(
+            "Object-ID",
+            "infoType",
+            "Bezeichnung",
+            "info",
+            manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
+            300,
+            vboxRight);
+    createMenuFooter(true, null, null);
   }
 
   @FXML
@@ -267,7 +429,36 @@ public class HaltestelleController implements Initializable {
         case "Leihradanlage":
           refreshLeihradanlage();
           break;
-
+        case "Parkplatz":
+          refreshParkplatz();
+          break;
+        case "Rampe":
+          refreshRampe();
+          break;
+        case "Rolltreppe":
+          refreshRolltreppe();
+          break;
+        case "Stationsplan":
+          refreshStationsplan();
+          break;
+        case "Taxi":
+          refreshTaxi();
+          break;
+        case "Toilette":
+          refreshToilette();
+          break;
+        case "Treppe":
+          refreshTreppe();
+          break;
+        case "Tuer":
+          refreshTuer();
+          break;
+        case "Verkaufsstelle":
+          refreshVerkaufsstelle();
+          break;
+        case "Weg":
+          refreshWeg();
+          break;
       }
     }
   }
@@ -301,17 +492,17 @@ public class HaltestelleController implements Initializable {
             infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
     webView.getEngine().load(haltesteigObject.getPosLink(haltesteigObject.getPos()));
     infoDisplay.getChildren().clear();
-    createMenuFooter(false, haltesteigObject.getInfo(),haltesteigObject.getLink());
+    createMenuFooter(false, haltesteigObject.getInfo(), haltesteigObject.getLink());
   }
 
   private void refreshAufzug() {
     System.out.println(infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
-    aufzugObject =
+    AufzugObject aufzugObject =
         manager.searchAufzugById(
             infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
     webView.getEngine().load(aufzugObject.getPosLink(aufzugObject.getPos()));
     infoDisplay.getChildren().clear();
-    createMenuFooter(false, aufzugObject.getInfo(),aufzugObject.getLink());
+    createMenuFooter(false, aufzugObject.getInfo(), aufzugObject.getLink());
   }
 
   private void refreshEngstelle() {
@@ -321,58 +512,170 @@ public class HaltestelleController implements Initializable {
             infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
     webView.getEngine().load(engstelleObject.getPosLink(engstelleObject.getPos()));
     infoDisplay.getChildren().clear();
-    createMenuFooter(false,engstelleObject.getInfo(),engstelleObject.getLink());
+    createMenuFooter(false, engstelleObject.getInfo(), engstelleObject.getLink());
   }
 
   private void refreshFahrkartenautomat() {
     System.out.println(infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
     fahrkartenautomatObject =
-            manager.searchFahrkartenautomatById(
-                    infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
+        manager.searchFahrkartenautomatById(
+            infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
     webView.getEngine().load(fahrkartenautomatObject.getPosLink(fahrkartenautomatObject.getPos()));
     infoDisplay.getChildren().clear();
-    createMenuFooter(false,fahrkartenautomatObject.getInfo(),fahrkartenautomatObject.getLink());
+    createMenuFooter(false, fahrkartenautomatObject.getInfo(), fahrkartenautomatObject.getLink());
   }
 
   private void refreshFahrradanlage() {
     System.out.println(infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
     fahrradanlageObject =
-            manager.searchFahrradanlageById(
-                    infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
+        manager.searchFahrradanlageById(
+            infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
     webView.getEngine().load(fahrradanlageObject.getPosLink(fahrradanlageObject.getPos()));
     infoDisplay.getChildren().clear();
-    createMenuFooter(false,fahrradanlageObject.getInfo(),fahrradanlageObject.getLink());
+    createMenuFooter(false, fahrradanlageObject.getInfo(), fahrradanlageObject.getLink());
   }
 
   private void refreshGleisquerung() {
     System.out.println(infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
     gleisquerungObject =
-            manager.searchGleisquerungById(
-                    infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
+        manager.searchGleisquerungById(
+            infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
     webView.getEngine().load(gleisquerungObject.getPosLink(gleisquerungObject.getPos()));
     infoDisplay.getChildren().clear();
-    createMenuFooter(false,gleisquerungObject.getInfo(),gleisquerungObject.getLink());
+    createMenuFooter(false, gleisquerungObject.getInfo(), gleisquerungObject.getLink());
   }
 
   private void refreshInformationsstelle() {
     System.out.println(infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
     informationsstelleObject =
-            manager.searchInformationsstelleById(
-                    infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
-    webView.getEngine().load(informationsstelleObject.getPosLink(informationsstelleObject.getPos()));
+        manager.searchInformationsstelleById(
+            infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
+    webView
+        .getEngine()
+        .load(informationsstelleObject.getPosLink(informationsstelleObject.getPos()));
     infoDisplay.getChildren().clear();
-    createMenuFooter(false,informationsstelleObject.getInfo(),informationsstelleObject.getLink());
+    createMenuFooter(false, informationsstelleObject.getInfo(), informationsstelleObject.getLink());
   }
 
   private void refreshLeihradanlage() {
     System.out.println(infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
-    leihradanlageObject =
-            manager.searchLeihradanlageById(
-                    infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
+    LeihradanlageObject leihradanlageObject =
+        manager.searchLeihradanlageById(
+            infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
     webView.getEngine().load(leihradanlageObject.getPosLink(leihradanlageObject.getPos()));
     infoDisplay.getChildren().clear();
-    createMenuFooter(false,leihradanlageObject.getInfo(),leihradanlageObject.getLink());
+    createMenuFooter(false, leihradanlageObject.getInfo(), leihradanlageObject.getLink());
     webView.getEngine().load(leihradanlageObject.getPosLink(leihradanlageObject.getPos()));
+  }
+
+  private void refreshParkplatz() {
+    System.out.println(infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
+    ParkplatzObject foundObject =
+        manager.searchParkplatzById(
+            infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
+    webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
+    infoDisplay.getChildren().clear();
+    createMenuFooter(false, foundObject.getInfo(), foundObject.getLink());
+    webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
+  }
+
+  private void refreshRampe() {
+    System.out.println(infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
+    RampeObject foundObject =
+        manager.searchRampeById(
+            infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
+    webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
+    infoDisplay.getChildren().clear();
+    createMenuFooter(false, foundObject.getInfo(), foundObject.getLink());
+    webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
+  }
+
+  private void refreshRolltreppe() {
+    System.out.println(infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
+    RolltreppeObject foundObject =
+        manager.searchRolltreppeById(
+            infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
+    webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
+    System.out.println(webView.getEngine().getLocation());
+    infoDisplay.getChildren().clear();
+    createMenuFooter(false, foundObject.getInfo(), foundObject.getLink());
+  }
+
+  private void refreshStationsplan() {
+    System.out.println(infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
+    StationsplanObject foundObject =
+        manager.searchStationsplanById(
+            infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
+    webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
+    System.out.println(webView.getEngine().getLocation());
+    infoDisplay.getChildren().clear();
+    createMenuFooter(false, foundObject.getInfo(), foundObject.getLink());
+  }
+
+  private void refreshTaxi() {
+    System.out.println(infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
+    TaxiObject foundObject =
+        manager.searchTaxiById(
+            infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
+    webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
+    System.out.println(webView.getEngine().getLocation());
+    infoDisplay.getChildren().clear();
+    createMenuFooter(false, foundObject.getInfo(), foundObject.getLink());
+  }
+
+  private void refreshToilette() {
+    System.out.println(infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
+    ToiletteObject foundObject =
+        manager.searchToiletteById(
+            infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
+    webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
+    infoDisplay.getChildren().clear();
+    createMenuFooter(false, foundObject.getInfo(), foundObject.getLink());
+    webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
+  }
+
+  private void refreshTreppe() {
+    System.out.println(infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
+    TreppeObject foundObject =
+        manager.searchTreppeById(
+            infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
+    webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
+    infoDisplay.getChildren().clear();
+    createMenuFooter(false, foundObject.getInfo(), foundObject.getLink());
+    webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
+  }
+
+  private void refreshTuer() {
+    System.out.println(infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
+    TuerObject foundObject =
+        manager.searchTuerById(
+            infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
+    webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
+    infoDisplay.getChildren().clear();
+    createMenuFooter(false, foundObject.getInfo(), foundObject.getLink());
+    webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
+  }
+
+  private void refreshVerkaufsstelle() {
+    System.out.println(infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
+    VerkaufsstelleObject foundObject =
+        manager.searchVerkaufsstelleById(
+            infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
+    webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
+    infoDisplay.getChildren().clear();
+    createMenuFooter(false, foundObject.getInfo(), foundObject.getLink());
+    webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
+  }
+
+  private void refreshWeg() {
+    System.out.println(infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
+    WegObject foundObject =
+        manager.searchWegById(
+            infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
+    webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
+    infoDisplay.getChildren().clear();
+    createMenuFooter(false, foundObject.getInfo(), foundObject.getLink());
+    webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
   }
 
   static class LinkCell extends ListCell<LinkObject> {
@@ -407,7 +710,7 @@ public class HaltestelleController implements Initializable {
     controller.webView.getEngine().load(item.getLink());
   }
 
-  private TableView createInfoTableView(
+  private TableView<InfoObject> createInfoTableView(
       String description1stColumn,
       String name1stColumn,
       String description2ndColumn,
@@ -415,7 +718,7 @@ public class HaltestelleController implements Initializable {
       ObservableList<InfoObject> listToShow,
       int hight,
       VBox positionToDisplay) {
-    TableView infoObjectTableView;
+    TableView<InfoObject> infoObjectTableView;
     TableColumn<InfoObject, String> infoTypeColumn = new TableColumn<>(description1stColumn);
     infoTypeColumn.setCellValueFactory(new PropertyValueFactory<>(name1stColumn));
 
@@ -445,13 +748,19 @@ public class HaltestelleController implements Initializable {
       boolean withButton,
       ObservableList<InfoObject> infoObjectsListToShow,
       ObservableList<LinkObject> linkObjectsListToShow) {
-    if (withButton == true) {
+    if (withButton) {
       createButtons();
     }
     infoDisplay = new VBox();
     vboxRight.getChildren().add(infoDisplay);
     createInfoTableView(
-        "Art der Information", "infoType", "Information", "info", infoObjectsListToShow, 400, infoDisplay);
+        "Art der Information",
+        "infoType",
+        "Information",
+        "info",
+        infoObjectsListToShow,
+        400,
+        infoDisplay);
     createLinkListView(linkObjectsListToShow, infoDisplay);
   }
 

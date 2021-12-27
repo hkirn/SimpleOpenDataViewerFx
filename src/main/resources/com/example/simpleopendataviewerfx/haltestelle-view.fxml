@@ -35,15 +35,29 @@
                   <Button fx:id="btn_displayAufzug" layoutX="646.0" layoutY="10.0" mnemonicParsing="false" onAction="#onActionBtnDisplayAufzug" prefHeight="47.0" prefWidth="144.0" text="Aufzüge anzeigen" />
                   <Button fx:id="btn_displayHaltesteig" mnemonicParsing="false" onAction="#onActionBtnDisplayHaltesteig" prefHeight="47.0" prefWidth="144.0" text="Bahnsteige anzeigen" />
                   <Button fx:id="btn_displayEngstelle" layoutX="358.0" layoutY="10.0" mnemonicParsing="false" onAction="#onActionBtnDisplayEngstelle" prefHeight="47.0" prefWidth="144.0" text="Engstellen anzeigen" />
+                  <Button fx:id="btn_displayGleisquerung" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onActionBtnDisplayGleisquerung" prefHeight="47.0" prefWidth="144.0" text="Gleisquerungen" />
                   <Button fx:id="btn_otherStation1" mnemonicParsing="false" onAction="#onActionBtnOtherStationPressed" prefHeight="47.0" prefWidth="144.0" text="Bahnhof wechseln" />
-                  <Button fx:id="btn_displayGleisquerung1" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onActionBtnDisplayGleisquerung" prefHeight="47.0" prefWidth="144.0" text="Gleisquerungen" />
                </children>
             </HBox>
-            <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="100.0" prefWidth="200.0">
+            <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="50.0" prefWidth="924.0">
                <children>
                   <Button fx:id="btn_displayLeihradanlage" mnemonicParsing="false" onAction="#onActionBtnDisplayLeihradanlage" prefHeight="47.0" prefWidth="144.0" text="Leihradanlage" />
-                  <Button fx:id="btn_displayInformationsstelle1" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onActionBtnDisplayInformationsstelle" prefHeight="47.0" prefWidth="144.0" text="Informationsstelle" />
+                  <Button fx:id="btn_displayInformationsstelle" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onActionBtnDisplayInformationsstelle" prefHeight="47.0" prefWidth="144.0" text="Informationsstelle" />
+                  <Button fx:id="btn_displayParkplatz" mnemonicParsing="false" onAction="#onActionBtnDisplayParkplatz" prefHeight="47.0" prefWidth="144.0" text="Parkplatz" />
+                  <Button fx:id="btn_displayRampe" mnemonicParsing="false" onAction="#onActionBtnDisplayRampe" prefHeight="47.0" prefWidth="144.0" text="Rampe" />
+                  <Button fx:id="btn_displayRolltreppe" mnemonicParsing="false" onAction="#onActionBtnDisplayRolltreppe" prefHeight="47.0" prefWidth="144.0" text="Rolltreppe" />
+                  <Button fx:id="btn_displayStationsplan" mnemonicParsing="false" onAction="#onActionBtnDisplayStationsplan" prefHeight="47.0" prefWidth="144.0" text="Stationsplan" />
+                  <Button fx:id="btn_displayTaxi" mnemonicParsing="false" onAction="#onActionBtnDisplayTaxi" prefHeight="47.0" prefWidth="144.0" text="Taxi" />
                </children></HBox>
+            <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="96.0" prefWidth="924.0">
+               <children>
+                  <Button fx:id="btn_displayToilette" mnemonicParsing="false" onAction="#onActionBtnDisplayToilette" prefHeight="47.0" prefWidth="144.0" text="Toilette" />
+                  <Button fx:id="btn_displayTreppe" mnemonicParsing="false" onAction="#onActionBtnDisplayTreppe" prefHeight="47.0" prefWidth="144.0" text="Treppe" />
+                  <Button fx:id="btn_displayTuer" mnemonicParsing="false" onAction="#onActionBtnDisplayTuer" prefHeight="47.0" prefWidth="144.0" text="Tür" />
+                  <Button fx:id="btn_displayVerkaufsstelle" mnemonicParsing="false" onAction="#onActionBtnDisplayVerkaufsstelle" prefHeight="47.0" prefWidth="144.0" text="Verkaufsstelle" />
+                  <Button fx:id="btn_displayWeg" mnemonicParsing="false" onAction="#onActionBtnDisplayWeg" prefHeight="47.0" prefWidth="144.0" text="Weg" />
+               </children>
+            </HBox>
          </children>
       </VBox>
       <VBox fx:id="vboxRight" prefHeight="1050.0" prefWidth="874.0" />

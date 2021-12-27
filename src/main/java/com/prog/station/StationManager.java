@@ -469,7 +469,7 @@ public class StationManager {
       }
       case "Stationsplan" -> {
         if (stationsplanObjects.isEmpty()) {
-          createStationsplan(readCsv(urlNvbw + "BFRK_Rolltreppe.csv"));
+          createStationsplan(readCsv(urlNvbw + "BFRK_Stationsplan.csv"));
         }
         for (StationsplanObject foundObject : this.stationsplanObjects) {
           if (foundObject.getHST_ID().equals(dhid)) {
@@ -478,8 +478,8 @@ public class StationManager {
         }
       }
       case "Taxi" -> {
-        if (rolltreppeObjects.isEmpty()) {
-          createTaxi(readCsv(urlNvbw + "BFRK_Rolltreppe.csv"));
+        if (taxiObjects.isEmpty()) {
+          createTaxi(readCsv(urlNvbw + "BFRK_Taxi.csv"));
         }
         for (TaxiObject foundObject : this.taxiObjects) {
           if (foundObject.getHST_ID().equals(dhid)) {
