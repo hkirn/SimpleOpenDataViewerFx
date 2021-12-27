@@ -228,8 +228,8 @@ public class HaltesteigObject extends ObjectTemplate {
     info.add(new InfoObject("Sitzplätze Summe", "" + sitzplaetzeSumme));
     info.add(new InfoObject("Abfallbehälter", boolToString(abfallbehaelter)));
     info.add(new InfoObject("Uhr", boolToString(uhr)));
-    info.add(new InfoObject("Tür 2 freie Länge cm", "" + tuer2FreieLaenge_cm));
-    info.add(new InfoObject("Tür 2 freie Breite cm", "" + tuer2FreieBreite_cm));
+    //info.add(new InfoObject("Tür 2 freie Länge cm", "" + tuer2FreieLaenge_cm));
+    //info.add(new InfoObject("Tür 2 freie Breite cm", "" + tuer2FreieBreite_cm));
     info.add(new InfoObject("Fahrzielanzeiger", boolToString(fahrzielanzeiger)));
     info.add(new InfoObject("Fahrzielanzeiger akustisch", boolToString(fahrzielanzeigerAkustisch)));
     info.add(new InfoObject("Fahrkartenautomat", boolToString(fahrkartenautomat)));

@@ -78,6 +78,24 @@ public class StationManager {
     throw new NoSuchElementException("Object: " + id + "not found");
   }
 
+  public FahrkartenautomatObject searchFahrkartenautomatById(String id) {
+    for (FahrkartenautomatObject foundObject : fahrkartenautomatObjects) {
+      if (foundObject.getID().equals(id)) {
+        return foundObject;
+      }
+    }
+    throw new NoSuchElementException("Object: " + id + "not found");
+  }
+
+  public FahrradanlageObject searchFahrradanlageById(String id) {
+    for (FahrradanlageObject foundObject : fahrradanlageObjects) {
+      if (foundObject.getID().equals(id)) {
+        return foundObject;
+      }
+    }
+    throw new NoSuchElementException("Object: " + id + "not found");
+  }
+
   private void createHaltestellen(ArrayList<String[]> list) {
     for (String[] valueString : list) {
       HaltestelleObject haltestelleObject = new HaltestelleObject(valueString);
@@ -258,7 +276,7 @@ public class StationManager {
         }
         for (FahrkartenautomatObject foundObject : this.fahrkartenautomatObjects) {
           if (foundObject.getHST_ID().equals(dhid)) {
-            info.add(createInfoObject(foundObject.getID(), "keine Beschreibung verfügbar"));
+            info.add(createInfoObject(foundObject.getID(), foundObject.getKartenautomatenId()));
           }
         }
       }
@@ -268,7 +286,7 @@ public class StationManager {
         }
         for (FahrradanlageObject foundObject : this.fahrradanlageObjects) {
           if (foundObject.getHST_ID().equals(dhid)) {
-            info.add(createInfoObject(foundObject.getID(), "keine Beschreibung verfügbar"));
+            info.add(createInfoObject(foundObject.getID(), foundObject.getAnlagentyp()));
           }
         }
       }
@@ -334,7 +352,7 @@ public class StationManager {
       }
       case "Stationsplan" -> {
         if (stationsplanObjects.isEmpty()) {
-          createRollteppe(readCsv(urlNvbw + "BFRK_Rolltreppe.csv"));
+          createStationsplan(readCsv(urlNvbw + "BFRK_Rolltreppe.csv"));
         }
         for (StationsplanObject foundObject : this.stationsplanObjects) {
           if (foundObject.getHST_ID().equals(dhid)) {
@@ -344,7 +362,7 @@ public class StationManager {
       }
       case "Taxi" -> {
         if (rolltreppeObjects.isEmpty()) {
-          createRollteppe(readCsv(urlNvbw + "BFRK_Rolltreppe.csv"));
+          createTaxi(readCsv(urlNvbw + "BFRK_Rolltreppe.csv"));
         }
         for (TaxiObject foundObject : this.taxiObjects) {
           if (foundObject.getHST_ID().equals(dhid)) {
