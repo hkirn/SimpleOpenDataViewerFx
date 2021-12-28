@@ -27,7 +27,7 @@ public class FahrradanlageObject extends ObjectTemplate {
     System.out.println(this + "angelegt");
   }
 
-  public String getAnlagentyp() {
+  public String getDescription() {
     return anlagentyp;
   }
 

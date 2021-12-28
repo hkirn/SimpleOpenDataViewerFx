@@ -29,4 +29,8 @@ public class WegObject extends ObjectTemplate{
         link.add(new LinkObject("Objektposition OpenStreetMaps", getPosLink(getPos())));
         return link;
     }
+
+    public String getDescription() {
+        return "keine weiteren Informationen verfügbar";
+    }
 }

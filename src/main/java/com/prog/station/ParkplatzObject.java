@@ -66,7 +66,7 @@ public class ParkplatzObject extends ObjectTemplate {
     return link;
   }
 
-  public String getArt() {
+  public String getDescription() {
     return art;
   }
 }

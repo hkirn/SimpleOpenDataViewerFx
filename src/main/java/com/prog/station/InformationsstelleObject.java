@@ -30,7 +30,7 @@ public class InformationsstelleObject extends ObjectTemplate{
         this.fotoInfostelleOeffungszeiten = convertToNull(valueString[14]);
     }
 
-    public String getInfostelleName() {
+    public String getDescription() {
         return infostelleName;
     }
 

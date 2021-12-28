@@ -44,7 +44,7 @@ public class GleisquerungObject extends ObjectTemplate{
         return link;
     }
 
-    public String getVerbindungsfunktion() {
+    public String getDescription() {
         return verbindungsfunktion;
     }
 }

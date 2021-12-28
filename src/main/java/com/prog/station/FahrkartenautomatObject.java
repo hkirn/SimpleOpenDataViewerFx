@@ -41,7 +41,7 @@ public class FahrkartenautomatObject extends ObjectTemplate{
         return link;
     }
 
-    public String getKartenautomatenId() {
+    public String getDescription() {
         return kartenautomatenId;
     }
 }

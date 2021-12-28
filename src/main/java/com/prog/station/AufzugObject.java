@@ -59,7 +59,7 @@ public class AufzugObject extends ObjectTemplate {
     return link;
   }
 
-    public String getVerbindungsfunktion() {
+    public String getDescription() {
         return verbindungsfunktion;
     }
 }

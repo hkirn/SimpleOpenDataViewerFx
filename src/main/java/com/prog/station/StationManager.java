@@ -348,8 +348,8 @@ public class StationManager {
 
   public ObservableList<InfoObject> getHaltestelleList() {
     ObservableList<InfoObject> info = FXCollections.observableArrayList();
-    for (HaltestelleObject haltestelleObject : this.haltestelleList) {
-      info.add(new InfoObject(haltestelleObject.getID(), haltestelleObject.getHST_Name()));
+    for (HaltestelleObject foundObject : this.haltestelleList) {
+      info.add(new InfoObject(foundObject.getID(), foundObject.getHST_Name()));
     }
     return info;
   }
@@ -361,9 +361,9 @@ public class StationManager {
         if (haltesteigList.isEmpty()) {
           createHaltesteig(readCsv(urlNvbw + "BFRK_Haltesteig.csv"));
         }
-        for (HaltesteigObject haltesteigObject : this.haltesteigList) {
-          if (haltesteigObject.getHST_ID().equals(dhid)) {
-            info.add(createInfoObject(haltesteigObject.getID(), haltesteigObject.getSteig_Name()));
+        for (HaltesteigObject foundObject : this.haltesteigList) {
+          if (foundObject.getHST_ID().equals(dhid)) {
+            info.add(createInfoObject(foundObject.getID(), foundObject.getDescription()));
           }
         }
       }
@@ -371,9 +371,9 @@ public class StationManager {
         if (aufzugObjectList.isEmpty()) {
           createAufzug(readCsv(urlNvbw + "BFRK_Aufzug.csv"));
         }
-        for (AufzugObject aufzugObject : this.aufzugObjectList) {
-          if (aufzugObject.getHST_ID().equals(dhid)) {
-            info.add(createInfoObject(aufzugObject.getID(), aufzugObject.getVerbindungsfunktion()));
+        for (AufzugObject foundObject : this.aufzugObjectList) {
+          if (foundObject.getHST_ID().equals(dhid)) {
+            info.add(createInfoObject(foundObject.getID(), foundObject.getDescription()));
           }
         }
       }
@@ -381,9 +381,9 @@ public class StationManager {
         if (engstelleObjectList.isEmpty()) {
           createEngstelle(readCsv(urlNvbw + "BFRK_Engstelle.csv"));
         }
-        for (EngstelleObject engstelleObject : this.engstelleObjectList) {
-          if (engstelleObject.getHST_ID().equals(dhid)) {
-            info.add(createInfoObject(engstelleObject.getID(), "keine Beschreibung verfügbar"));
+        for (EngstelleObject foundObject : this.engstelleObjectList) {
+          if (foundObject.getHST_ID().equals(dhid)) {
+            info.add(createInfoObject(foundObject.getID(), foundObject.getDescription()));
           }
         }
       }
@@ -393,7 +393,7 @@ public class StationManager {
         }
         for (FahrkartenautomatObject foundObject : this.fahrkartenautomatObjects) {
           if (foundObject.getHST_ID().equals(dhid)) {
-            info.add(createInfoObject(foundObject.getID(), foundObject.getKartenautomatenId()));
+            info.add(createInfoObject(foundObject.getID(), foundObject.getDescription()));
           }
         }
       }
@@ -403,7 +403,7 @@ public class StationManager {
         }
         for (FahrradanlageObject foundObject : this.fahrradanlageObjects) {
           if (foundObject.getHST_ID().equals(dhid)) {
-            info.add(createInfoObject(foundObject.getID(), foundObject.getAnlagentyp()));
+            info.add(createInfoObject(foundObject.getID(), foundObject.getDescription()));
           }
         }
       }
@@ -413,7 +413,7 @@ public class StationManager {
         }
         for (GleisquerungObject foundObject : this.gleisquerungObjects) {
           if (foundObject.getHST_ID().equals(dhid)) {
-            info.add(createInfoObject(foundObject.getID(), foundObject.getVerbindungsfunktion()));
+            info.add(createInfoObject(foundObject.getID(), foundObject.getDescription()));
           }
         }
       }
@@ -423,7 +423,7 @@ public class StationManager {
         }
         for (InformationsstelleObject foundObject : this.informationsstelleObjects) {
           if (foundObject.getHST_ID().equals(dhid)) {
-            info.add(createInfoObject(foundObject.getID(), foundObject.getInfostelleName()));
+            info.add(createInfoObject(foundObject.getID(), foundObject.getDescription()));
           }
         }
       }
@@ -433,7 +433,7 @@ public class StationManager {
         }
         for (LeihradanlageObject foundObject : this.leihradanlageObjects) {
           if (foundObject.getHST_ID().equals(dhid)) {
-            info.add(createInfoObject(foundObject.getID(), foundObject.getNotizen()));
+            info.add(createInfoObject(foundObject.getID(), foundObject.getDescription()));
           }
         }
       }
@@ -443,7 +443,7 @@ public class StationManager {
         }
         for (ParkplatzObject foundObject : this.parkplatzObjects) {
           if (foundObject.getHST_ID().equals(dhid)) {
-            info.add(createInfoObject(foundObject.getID(), foundObject.getArt()));
+            info.add(createInfoObject(foundObject.getID(), foundObject.getDescription()));
           }
         }
       }
@@ -483,7 +483,7 @@ public class StationManager {
         }
         for (TaxiObject foundObject : this.taxiObjects) {
           if (foundObject.getHST_ID().equals(dhid)) {
-            info.add(createInfoObject(foundObject.getID(), "keine Beschreibung verfügbar"));
+            info.add(createInfoObject(foundObject.getID(), foundObject.getDescription()));
           }
         }
       }
@@ -493,7 +493,7 @@ public class StationManager {
         }
         for (ToiletteObject foundObject : this.toiletteObjects) {
           if (foundObject.getHST_ID().equals(dhid)) {
-            info.add(createInfoObject(foundObject.getID(), "keine Beschreibung verfügbar"));
+            info.add(createInfoObject(foundObject.getID(), foundObject.getDescription()));
           }
         }
       }
@@ -503,7 +503,7 @@ public class StationManager {
         }
         for (TreppeObject foundObject : this.treppeObjects) {
           if (foundObject.getHST_ID().equals(dhid)) {
-            info.add(createInfoObject(foundObject.getID(), "keine Beschreibung verfügbar"));
+            info.add(createInfoObject(foundObject.getID(), foundObject.getDescription()));
           }
         }
       }
@@ -513,7 +513,7 @@ public class StationManager {
         }
         for (TuerObject foundObject : this.tuerObjects) {
           if (foundObject.getHST_ID().equals(dhid)) {
-            info.add(createInfoObject(foundObject.getID(), "keine Beschreibung verfügbar"));
+            info.add(createInfoObject(foundObject.getID(), foundObject.getDescription()));
           }
         }
       }
@@ -523,7 +523,7 @@ public class StationManager {
         }
         for (VerkaufsstelleObject foundObject : this.verkaufsstelleObjects) {
           if (foundObject.getHST_ID().equals(dhid)) {
-            info.add(createInfoObject(foundObject.getID(), "keine Beschreibung verfügbar"));
+            info.add(createInfoObject(foundObject.getID(), foundObject.getDescription()));
           }
         }
       }
@@ -533,7 +533,7 @@ public class StationManager {
         }
         for (WegObject foundObject : this.wegObjects) {
           if (foundObject.getHST_ID().equals(dhid)) {
-            info.add(createInfoObject(foundObject.getID(), "keine Beschreibung verfügbar"));
+            info.add(createInfoObject(foundObject.getID(), foundObject.getDescription()));
           }
         }
       }
@@ -543,15 +543,17 @@ public class StationManager {
 
   private ArrayList<String[]> readCsv(String url) {
     ArrayList<String[]> listToReturn = new ArrayList<>();
-    Boolean firstLine = true;
+    boolean firstLine = true;
     URLConnection nvbwConnect = null;
     try {
       URL nvbw = new URL(url);
       nvbwConnect = nvbw.openConnection();
     } catch (MalformedURLException e) {
       e.printStackTrace();
+      System.out.println("URL malformed");
     } catch (IOException e) {
       e.printStackTrace();
+      System.out.println("loading problems");
     }
     try {
       assert nvbwConnect != null;

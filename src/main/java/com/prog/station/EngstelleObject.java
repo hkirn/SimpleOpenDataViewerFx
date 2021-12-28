@@ -44,4 +44,8 @@ public class EngstelleObject extends ObjectTemplate{
         link.add(new LinkObject("Foto Weg zur Engstelle 2", fotoWegEngstelle2));
         return link;
     }
+
+    public String getDescription(){
+        return "keine Beschreibung verfügbar";
+    }
 }

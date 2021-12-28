@@ -38,7 +38,7 @@ public class LeihradanlageObject extends ObjectTemplate{
         return link;
     }
 
-    public String getNotizen() {
+    public String getDescription() {
         return notizen;
     }
 }

@@ -197,7 +197,7 @@ public class HaltesteigObject extends ObjectTemplate {
     this.fotoAbschnitt8 = convertToNull(valueString[105]);
   }
 
-  public String getSteig_Name() {
+  public String getDescription() {
     return steig_Name;
   }
 
