@@ -453,7 +453,7 @@ public class StationManager {
         }
         for (RampeObject foundObject : this.rampeObjects) {
           if (foundObject.getHST_ID().equals(dhid)) {
-            info.add(createInfoObject(foundObject.getID(), "keine Beschreibung verfügbar"));
+            info.add(createInfoObject(foundObject.getID(), foundObject.getDescription()));
           }
         }
       }
@@ -463,7 +463,7 @@ public class StationManager {
         }
         for (RolltreppeObject foundObject : this.rolltreppeObjects) {
           if (foundObject.getHST_ID().equals(dhid)) {
-            info.add(createInfoObject(foundObject.getID(), "keine Beschreibung verfügbar"));
+            info.add(createInfoObject(foundObject.getID(), foundObject.getDescription()));
           }
         }
       }
@@ -473,7 +473,7 @@ public class StationManager {
         }
         for (StationsplanObject foundObject : this.stationsplanObjects) {
           if (foundObject.getHST_ID().equals(dhid)) {
-            info.add(createInfoObject(foundObject.getID(), "keine Beschreibung verfügbar"));
+            info.add(createInfoObject(foundObject.getID(), foundObject.getDescription()));
           }
         }
       }

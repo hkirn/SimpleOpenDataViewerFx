@@ -120,6 +120,7 @@ public class HaltesteigObject extends ObjectTemplate {
     this.unterstandKontrastelemente = convertToBool(valueString[28]);
     this.unterstandOffiziell = convertToBool(valueString[29]);
     this.sitzplaetzeSumme = convertToInt(valueString[30]);
+    this.abfallbehaelter = convertToBool(valueString[31]);
     this.uhr = convertToBool(valueString[32]);
     this.tuer2FreieLaenge_cm = convertToInt(valueString[33]);
     this.tuer2FreieBreite_cm = convertToInt(valueString[34]);
