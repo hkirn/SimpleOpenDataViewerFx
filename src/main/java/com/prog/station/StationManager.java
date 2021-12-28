@@ -15,7 +15,6 @@ import java.util.NoSuchElementException;
 import java.util.Objects;
 
 public class StationManager {
-
   private final ArrayList<HaltestelleObject> haltestelleList = new ArrayList<>();
   private final ArrayList<HaltesteigObject> haltesteigList = new ArrayList<>();
   private final ArrayList<AufzugObject> aufzugObjectList = new ArrayList<>();
@@ -39,6 +38,8 @@ public class StationManager {
 
   public StationManager() {
     createHaltestellen(readCsv(urlNvbw + "BFRK_Haltestelle.csv"));
+    HaltesteigDataAdder haltesteigDataAdder = new HaltesteigDataAdder(this, haltestelleList);
+    haltesteigDataAdder.addInformation();
   }
 
   public HaltestelleObject searchById(String id) {

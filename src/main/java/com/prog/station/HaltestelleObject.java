@@ -5,6 +5,8 @@ import javafx.collections.ObservableList;
 import java.util.Arrays;
 
 public class HaltestelleObject extends ObjectTemplate {
+  private String district;
+  private String town;
   private boolean Sitzplaetze;
   private boolean Unterstand;
   private boolean RollstuhlflaecheImUnterstand;
@@ -179,8 +181,18 @@ public class HaltestelleObject extends ObjectTemplate {
     return WeitereBilder3_Foto;
   }
 
+  public void setDistrict(String district) {
+    this.district = district;
+  }
+
+  public void setTown(String town) {
+    this.town = town;
+  }
+
   public ObservableList<InfoObject> getInfo() {
     ObservableList<InfoObject> info = getInfoTemplate();
+    info.add(new InfoObject("Landkreis", this.district));
+    info.add(new InfoObject("Stadt", this.town));
     info.add(new InfoObject("Sitzplätze", boolToString(Sitzplaetze)));
     info.add(new InfoObject("Unterstand", boolToString(Unterstand)));
     info.add(
