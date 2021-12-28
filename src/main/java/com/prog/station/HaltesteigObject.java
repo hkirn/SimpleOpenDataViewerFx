@@ -224,6 +224,7 @@ public class HaltesteigObject extends ObjectTemplate {
             "Rollstuhlfläche im Unterstand", boolToString(rollstuhlflaecheImUnterstand)));
     info.add(
         new InfoObject("Unterstand Kontrastelemente", boolToString(unterstandKontrastelemente)));
+    info.add(new InfoObject("Unterstand Wände bodennahn", boolToString(unterstandWaendeBodennah)));
     info.add(new InfoObject("Unterstand offiziell", boolToString(unterstandOffiziell)));
     info.add(new InfoObject("Sitzplätze Summe", "" + sitzplaetzeSumme));
     info.add(new InfoObject("Abfallbehälter", boolToString(abfallbehaelter)));

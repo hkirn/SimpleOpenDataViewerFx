@@ -443,7 +443,7 @@ public class StationManager {
         }
         for (ParkplatzObject foundObject : this.parkplatzObjects) {
           if (foundObject.getHST_ID().equals(dhid)) {
-            info.add(createInfoObject(foundObject.getID(), "keine Beschreibung verfügbar"));
+            info.add(createInfoObject(foundObject.getID(), foundObject.getArt()));
           }
         }
       }
