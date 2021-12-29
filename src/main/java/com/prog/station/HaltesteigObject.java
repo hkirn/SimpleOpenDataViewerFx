@@ -271,8 +271,8 @@ public class HaltesteigObject extends ObjectTemplate {
     link.add(
         new LinkObject(
             "Position Fahrkartenautomat OpenStreetMaps", getPosLink(posFahrkartenautomat)));
-    link.add(new LinkObject("Foto Steig 1", fotoSteig));
-    link.add(new LinkObject("Foto Steig 2", fotoSteig2));
+    link.add(new LinkObject("Foto Bahnsteig Richtung 1", fotoSteig));
+    link.add(new LinkObject("Foto Bahnsteig Richtung 2", fotoSteig2));
     link.add(new LinkObject("Foto von Steig Gegenüber", fotoSteigGegenueber));
     link.add(new LinkObject("Foto Hochboardart sonstiges", fotoHochboardartSonstiges));
     link.add(new LinkObject("Foto Steigbreite", fotoSteigbreite));

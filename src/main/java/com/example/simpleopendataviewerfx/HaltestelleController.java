@@ -14,7 +14,7 @@ import javafx.scene.control.Separator;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.HBox;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
@@ -372,19 +372,22 @@ public class HaltestelleController implements Initializable {
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
         createInfoTableView(
-            "Objekt-ID",
-            "Name",
-            "Landkreis",
-            "Ort",
-            manager.getHaltestelleList(),
-            900,
-            vboxRight);
+            "Objekt-ID", "Name", "Landkreis", "Ort", manager.getHaltestelleList(), 900, vboxRight);
     Button btnOk = new Button("gewählten Bahnhof anzeigen");
-    btnOk.setPrefSize(180,50);
-    btnOk.setMinSize(180,45);
+    btnOk.setStyle("-fx-font-weight: bold;");
+    btnOk.setPrefSize(180, 50);
+    btnOk.setMinSize(180, 45);
     btnOk.setOnAction(new ButtonOkClickHandler());
     vboxRight.getChildren().add(btnOk);
   }
+
+  @FXML
+  protected void onActionBtnBackPressed() {
+    System.out.println("btnBack pressed");
+    refreshStation();
+  }
+
+  /*
 
   class ButtonBackClickHandler implements EventHandler<ActionEvent> {
     @Override
@@ -393,70 +396,16 @@ public class HaltestelleController implements Initializable {
       refreshStation();
     }
   }
+  */
 
+  /*
   class ButtonSelectObjectClickHandler implements EventHandler<ActionEvent> {
     @Override
     public void handle(final ActionEvent event) {
-      System.out.println("btnSelect pressed");
-      System.out.println(activeObject);
-      switch (activeObject) {
-        case "Haltesteig":
-          refreshHaltesteig();
-          break;
-        case "Aufzug":
-          refreshAufzug();
-          break;
-        case "Engstelle":
-          refreshEngstelle();
-          break;
-        case "Fahrkartenautomat":
-          refreshFahrkartenautomat();
-          break;
-        case "Fahrradanlage":
-          refreshFahrradanlage();
-          break;
-        case "Gleisquerung":
-          refreshGleisquerung();
-          break;
-        case "Informationsstelle":
-          refreshInformationsstelle();
-          break;
-        case "Leihradanlage":
-          refreshLeihradanlage();
-          break;
-        case "Parkplatz":
-          refreshParkplatz();
-          break;
-        case "Rampe":
-          refreshRampe();
-          break;
-        case "Rolltreppe":
-          refreshRolltreppe();
-          break;
-        case "Stationsplan":
-          refreshStationsplan();
-          break;
-        case "Taxi":
-          refreshTaxi();
-          break;
-        case "Toilette":
-          refreshToilette();
-          break;
-        case "Treppe":
-          refreshTreppe();
-          break;
-        case "Tuer":
-          refreshTuer();
-          break;
-        case "Verkaufsstelle":
-          refreshVerkaufsstelle();
-          break;
-        case "Weg":
-          refreshWeg();
-          break;
-      }
+      loadObject();
     }
   }
+   */
 
   class ButtonOkClickHandler implements EventHandler<ActionEvent> {
     @Override
@@ -466,6 +415,31 @@ public class HaltestelleController implements Initializable {
           manager.searchById(
               infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
       refreshStation();
+    }
+  }
+
+  private void loadObject() {
+    System.out.println("btnSelect pressed");
+    System.out.println(activeObject);
+    switch (activeObject) {
+      case "Haltesteig" -> refreshHaltesteig();
+      case "Aufzug" -> refreshAufzug();
+      case "Engstelle" -> refreshEngstelle();
+      case "Fahrkartenautomat" -> refreshFahrkartenautomat();
+      case "Fahrradanlage" -> refreshFahrradanlage();
+      case "Gleisquerung" -> refreshGleisquerung();
+      case "Informationsstelle" -> refreshInformationsstelle();
+      case "Leihradanlage" -> refreshLeihradanlage();
+      case "Parkplatz" -> refreshParkplatz();
+      case "Rampe" -> refreshRampe();
+      case "Rolltreppe" -> refreshRolltreppe();
+      case "Stationsplan" -> refreshStationsplan();
+      case "Taxi" -> refreshTaxi();
+      case "Toilette" -> refreshToilette();
+      case "Treppe" -> refreshTreppe();
+      case "Tuer" -> refreshTuer();
+      case "Verkaufsstelle" -> refreshVerkaufsstelle();
+      case "Weg" -> refreshWeg();
     }
   }
 
@@ -742,6 +716,16 @@ public class HaltestelleController implements Initializable {
       infoObjectTableView.getSortOrder().add(extra2);
       infoObjectTableView.sort();
     }
+    if (description2ndColumn.equals("Bezeichnung")) {
+      infoObjectTableView.setOnMouseClicked(
+          new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+              System.out.println("gedrückt");
+              loadObject();
+            }
+          });
+    }
     Separator separator1 = new Separator();
     positionToDisplay.getChildren().add(separator1);
     positionToDisplay.getChildren().add(infoObjectTableView);
@@ -761,9 +745,10 @@ public class HaltestelleController implements Initializable {
       boolean withButton,
       ObservableList<InfoObject> infoObjectsListToShow,
       ObservableList<LinkObject> linkObjectsListToShow) {
-    if (withButton) {
-      createButtons();
-    }
+    // if (withButton) {
+    // Not used
+    // createButtons();
+    // }
     infoDisplay = new VBox();
     vboxRight.getChildren().add(infoDisplay);
     createInfoTableView(
@@ -771,18 +756,21 @@ public class HaltestelleController implements Initializable {
     createLinkListView(linkObjectsListToShow, infoDisplay);
   }
 
+  /*
   private void createButtons() {
     HBox buttonbox = new HBox();
     Button btnSelect = new Button("ausgewähltes Objekt anzeigen");
-    btnSelect.setPrefSize(180,45);
+    btnSelect.setPrefSize(180, 45);
     btnSelect.setMinSize(180, 40);
     btnSelect.setOnAction(new ButtonSelectObjectClickHandler());
     Button btnBack = new Button("Zurück zu Bahnhof");
-    btnBack.setPrefSize(180,45);
-    btnBack.setMinSize(180,40);
+    btnBack.setPrefSize(180, 45);
+    btnBack.setMinSize(180, 40);
     btnBack.setOnAction(new ButtonBackClickHandler());
     vboxRight.getChildren().add(buttonbox);
     buttonbox.getChildren().add(btnSelect);
     buttonbox.getChildren().add(btnBack);
   }
+  */
+
 }
