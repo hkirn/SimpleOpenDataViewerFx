@@ -23,12 +23,6 @@ import java.util.ResourceBundle;
 
 public class HaltestelleController implements Initializable {
   private HaltestelleObject haltestelleObject;
-  private HaltesteigObject haltesteigObject;
-  private EngstelleObject engstelleObject;
-  private FahrkartenautomatObject fahrkartenautomatObject;
-  private FahrradanlageObject fahrradanlageObject;
-  private GleisquerungObject gleisquerungObject;
-  private InformationsstelleObject informationsstelleObject;
 
   public HaltestelleController() {
     this.manager = new StationManager();
@@ -378,7 +372,13 @@ public class HaltestelleController implements Initializable {
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
         createInfoTableView(
-            "Objekt-ID", "Bezeichnung", "Landkreis", "Ort", manager.getHaltestelleList(), 800, vboxRight);
+            "Objekt-ID",
+            "Bezeichnung",
+            "Landkreis",
+            "Ort",
+            manager.getHaltestelleList(),
+            800,
+            vboxRight);
     Button btnOk = new Button("Bahnhof aufrufen");
     btnOk.setOnAction(new ButtonOkClickHandler());
     vboxRight.getChildren().add(btnOk);
@@ -480,8 +480,7 @@ public class HaltestelleController implements Initializable {
 
   private void refreshHaltesteig() {
     System.out.println(infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
-    haltesteigObject =
-        manager.searchHaltesteigById(
+    HaltesteigObject haltesteigObject = manager.searchHaltesteigById(
             infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
     webView.getEngine().load(haltesteigObject.getPosLink(haltesteigObject.getPos()));
     infoDisplay.getChildren().clear();
@@ -500,8 +499,7 @@ public class HaltestelleController implements Initializable {
 
   private void refreshEngstelle() {
     System.out.println(infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
-    engstelleObject =
-        manager.searchEngstelleById(
+    EngstelleObject engstelleObject = manager.searchEngstelleById(
             infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
     webView.getEngine().load(engstelleObject.getPosLink(engstelleObject.getPos()));
     infoDisplay.getChildren().clear();
@@ -510,8 +508,7 @@ public class HaltestelleController implements Initializable {
 
   private void refreshFahrkartenautomat() {
     System.out.println(infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
-    fahrkartenautomatObject =
-        manager.searchFahrkartenautomatById(
+    FahrkartenautomatObject fahrkartenautomatObject = manager.searchFahrkartenautomatById(
             infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
     webView.getEngine().load(fahrkartenautomatObject.getPosLink(fahrkartenautomatObject.getPos()));
     infoDisplay.getChildren().clear();
@@ -520,8 +517,7 @@ public class HaltestelleController implements Initializable {
 
   private void refreshFahrradanlage() {
     System.out.println(infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
-    fahrradanlageObject =
-        manager.searchFahrradanlageById(
+    FahrradanlageObject fahrradanlageObject = manager.searchFahrradanlageById(
             infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
     webView.getEngine().load(fahrradanlageObject.getPosLink(fahrradanlageObject.getPos()));
     infoDisplay.getChildren().clear();
@@ -530,8 +526,7 @@ public class HaltestelleController implements Initializable {
 
   private void refreshGleisquerung() {
     System.out.println(infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
-    gleisquerungObject =
-        manager.searchGleisquerungById(
+    GleisquerungObject gleisquerungObject = manager.searchGleisquerungById(
             infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
     webView.getEngine().load(gleisquerungObject.getPosLink(gleisquerungObject.getPos()));
     infoDisplay.getChildren().clear();
@@ -540,8 +535,7 @@ public class HaltestelleController implements Initializable {
 
   private void refreshInformationsstelle() {
     System.out.println(infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
-    informationsstelleObject =
-        manager.searchInformationsstelleById(
+    InformationsstelleObject informationsstelleObject = manager.searchInformationsstelleById(
             infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
     webView
         .getEngine()
@@ -723,7 +717,6 @@ public class HaltestelleController implements Initializable {
     TableColumn<InfoObject, String> infoColumn = new TableColumn<>(description2ndColumn);
     infoColumn.setCellValueFactory(new PropertyValueFactory<>(name2ndColumn));
 
-
     infoObjectTableView = new TableView<>();
     infoObjectTableView.setPrefSize(400, hight);
     infoObjectTableView.setItems(listToShow);
@@ -737,15 +730,17 @@ public class HaltestelleController implements Initializable {
       TableColumn<InfoObject, String> extra2 = new TableColumn<>(description4thColumn);
       extra2.setCellValueFactory(new PropertyValueFactory<>(name4thColumn));
       infoObjectTableView.getColumns().addAll(infoTypeColumn, infoColumn, extra1, extra2);
-}
-      Separator separator1 = new Separator();
-      positionToDisplay.getChildren().add(separator1);
-      positionToDisplay.getChildren().add(infoObjectTableView);
-      Separator separator2 = new Separator();
-      positionToDisplay.getChildren().add(separator2);
-      return infoObjectTableView;
+      extra2.setSortType(TableColumn.SortType.ASCENDING);
+      infoObjectTableView.getSortOrder().add(extra2);
+      infoObjectTableView.sort();
     }
-
+    Separator separator1 = new Separator();
+    positionToDisplay.getChildren().add(separator1);
+    positionToDisplay.getChildren().add(infoObjectTableView);
+    Separator separator2 = new Separator();
+    positionToDisplay.getChildren().add(separator2);
+    return infoObjectTableView;
+  }
 
   private void createLinkListView(ObservableList<LinkObject> linkObjects, VBox positionToDisplay) {
     linkListView = new ListView<>();
