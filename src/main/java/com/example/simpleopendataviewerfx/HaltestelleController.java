@@ -373,13 +373,15 @@ public class HaltestelleController implements Initializable {
     this.infoObjectTableView =
         createInfoTableView(
             "Objekt-ID",
-            "Bezeichnung",
+            "Name",
             "Landkreis",
             "Ort",
             manager.getHaltestelleList(),
-            800,
+            900,
             vboxRight);
-    Button btnOk = new Button("Bahnhof aufrufen");
+    Button btnOk = new Button("gewählten Bahnhof anzeigen");
+    btnOk.setPrefSize(180,50);
+    btnOk.setMinSize(180,45);
     btnOk.setOnAction(new ButtonOkClickHandler());
     vboxRight.getChildren().add(btnOk);
   }
@@ -480,7 +482,8 @@ public class HaltestelleController implements Initializable {
 
   private void refreshHaltesteig() {
     System.out.println(infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
-    HaltesteigObject haltesteigObject = manager.searchHaltesteigById(
+    HaltesteigObject haltesteigObject =
+        manager.searchHaltesteigById(
             infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
     webView.getEngine().load(haltesteigObject.getPosLink(haltesteigObject.getPos()));
     infoDisplay.getChildren().clear();
@@ -499,7 +502,8 @@ public class HaltestelleController implements Initializable {
 
   private void refreshEngstelle() {
     System.out.println(infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
-    EngstelleObject engstelleObject = manager.searchEngstelleById(
+    EngstelleObject engstelleObject =
+        manager.searchEngstelleById(
             infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
     webView.getEngine().load(engstelleObject.getPosLink(engstelleObject.getPos()));
     infoDisplay.getChildren().clear();
@@ -508,7 +512,8 @@ public class HaltestelleController implements Initializable {
 
   private void refreshFahrkartenautomat() {
     System.out.println(infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
-    FahrkartenautomatObject fahrkartenautomatObject = manager.searchFahrkartenautomatById(
+    FahrkartenautomatObject fahrkartenautomatObject =
+        manager.searchFahrkartenautomatById(
             infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
     webView.getEngine().load(fahrkartenautomatObject.getPosLink(fahrkartenautomatObject.getPos()));
     infoDisplay.getChildren().clear();
@@ -517,7 +522,8 @@ public class HaltestelleController implements Initializable {
 
   private void refreshFahrradanlage() {
     System.out.println(infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
-    FahrradanlageObject fahrradanlageObject = manager.searchFahrradanlageById(
+    FahrradanlageObject fahrradanlageObject =
+        manager.searchFahrradanlageById(
             infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
     webView.getEngine().load(fahrradanlageObject.getPosLink(fahrradanlageObject.getPos()));
     infoDisplay.getChildren().clear();
@@ -526,7 +532,8 @@ public class HaltestelleController implements Initializable {
 
   private void refreshGleisquerung() {
     System.out.println(infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
-    GleisquerungObject gleisquerungObject = manager.searchGleisquerungById(
+    GleisquerungObject gleisquerungObject =
+        manager.searchGleisquerungById(
             infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
     webView.getEngine().load(gleisquerungObject.getPosLink(gleisquerungObject.getPos()));
     infoDisplay.getChildren().clear();
@@ -535,7 +542,8 @@ public class HaltestelleController implements Initializable {
 
   private void refreshInformationsstelle() {
     System.out.println(infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
-    InformationsstelleObject informationsstelleObject = manager.searchInformationsstelleById(
+    InformationsstelleObject informationsstelleObject =
+        manager.searchInformationsstelleById(
             infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
     webView
         .getEngine()
@@ -729,7 +737,7 @@ public class HaltestelleController implements Initializable {
 
       TableColumn<InfoObject, String> extra2 = new TableColumn<>(description4thColumn);
       extra2.setCellValueFactory(new PropertyValueFactory<>(name4thColumn));
-      infoObjectTableView.getColumns().addAll(infoTypeColumn, infoColumn, extra1, extra2);
+      infoObjectTableView.getColumns().addAll(infoTypeColumn, extra1, extra2, infoColumn);
       extra2.setSortType(TableColumn.SortType.ASCENDING);
       infoObjectTableView.getSortOrder().add(extra2);
       infoObjectTableView.sort();
