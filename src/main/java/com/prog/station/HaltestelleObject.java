@@ -73,112 +73,16 @@ public class HaltestelleObject extends ObjectTemplate {
     this.WeitereBilder3_Foto = convertToNull(valueString[35]);
   }
 
-  public boolean isSitzplaetze() {
-    return Sitzplaetze;
+  public String getDistrict() {
+    return district;
   }
 
-  public boolean isUnterstand() {
-    return Unterstand;
-  }
-
-  public boolean isRollstuhlflaecheImUnterstand() {
-    return RollstuhlflaecheImUnterstand;
-  }
-
-  public boolean isFahrplananzeigetafel() {
-    return Fahrplananzeigetafel;
-  }
-
-  public boolean isFahrplananzeigetafel_akustisch() {
-    return Fahrplananzeigetafel_akustisch;
-  }
-
-  public boolean isAnsagen_vorhanden() {
-    return Ansagen_vorhanden;
-  }
-
-  public boolean isDefibrillator() {
-    return Defibrillator;
-  }
-
-  public String getDefibrilator_Lagebeschreibung() {
-    return Defibrilator_Lagebeschreibung;
-  }
-
-  public boolean isGepaeckaufbewahrung() {
-    return Gepaeckaufbewahrung;
-  }
-
-  public boolean isGepaecktransport() {
-    return Gepaecktransport;
-  }
-
-  public boolean isInduktiveHoeranlage() {
-    return InduktiveHoeranlage;
-  }
-
-  public String getInduktiveHoeranlageStandort() {
-    return InduktiveHoeranlageStandort;
-  }
-
-  public String getInfoNotrufsaeule() {
-    return InfoNotrufsaeule;
-  }
-
-  public boolean isBahnhofsmission() {
-    return Bahnhofsmission;
+  public String getTown() {
+    return town;
   }
 
   public String getHaltestelleTotale_Foto() {
     return HaltestelleTotale_Foto;
-  }
-
-  public String getSitzeOderUnterstand_Foto() {
-    return SitzeOderUnterstand_Foto;
-  }
-
-  public String getSitzeOderUnterstandUmgebung_Foto() {
-    return SitzeOderUnterstandUmgebung_Foto;
-  }
-
-  public String getFahrplananzeigetafel_Foto() {
-    return Fahrplananzeigetafel_Foto;
-  }
-
-  public String getDefibrillator_Foto() {
-    return Defibrillator_Foto;
-  }
-
-  public String getGepaeckaufbewahrung_Foto() {
-    return Gepaeckaufbewahrung_Foto;
-  }
-
-  public String getInfoNotrufsaeule_Foto() {
-    return InfoNotrufsaeule_Foto;
-  }
-
-  public String getBahnhofsmision_Foto() {
-    return Bahnhofsmision_Foto;
-  }
-
-  public String getBahnhofsmissionWeg_Foto() {
-    return BahnhofsmissionWeg_Foto;
-  }
-
-  public String getBahnhofsmissionOeffunungszeiten_Foto() {
-    return BahnhofsmissionOeffunungszeiten_Foto;
-  }
-
-  public String getWeitereBilder1_Foto() {
-    return WeitereBilder1_Foto;
-  }
-
-  public String getWeitereBilder2_Foto() {
-    return WeitereBilder2_Foto;
-  }
-
-  public String getWeitereBilder3_Foto() {
-    return WeitereBilder3_Foto;
   }
 
   public void setDistrict(String district) {

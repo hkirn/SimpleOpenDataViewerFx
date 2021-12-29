@@ -4,23 +4,33 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class HaltesteigDataAdder {
-  StationManager stationManager;
   ArrayList<HaltestelleObject> haltestelleObjectArrayList;
+  ArrayList<String[]> dataset = new ArrayList<>();
 
-  public HaltesteigDataAdder(StationManager manager, ArrayList<HaltestelleObject> haltestelleObjectArrayList){
+  public HaltesteigDataAdder(ArrayList<HaltestelleObject> haltestelleObjectArrayList){
     this.haltestelleObjectArrayList = haltestelleObjectArrayList;
-    this.stationManager = manager;
+    createList();
   }
-  public void addInformation() {
+
+  public void addInformation(){
+    for (HaltestelleObject haltestelleObject: haltestelleObjectArrayList){
+      String[] found = searchData(haltestelleObject.getID());
+      haltestelleObject.setTown(found[2]);
+      haltestelleObject.setDistrict(found[1]);
+    }
+  }
+
+  private void createList() {
 
     boolean firstLine = true;
 
     try (InputStream inputStream = this.getClass().getResourceAsStream("/haltestellen-2.csv");
-        InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-        BufferedReader br = new BufferedReader(inputStreamReader); ) {
+        InputStreamReader inputStreamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
+        BufferedReader br = new BufferedReader(inputStreamReader)) {
 
       String line;
       while ((line = br.readLine()) != null) {
@@ -29,7 +39,8 @@ public class HaltesteigDataAdder {
           firstLine = false;
         } else {
           String[] values = line.split(";");
-          searchAndAdd(values[6],values[0],values[1]);
+          String[] arr =  {values[6], values[0], values[1]};
+          dataset.add(arr);
         }
       }
     } catch (IOException e) {
@@ -37,17 +48,15 @@ public class HaltesteigDataAdder {
     }
   }
 
-  private void searchAndAdd(String id, String district, String town){
 
-    try{
-    HaltestelleObject haltestelleObject = stationManager.searchById(id);
-    haltestelleObject.setDistrict(district);
-    haltestelleObject.setTown(town);
+
+  private String[] searchData(String id){
+    for (String[] found: dataset){
+      if (id.equals(found[0])){
+        return found;
+      }
     }
-
-    catch (Exception e) {
-      e.printStackTrace();
-    }
-
+    String[] arr = {id, "",""};
+    return arr;
   }
 }

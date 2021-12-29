@@ -39,11 +39,10 @@ public class HaltestelleController implements Initializable {
   @FXML private StackPane pane_pictureView;
   @FXML private VBox vboxRight;
   /**
-   * Not needed at the moment, for futere use!
-   * @FXML private Button btn_otherStation1; @FXML private Button btn_displayHaltesteig; @FXML
-   * private Button btn_displayAufzug; @FXML private Button btn_displayEngstelle; @FXML private
-   * Button btn_displayFahrkartenautomat; @FXML private Button btn_displayFahrradanlage; @FXML
-   * private Button btn_displayGleisquerung; @FXML private Button
+   * Not needed at the moment, for futere use! @FXML private Button btn_otherStation1; @FXML private
+   * Button btn_displayHaltesteig; @FXML private Button btn_displayAufzug; @FXML private Button
+   * btn_displayEngstelle; @FXML private Button btn_displayFahrkartenautomat; @FXML private Button
+   * btn_displayFahrradanlage; @FXML private Button btn_displayGleisquerung; @FXML private Button
    * btn_displayInformationsstelle; @FXML private Button btn_displayLeihradanlage; @FXML private
    * Button btn_displayParkplatz; @FXML private Button btn_displayRampe; @FXML private Button
    * btn_displayRolltreppe; @FXML private Button btn_displayStationsplan; @FXML private Button
@@ -74,10 +73,10 @@ public class HaltestelleController implements Initializable {
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
         createInfoTableView(
-            "Steig-ID",
-            "infoType",
+            "Objekt-ID",
             "Bezeichnung",
-            "info",
+            null,
+            null,
             manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
             300,
             vboxRight);
@@ -91,10 +90,10 @@ public class HaltestelleController implements Initializable {
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
         createInfoTableView(
-            "Object-ID",
-            "infoType",
+            "Objekt-ID",
             "Bezeichnung",
-            "info",
+            null,
+            null,
             manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
             300,
             vboxRight);
@@ -108,10 +107,10 @@ public class HaltestelleController implements Initializable {
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
         createInfoTableView(
-            "Object-ID",
-            "infoType",
+            "Objekt-ID",
             "Bezeichnung",
-            "info",
+            null,
+            null,
             manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
             300,
             vboxRight);
@@ -125,10 +124,10 @@ public class HaltestelleController implements Initializable {
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
         createInfoTableView(
-            "Object-ID",
-            "infoType",
+            "Objekt-ID",
             "Bezeichnung",
-            "info",
+            null,
+            null,
             manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
             300,
             vboxRight);
@@ -142,10 +141,10 @@ public class HaltestelleController implements Initializable {
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
         createInfoTableView(
-            "Object-ID",
-            "infoType",
+            "Objekt-ID",
             "Bezeichnung",
-            "info",
+            null,
+            null,
             manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
             300,
             vboxRight);
@@ -159,10 +158,10 @@ public class HaltestelleController implements Initializable {
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
         createInfoTableView(
-            "Object-ID",
-            "infoType",
+            "Objekt-ID",
             "Bezeichnung",
-            "info",
+            null,
+            null,
             manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
             300,
             vboxRight);
@@ -176,10 +175,10 @@ public class HaltestelleController implements Initializable {
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
         createInfoTableView(
-            "Object-ID",
-            "infoType",
+            "Objekt-ID",
             "Bezeichnung",
-            "info",
+            null,
+            null,
             manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
             300,
             vboxRight);
@@ -193,10 +192,10 @@ public class HaltestelleController implements Initializable {
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
         createInfoTableView(
-            "Object-ID",
-            "infoType",
+            "Objekt-ID",
             "Bezeichnung",
-            "info",
+            null,
+            null,
             manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
             300,
             vboxRight);
@@ -210,10 +209,10 @@ public class HaltestelleController implements Initializable {
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
         createInfoTableView(
-            "Object-ID",
-            "infoType",
+            "Objekt-ID",
             "Bezeichnung",
-            "info",
+            null,
+            null,
             manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
             300,
             vboxRight);
@@ -227,10 +226,10 @@ public class HaltestelleController implements Initializable {
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
         createInfoTableView(
-            "Object-ID",
-            "infoType",
+            "Objekt-ID",
             "Bezeichnung",
-            "info",
+            null,
+            null,
             manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
             300,
             vboxRight);
@@ -244,10 +243,10 @@ public class HaltestelleController implements Initializable {
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
         createInfoTableView(
-            "Object-ID",
-            "infoType",
+            "Objekt-ID",
             "Bezeichnung",
-            "info",
+            null,
+            null,
             manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
             300,
             vboxRight);
@@ -261,10 +260,10 @@ public class HaltestelleController implements Initializable {
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
         createInfoTableView(
-            "Object-ID",
-            "infoType",
+            "Objekt-ID",
             "Bezeichnung",
-            "info",
+            null,
+            null,
             manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
             300,
             vboxRight);
@@ -278,10 +277,10 @@ public class HaltestelleController implements Initializable {
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
         createInfoTableView(
-            "Object-ID",
-            "infoType",
+            "Objekt-ID",
             "Bezeichnung",
-            "info",
+            null,
+            null,
             manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
             300,
             vboxRight);
@@ -295,10 +294,10 @@ public class HaltestelleController implements Initializable {
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
         createInfoTableView(
-            "Object-ID",
-            "infoType",
+            "Objekt-ID",
             "Bezeichnung",
-            "info",
+            null,
+            null,
             manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
             300,
             vboxRight);
@@ -312,10 +311,10 @@ public class HaltestelleController implements Initializable {
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
         createInfoTableView(
-            "Object-ID",
-            "infoType",
+            "Objekt-ID",
             "Bezeichnung",
-            "info",
+            null,
+            null,
             manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
             300,
             vboxRight);
@@ -329,10 +328,10 @@ public class HaltestelleController implements Initializable {
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
         createInfoTableView(
-            "Object-ID",
-            "infoType",
+            "Objekt-ID",
             "Bezeichnung",
-            "info",
+            null,
+            null,
             manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
             300,
             vboxRight);
@@ -346,10 +345,10 @@ public class HaltestelleController implements Initializable {
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
         createInfoTableView(
-            "Object-ID",
-            "infoType",
+            "Objekt-ID",
             "Bezeichnung",
-            "info",
+            null,
+            null,
             manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
             300,
             vboxRight);
@@ -363,10 +362,10 @@ public class HaltestelleController implements Initializable {
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
         createInfoTableView(
-            "Object-ID",
-            "infoType",
+            "Objekt-ID",
             "Bezeichnung",
-            "info",
+            null,
+            null,
             manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
             300,
             vboxRight);
@@ -379,13 +378,7 @@ public class HaltestelleController implements Initializable {
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
         createInfoTableView(
-            "Bahnhof ID",
-            "infoType",
-            "Bahnhof Name",
-            "info",
-            manager.getHaltestelleList(),
-            800,
-            vboxRight);
+            "Objekt-ID", "Bezeichnung", "Landkreis", "Ort", manager.getHaltestelleList(), 800, vboxRight);
     Button btnOk = new Button("Bahnhof aufrufen");
     btnOk.setOnAction(new ButtonOkClickHandler());
     vboxRight.getChildren().add(btnOk);
@@ -712,30 +705,47 @@ public class HaltestelleController implements Initializable {
 
   private TableView<InfoObject> createInfoTableView(
       String description1stColumn,
-      String name1stColumn,
       String description2ndColumn,
-      String name2ndColumn,
+      String description3stColumn,
+      String description4thColumn,
       ObservableList<InfoObject> listToShow,
       int hight,
       VBox positionToDisplay) {
+    String name1stColumn = "infoType";
+    String name2ndColumn = "info";
+    String name3stColumn = "extra1";
+    String name4thColumn = "extra2";
     TableView<InfoObject> infoObjectTableView;
+
     TableColumn<InfoObject, String> infoTypeColumn = new TableColumn<>(description1stColumn);
     infoTypeColumn.setCellValueFactory(new PropertyValueFactory<>(name1stColumn));
 
     TableColumn<InfoObject, String> infoColumn = new TableColumn<>(description2ndColumn);
     infoColumn.setCellValueFactory(new PropertyValueFactory<>(name2ndColumn));
 
+
     infoObjectTableView = new TableView<>();
     infoObjectTableView.setPrefSize(400, hight);
     infoObjectTableView.setItems(listToShow);
-    infoObjectTableView.getColumns().addAll(infoTypeColumn, infoColumn);
-    Separator separator1 = new Separator();
-    positionToDisplay.getChildren().add(separator1);
-    positionToDisplay.getChildren().add(infoObjectTableView);
-    Separator separator2 = new Separator();
-    positionToDisplay.getChildren().add(separator2);
-    return infoObjectTableView;
-  }
+    if (description3stColumn == null) {
+      infoObjectTableView.getColumns().addAll(infoTypeColumn, infoColumn);
+    }
+    if (description3stColumn != null) {
+      TableColumn<InfoObject, String> extra1 = new TableColumn<>(description3stColumn);
+      extra1.setCellValueFactory(new PropertyValueFactory<>(name3stColumn));
+
+      TableColumn<InfoObject, String> extra2 = new TableColumn<>(description4thColumn);
+      extra2.setCellValueFactory(new PropertyValueFactory<>(name4thColumn));
+      infoObjectTableView.getColumns().addAll(infoTypeColumn, infoColumn, extra1, extra2);
+}
+      Separator separator1 = new Separator();
+      positionToDisplay.getChildren().add(separator1);
+      positionToDisplay.getChildren().add(infoObjectTableView);
+      Separator separator2 = new Separator();
+      positionToDisplay.getChildren().add(separator2);
+      return infoObjectTableView;
+    }
+
 
   private void createLinkListView(ObservableList<LinkObject> linkObjects, VBox positionToDisplay) {
     linkListView = new ListView<>();
@@ -754,13 +764,7 @@ public class HaltestelleController implements Initializable {
     infoDisplay = new VBox();
     vboxRight.getChildren().add(infoDisplay);
     createInfoTableView(
-        "Art der Information",
-        "infoType",
-        "Information",
-        "info",
-        infoObjectsListToShow,
-        400,
-        infoDisplay);
+        "Art der Information", "Information", null, null, infoObjectsListToShow, 400, infoDisplay);
     createLinkListView(linkObjectsListToShow, infoDisplay);
   }
 

@@ -38,7 +38,7 @@ public class StationManager {
 
   public StationManager() {
     createHaltestellen(readCsv(urlNvbw + "BFRK_Haltestelle.csv"));
-    HaltesteigDataAdder haltesteigDataAdder = new HaltesteigDataAdder(this, haltestelleList);
+    HaltesteigDataAdder haltesteigDataAdder = new HaltesteigDataAdder(haltestelleList);
     haltesteigDataAdder.addInformation();
   }
 
@@ -350,7 +350,8 @@ public class StationManager {
   public ObservableList<InfoObject> getHaltestelleList() {
     ObservableList<InfoObject> info = FXCollections.observableArrayList();
     for (HaltestelleObject foundObject : this.haltestelleList) {
-      info.add(new InfoObject(foundObject.getID(), foundObject.getHST_Name()));
+      info.add(new InfoObject(foundObject.getID(), foundObject.getHST_Name(),
+              foundObject.getDistrict(),foundObject.getTown()));
     }
     return info;
   }
