@@ -226,7 +226,7 @@ public class HaltesteigObject extends ObjectTemplate {
     info.add(
         new InfoObject("Unterstand Kontrastelemente", boolToString(unterstandKontrastelemente)));
     info.add(new InfoObject("Unterstand Wände bodennahn", boolToString(unterstandWaendeBodennah)));
-    info.add(new InfoObject("Unterstand offiziell", boolToString(unterstandOffiziell)));
+    //info.add(new InfoObject("Unterstand offiziell", boolToString(unterstandOffiziell)));
     info.add(new InfoObject("Sitzplätze Summe", "" + sitzplaetzeSumme));
     info.add(new InfoObject("Abfallbehälter", boolToString(abfallbehaelter)));
     info.add(new InfoObject("Uhr", boolToString(uhr)));
@@ -271,18 +271,6 @@ public class HaltesteigObject extends ObjectTemplate {
     link.add(
         new LinkObject(
             "Position Fahrkartenautomat OpenStreetMaps", getPosLink(posFahrkartenautomat)));
-    link.add(new LinkObject("Position Haltepunkt 1", getPosLink(posHaltepunkt1)));
-    link.add(new LinkObject("Position Haltepunkt 2", getPosLink(posHaltepunkt2)));
-    link.add(new LinkObject("Position Haltepunkt 3", getPosLink(posHaltepunkt3)));
-    link.add(new LinkObject("Position Haltepunkt 4", getPosLink(posHaltepunkt4)));
-    link.add(new LinkObject("Position Abschnitt 1", getPosLink(posAbschnitt1)));
-    link.add(new LinkObject("Position Abschnitt 2", getPosLink(posAbschnitt2)));
-    link.add(new LinkObject("Position Abschnitt 3", getPosLink(posAbschnitt3)));
-    link.add(new LinkObject("Position Abschnitt 4", getPosLink(posAbschnitt4)));
-    link.add(new LinkObject("Position Abschnitt 5", getPosLink(posAbschnitt5)));
-    link.add(new LinkObject("Position Abschnitt 6", getPosLink(posAbschnitt6)));
-    link.add(new LinkObject("Position Abschnitt 7", getPosLink(posAbschnitt7)));
-    link.add(new LinkObject("Position Abschnitt 8", getPosLink(posAbschnitt8)));
     link.add(new LinkObject("Foto Steig 1", fotoSteig));
     link.add(new LinkObject("Foto Steig 2", fotoSteig2));
     link.add(new LinkObject("Foto von Steig Gegenüber", fotoSteigGegenueber));
@@ -308,17 +296,29 @@ public class HaltesteigObject extends ObjectTemplate {
     link.add(new LinkObject("Foto Zuwegung von", fotoZuwegungVon));
     link.add(new LinkObject("Foto Zuwegung nach", fotoZuwegungNach));
     link.add(new LinkObject("Foto Haltepunkt 1", fotoHaltepunkt1));
+    link.add(new LinkObject("Position Haltepunkt 1", getPosLink(posHaltepunkt1)));
     link.add(new LinkObject("Foto Haltepunkt 2", fotoHaltepunkt2));
+    link.add(new LinkObject("Position Haltepunkt 2", getPosLink(posHaltepunkt2)));
     link.add(new LinkObject("Foto Haltepunkt 3", fotoHaltepunkt3));
+    link.add(new LinkObject("Position Haltepunkt 3", getPosLink(posHaltepunkt3)));
     link.add(new LinkObject("Foto Haltepunkt 4", fotoHaltepunkt4));
+    link.add(new LinkObject("Position Haltepunkt 4", getPosLink(posHaltepunkt4)));
     link.add(new LinkObject("Foto Abschnitt 1", fotoAbschnitt1));
+    link.add(new LinkObject("Position Abschnitt 1", getPosLink(posAbschnitt1)));
     link.add(new LinkObject("Foto Abschnitt 2", fotoAbschnitt2));
+    link.add(new LinkObject("Position Abschnitt 2", getPosLink(posAbschnitt2)));
     link.add(new LinkObject("Foto Abschnitt 3", fotoAbschnitt3));
+    link.add(new LinkObject("Position Abschnitt 3", getPosLink(posAbschnitt3)));
     link.add(new LinkObject("Foto Abschnitt 4", fotoAbschnitt4));
+    link.add(new LinkObject("Position Abschnitt 4", getPosLink(posAbschnitt4)));
     link.add(new LinkObject("Foto Abschnitt 5", fotoAbschnitt5));
+    link.add(new LinkObject("Position Abschnitt 5", getPosLink(posAbschnitt5)));
     link.add(new LinkObject("Foto Abschnitt 6", fotoAbschnitt6));
+    link.add(new LinkObject("Position Abschnitt 6", getPosLink(posAbschnitt6)));
     link.add(new LinkObject("Foto Abschnitt 7", fotoAbschnitt7));
+    link.add(new LinkObject("Position Abschnitt 7", getPosLink(posAbschnitt7)));
     link.add(new LinkObject("Foto Abschnitt 8", fotoAbschnitt8));
+    link.add(new LinkObject("Position Abschnitt 8", getPosLink(posAbschnitt8)));
     return link;
   }
 }

@@ -767,15 +767,19 @@ public class HaltestelleController implements Initializable {
     infoDisplay = new VBox();
     vboxRight.getChildren().add(infoDisplay);
     createInfoTableView(
-        "Art der Information", "Information", null, null, infoObjectsListToShow, 400, infoDisplay);
+        "Art der Information", "Information", null, null, infoObjectsListToShow, 500, infoDisplay);
     createLinkListView(linkObjectsListToShow, infoDisplay);
   }
 
   private void createButtons() {
     HBox buttonbox = new HBox();
     Button btnSelect = new Button("ausgewähltes Objekt anzeigen");
+    btnSelect.setPrefSize(180,45);
+    btnSelect.setMinSize(180, 40);
     btnSelect.setOnAction(new ButtonSelectObjectClickHandler());
     Button btnBack = new Button("Zurück zu Bahnhof");
+    btnBack.setPrefSize(180,45);
+    btnBack.setMinSize(180,40);
     btnBack.setOnAction(new ButtonBackClickHandler());
     vboxRight.getChildren().add(buttonbox);
     buttonbox.getChildren().add(btnSelect);
