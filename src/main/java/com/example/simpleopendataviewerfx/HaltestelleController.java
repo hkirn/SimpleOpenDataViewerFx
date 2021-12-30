@@ -19,6 +19,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class HaltestelleController implements Initializable {
@@ -32,18 +33,27 @@ public class HaltestelleController implements Initializable {
   @FXML private Label lbl_hstName;
   @FXML private StackPane pane_pictureView;
   @FXML private VBox vboxRight;
-  /**
-   * Not needed at the moment, for futere use! @FXML private Button btn_otherStation1; @FXML private
-   * Button btn_displayHaltesteig; @FXML private Button btn_displayAufzug; @FXML private Button
-   * btn_displayEngstelle; @FXML private Button btn_displayFahrkartenautomat; @FXML private Button
-   * btn_displayFahrradanlage; @FXML private Button btn_displayGleisquerung; @FXML private Button
-   * btn_displayInformationsstelle; @FXML private Button btn_displayLeihradanlage; @FXML private
-   * Button btn_displayParkplatz; @FXML private Button btn_displayRampe; @FXML private Button
-   * btn_displayRolltreppe; @FXML private Button btn_displayStationsplan; @FXML private Button
-   * btn_displayTaxi; @FXML private Button btn_displayToilette; @FXML private Button
-   * btn_displayTreppe; @FXML private Button btn_display_Tuer; @FXML private Button
-   * btn_display_Verkaufsstelle; @FXML private Button btn_displayWeg;
-   */
+
+  @FXML private Button btn_displayHaltesteig;
+  @FXML private Button btn_displayAufzug;
+  @FXML private Button btn_displayEngstelle;
+  @FXML private Button btn_displayFahrkartenautomat;
+  @FXML private Button btn_displayFahrradanlage;
+  @FXML private Button btn_displayGleisquerung;
+  @FXML private Button btn_displayInformationsstelle;
+  @FXML private Button btn_displayLeihradanlage;
+  @FXML private Button btn_displayParkplatz;
+  @FXML private Button btn_displayRampe;
+  @FXML private Button btn_displayRolltreppe;
+  @FXML private Button btn_displayStationsplan;
+  @FXML private Button btn_displayTaxi;
+  @FXML private Button btn_displayToilette;
+  @FXML private Button btn_displayTreppe;
+  @FXML private Button btn_displayTuer;
+  @FXML private Button btn_displayVerkaufsstelle;
+  @FXML private Button btn_displayWeg;
+  @FXML private Button btn_otherStation;
+
   private final StationManager manager;
 
   private TableView<InfoObject> infoObjectTableView;
@@ -63,6 +73,7 @@ public class HaltestelleController implements Initializable {
   @FXML
   protected void onActionBtnDisplayHaltesteig() {
     System.out.println("displayHaltesteig pressed");
+    setAllButtonStateDisable(true);
     this.activeObject = "Haltesteig";
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
@@ -80,6 +91,7 @@ public class HaltestelleController implements Initializable {
   @FXML
   protected void onActionBtnDisplayAufzug() {
     System.out.println("displayHaltesteig pressed");
+    setAllButtonStateDisable(true);
     this.activeObject = "Aufzug";
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
@@ -97,6 +109,7 @@ public class HaltestelleController implements Initializable {
   @FXML
   protected void onActionBtnDisplayEngstelle() {
     System.out.println("displayEngstelle pressed");
+    setAllButtonStateDisable(true);
     this.activeObject = "Engstelle";
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
@@ -114,6 +127,7 @@ public class HaltestelleController implements Initializable {
   @FXML
   protected void onActionBtnDisplayFahrkartenautomat() {
     System.out.println("displayEngstelle pressed");
+    setAllButtonStateDisable(true);
     activeObject = "Fahrkartenautomat";
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
@@ -131,6 +145,7 @@ public class HaltestelleController implements Initializable {
   @FXML
   protected void onActionBtnDisplayFahrradanlage() {
     System.out.println("displayEngstelle pressed");
+    setAllButtonStateDisable(true);
     this.activeObject = "Fahrradanlage";
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
@@ -148,6 +163,7 @@ public class HaltestelleController implements Initializable {
   @FXML
   protected void onActionBtnDisplayGleisquerung() {
     System.out.println("displayGleisquerung pressed");
+    setAllButtonStateDisable(true);
     this.activeObject = "Gleisquerung";
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
@@ -165,6 +181,7 @@ public class HaltestelleController implements Initializable {
   @FXML
   protected void onActionBtnDisplayInformationsstelle() {
     System.out.println("displayInformationsstelle pressed");
+    setAllButtonStateDisable(true);
     this.activeObject = "Informationsstelle";
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
@@ -182,6 +199,7 @@ public class HaltestelleController implements Initializable {
   @FXML
   protected void onActionBtnDisplayLeihradanlage() {
     System.out.println("displayInformationsstelle pressed");
+    setAllButtonStateDisable(true);
     this.activeObject = "Leihradanlage";
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
@@ -199,6 +217,7 @@ public class HaltestelleController implements Initializable {
   @FXML
   protected void onActionBtnDisplayParkplatz() {
     System.out.println("displayParkplatz pressed");
+    setAllButtonStateDisable(true);
     this.activeObject = "Parkplatz";
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
@@ -216,6 +235,7 @@ public class HaltestelleController implements Initializable {
   @FXML
   protected void onActionBtnDisplayRampe() {
     System.out.println("displayRampe pressed");
+    setAllButtonStateDisable(true);
     this.activeObject = "Rampe";
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
@@ -233,6 +253,7 @@ public class HaltestelleController implements Initializable {
   @FXML
   protected void onActionBtnDisplayRolltreppe() {
     System.out.println("displayRolltreppe pressed");
+    setAllButtonStateDisable(true);
     this.activeObject = "Rolltreppe";
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
@@ -250,6 +271,7 @@ public class HaltestelleController implements Initializable {
   @FXML
   protected void onActionBtnDisplayStationsplan() {
     System.out.println("displayStationsplan pressed");
+    setAllButtonStateDisable(true);
     this.activeObject = "Stationsplan";
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
@@ -267,6 +289,7 @@ public class HaltestelleController implements Initializable {
   @FXML
   protected void onActionBtnDisplayTaxi() {
     System.out.println("displayTaxi pressed");
+    setAllButtonStateDisable(true);
     this.activeObject = "Taxi";
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
@@ -284,6 +307,7 @@ public class HaltestelleController implements Initializable {
   @FXML
   protected void onActionBtnDisplayToilette() {
     System.out.println("displayToilette pressed");
+    setAllButtonStateDisable(true);
     this.activeObject = "Toilette";
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
@@ -301,6 +325,7 @@ public class HaltestelleController implements Initializable {
   @FXML
   protected void onActionBtnDisplayTreppe() {
     System.out.println("displayTreppe pressed");
+    setAllButtonStateDisable(true);
     this.activeObject = "Treppe";
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
@@ -318,6 +343,7 @@ public class HaltestelleController implements Initializable {
   @FXML
   protected void onActionBtnDisplayTuer() {
     System.out.println("displayTuer pressed");
+    setAllButtonStateDisable(true);
     this.activeObject = "Tuer";
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
@@ -335,6 +361,7 @@ public class HaltestelleController implements Initializable {
   @FXML
   protected void onActionBtnDisplayVerkaufsstelle() {
     System.out.println("displayVerkaufsstelle pressed");
+    setAllButtonStateDisable(true);
     this.activeObject = "Verkaufsstelle";
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
@@ -352,6 +379,7 @@ public class HaltestelleController implements Initializable {
   @FXML
   protected void onActionBtnDisplayWeg() {
     System.out.println("displayInformationsstelle pressed");
+    setAllButtonStateDisable(true);
     this.activeObject = "Weg";
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
@@ -369,6 +397,7 @@ public class HaltestelleController implements Initializable {
   @FXML
   protected void onActionBtnOtherStationPressed() {
     System.out.println("btn_otherStation pressed...");
+    setAllButtonStateDisable(true);
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
         createInfoTableView(
@@ -420,6 +449,7 @@ public class HaltestelleController implements Initializable {
 
   private void loadObject() {
     System.out.println("btnSelect pressed");
+    setAllButtonStateDisable(true);
     System.out.println(activeObject);
     switch (activeObject) {
       case "Haltesteig" -> refreshHaltesteig();
@@ -754,6 +784,37 @@ public class HaltestelleController implements Initializable {
     createInfoTableView(
         "Art der Information", "Information", null, null, infoObjectsListToShow, 500, infoDisplay);
     createLinkListView(linkObjectsListToShow, infoDisplay);
+    setAllButtonStateDisable(false);
+  }
+
+  private ArrayList<Button> createButtonList(){
+    ArrayList<Button> arrayListButton = new ArrayList<>();
+    arrayListButton.add(btn_displayHaltesteig);
+    arrayListButton.add(btn_displayAufzug);
+    arrayListButton.add(btn_displayEngstelle);
+    arrayListButton.add(btn_displayFahrkartenautomat);
+    arrayListButton.add(btn_displayFahrradanlage);
+    arrayListButton.add(btn_displayGleisquerung);
+    arrayListButton.add(btn_displayInformationsstelle);
+    arrayListButton.add(btn_displayLeihradanlage);
+    arrayListButton.add(btn_displayParkplatz);
+    arrayListButton.add(btn_displayRampe);
+    arrayListButton.add(btn_displayRolltreppe);
+    arrayListButton.add(btn_displayStationsplan);
+    arrayListButton.add(btn_displayTaxi);
+    arrayListButton.add(btn_displayToilette);
+    arrayListButton.add(btn_displayTreppe);
+    arrayListButton.add(btn_displayTuer);
+    arrayListButton.add(btn_displayVerkaufsstelle);
+    arrayListButton.add(btn_displayWeg);
+    arrayListButton.add(btn_otherStation);
+    return  arrayListButton;
+  }
+
+  private void setAllButtonStateDisable(boolean state){
+    for (Button button: createButtonList()){
+      button.setDisable(state);
+    }
   }
 
   /*
