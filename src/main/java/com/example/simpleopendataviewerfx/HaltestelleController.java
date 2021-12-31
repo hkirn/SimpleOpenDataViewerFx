@@ -1,6 +1,8 @@
 package com.example.simpleopendataviewerfx;
 
 import com.prog.station.*;
+import com.prog.station.nvbwobjectcreator.*;
+import com.prog.station.InfoObject;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -53,6 +55,8 @@ public class HaltestelleController implements Initializable {
   @FXML private Button btn_displayVerkaufsstelle;
   @FXML private Button btn_displayWeg;
   @FXML private Button btn_otherStation;
+  @FXML private Button btn_back;
+  @FXML private Label lbl_status;
 
   private final StationManager manager;
 
@@ -65,9 +69,11 @@ public class HaltestelleController implements Initializable {
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     webView = new WebView();
-    webView.getEngine().load(haltestelleObject.getHaltestelleTotale_Foto());
+    //webView.getEngine().load(haltestelleObject.getHaltestelleTotale_Foto());
     pane_pictureView.getChildren().add(webView);
-    refreshStation();
+    onActionBtnOtherStationPressed();
+    lbl_status.setText("Nach der Wahl werden die Daten synchronisiert. Das kann Wartezeit verursachen.");
+    btn_back.setDisable(true);
   }
 
   @FXML
@@ -606,7 +612,6 @@ public class HaltestelleController implements Initializable {
         manager.searchStationsplanById(
             infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
     webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
-    System.out.println(webView.getEngine().getLocation());
     infoDisplay.getChildren().clear();
     createMenuFooter(false, foundObject.getInfo(), foundObject.getLink());
   }
@@ -617,7 +622,6 @@ public class HaltestelleController implements Initializable {
         manager.searchTaxiById(
             infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
     webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
-    System.out.println(webView.getEngine().getLocation());
     infoDisplay.getChildren().clear();
     createMenuFooter(false, foundObject.getInfo(), foundObject.getLink());
   }
@@ -630,7 +634,6 @@ public class HaltestelleController implements Initializable {
     webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
     infoDisplay.getChildren().clear();
     createMenuFooter(false, foundObject.getInfo(), foundObject.getLink());
-    webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
   }
 
   private void refreshTreppe() {
@@ -641,7 +644,6 @@ public class HaltestelleController implements Initializable {
     webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
     infoDisplay.getChildren().clear();
     createMenuFooter(false, foundObject.getInfo(), foundObject.getLink());
-    webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
   }
 
   private void refreshTuer() {
@@ -652,7 +654,6 @@ public class HaltestelleController implements Initializable {
     webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
     infoDisplay.getChildren().clear();
     createMenuFooter(false, foundObject.getInfo(), foundObject.getLink());
-    webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
   }
 
   private void refreshVerkaufsstelle() {
@@ -663,7 +664,6 @@ public class HaltestelleController implements Initializable {
     webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
     infoDisplay.getChildren().clear();
     createMenuFooter(false, foundObject.getInfo(), foundObject.getLink());
-    webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
   }
 
   private void refreshWeg() {
@@ -674,7 +674,6 @@ public class HaltestelleController implements Initializable {
     webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
     infoDisplay.getChildren().clear();
     createMenuFooter(false, foundObject.getInfo(), foundObject.getLink());
-    webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
   }
 
   static class LinkCell extends ListCell<LinkObject> {
@@ -785,6 +784,7 @@ public class HaltestelleController implements Initializable {
         "Art der Information", "Information", null, null, infoObjectsListToShow, 500, infoDisplay);
     createLinkListView(linkObjectsListToShow, infoDisplay);
     setAllButtonStateDisable(false);
+    System.out.println(webView.getEngine().getOnError());
   }
 
   private ArrayList<Button> createButtonList(){
@@ -812,11 +812,57 @@ public class HaltestelleController implements Initializable {
   }
 
   private void setAllButtonStateDisable(boolean state){
-    for (Button button: createButtonList()){
-      button.setDisable(state);
+    if(state==true){
+      for (Button button: createButtonList()){
+        button.setDisable(true);
+    }}
+    else {
+      for (Button button: createButtonList()){
+        button.setDisable(true);}
+      checkObjectListAndActivateButtons();
+      lbl_status.setText("");
     }
   }
 
+  private void checkObjectListAndActivateButtons(){
+    btn_displayHaltesteig.setDisable(false);
+    if (manager.getObjekteList(haltestelleObject.getID(),"Aufzug").size()>0){
+    btn_displayAufzug.setDisable(false);}
+    if (manager.getObjekteList(haltestelleObject.getID(),"Engstelle").size()>0){
+    btn_displayEngstelle.setDisable(false);}
+    if (manager.getObjekteList(haltestelleObject.getID(),"Fahrkartenautomat").size()>0){
+    btn_displayFahrkartenautomat.setDisable(false);}
+    if (manager.getObjekteList(haltestelleObject.getID(),"Fahrradanlage").size()>0){
+    btn_displayFahrradanlage.setDisable(false);}
+    if (manager.getObjekteList(haltestelleObject.getID(),"Gleisquerung").size()>0){
+    btn_displayGleisquerung.setDisable(false);}
+    if (manager.getObjekteList(haltestelleObject.getID(),"Informationsstelle").size()>0){
+    btn_displayInformationsstelle.setDisable(false);}
+    if (manager.getObjekteList(haltestelleObject.getID(),"Leihradanlage").size()>0){
+    btn_displayLeihradanlage.setDisable(false);}
+    if (manager.getObjekteList(haltestelleObject.getID(),"Parkplatz").size()>0){
+    btn_displayParkplatz.setDisable(false);}
+    if (manager.getObjekteList(haltestelleObject.getID(),"Rampe").size()>0){
+    btn_displayRampe.setDisable(false);}
+    if (manager.getObjekteList(haltestelleObject.getID(),"Rolltreppe").size()>0){
+    btn_displayRolltreppe.setDisable(false);}
+    if (manager.getObjekteList(haltestelleObject.getID(),"Stationsplan").size()>0){
+    btn_displayStationsplan.setDisable(false);}
+    if (manager.getObjekteList(haltestelleObject.getID(),"Taxi").size()>0){
+    btn_displayTaxi.setDisable(false);}
+    if (manager.getObjekteList(haltestelleObject.getID(),"Toilette").size()>0){
+    btn_displayToilette.setDisable(false);}
+    if (manager.getObjekteList(haltestelleObject.getID(),"Treppe").size()>0){
+    btn_displayTreppe.setDisable(false);}
+    if (manager.getObjekteList(haltestelleObject.getID(),"Tuer").size()>0){
+    btn_displayTuer.setDisable(false);}
+    if (manager.getObjekteList(haltestelleObject.getID(),"Verkaufsstelle").size()>0){
+    btn_displayVerkaufsstelle.setDisable(false);}
+    if (manager.getObjekteList(haltestelleObject.getID(),"Weg").size()>0){
+    btn_displayWeg.setDisable(false);}
+    btn_otherStation.setDisable(false);
+    btn_back.setDisable(false);
+  }
   /*
   private void createButtons() {
     HBox buttonbox = new HBox();

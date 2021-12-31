@@ -20,7 +20,7 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbl_hstName" prefHeight="98.0" prefWidth="544.0" text="Bahnhof_Bezeichnung">
+                  <Label fx:id="lbl_hstName" prefHeight="98.0" prefWidth="544.0" text="Bitte auswählen">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -31,7 +31,8 @@
             <Separator prefHeight="0.0" prefWidth="903.0" />
             <HBox alignment="TOP_RIGHT" prefHeight="123.0" prefWidth="903.0">
                <children>
-                  <Button fx:id="btn_Back" layoutX="756.0" layoutY="10.0" mnemonicParsing="false" onAction="#onActionBtnBackPressed" prefHeight="47.0" prefWidth="144.0" text="Zurück zu Bahnhof">
+                  <Label fx:id="lbl_status" prefHeight="45.0" prefWidth="459.0" textFill="#ee0b0b" />
+                  <Button fx:id="btn_back" layoutX="756.0" layoutY="10.0" mnemonicParsing="false" onAction="#onActionBtnBackPressed" prefHeight="47.0" prefWidth="144.0" text="Zurück zu Bahnhof">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
