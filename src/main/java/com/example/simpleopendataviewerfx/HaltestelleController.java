@@ -89,7 +89,7 @@ public class HaltestelleController implements Initializable {
             null,
             null,
             manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
-            300,
+            400,
             vboxRight);
     createMenuFooter(true, null, null);
   }
@@ -107,7 +107,7 @@ public class HaltestelleController implements Initializable {
             null,
             null,
             manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
-            300,
+            400,
             vboxRight);
     createMenuFooter(true, null, null);
   }
@@ -125,7 +125,7 @@ public class HaltestelleController implements Initializable {
             null,
             null,
             manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
-            300,
+            400,
             vboxRight);
     createMenuFooter(true, null, null);
   }
@@ -143,7 +143,7 @@ public class HaltestelleController implements Initializable {
             null,
             null,
             manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
-            300,
+                400,
             vboxRight);
     createMenuFooter(true, null, null);
   }
@@ -161,7 +161,7 @@ public class HaltestelleController implements Initializable {
             null,
             null,
             manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
-            300,
+            400,
             vboxRight);
     createMenuFooter(true, null, null);
   }
@@ -179,7 +179,7 @@ public class HaltestelleController implements Initializable {
             null,
             null,
             manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
-            300,
+            400,
             vboxRight);
     createMenuFooter(true, null, null);
   }
@@ -197,7 +197,7 @@ public class HaltestelleController implements Initializable {
             null,
             null,
             manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
-            300,
+            400,
             vboxRight);
     createMenuFooter(true, null, null);
   }
@@ -215,7 +215,7 @@ public class HaltestelleController implements Initializable {
             null,
             null,
             manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
-            300,
+            400,
             vboxRight);
     createMenuFooter(true, null, null);
   }
@@ -233,7 +233,7 @@ public class HaltestelleController implements Initializable {
             null,
             null,
             manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
-            300,
+            400,
             vboxRight);
     createMenuFooter(true, null, null);
   }
@@ -251,7 +251,7 @@ public class HaltestelleController implements Initializable {
             null,
             null,
             manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
-            300,
+            400,
             vboxRight);
     createMenuFooter(true, null, null);
   }
@@ -269,7 +269,7 @@ public class HaltestelleController implements Initializable {
             null,
             null,
             manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
-            300,
+            400,
             vboxRight);
     createMenuFooter(true, null, null);
   }
@@ -287,7 +287,7 @@ public class HaltestelleController implements Initializable {
             null,
             null,
             manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
-            300,
+            400,
             vboxRight);
     createMenuFooter(true, null, null);
   }
@@ -305,7 +305,7 @@ public class HaltestelleController implements Initializable {
             null,
             null,
             manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
-            300,
+            400,
             vboxRight);
     createMenuFooter(true, null, null);
   }
@@ -323,7 +323,7 @@ public class HaltestelleController implements Initializable {
             null,
             null,
             manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
-            300,
+            400,
             vboxRight);
     createMenuFooter(true, null, null);
   }
@@ -341,7 +341,7 @@ public class HaltestelleController implements Initializable {
             null,
             null,
             manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
-            300,
+            400,
             vboxRight);
     createMenuFooter(true, null, null);
   }
@@ -359,7 +359,7 @@ public class HaltestelleController implements Initializable {
             null,
             null,
             manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
-            300,
+            400,
             vboxRight);
     createMenuFooter(true, null, null);
   }
@@ -377,7 +377,7 @@ public class HaltestelleController implements Initializable {
             null,
             null,
             manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
-            300,
+            400,
             vboxRight);
     createMenuFooter(true, null, null);
   }
@@ -395,7 +395,7 @@ public class HaltestelleController implements Initializable {
             null,
             null,
             manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
-            300,
+            400,
             vboxRight);
     createMenuFooter(true, null, null);
   }
@@ -781,7 +781,7 @@ public class HaltestelleController implements Initializable {
     infoDisplay = new VBox();
     vboxRight.getChildren().add(infoDisplay);
     createInfoTableView(
-        "Art der Information", "Information", null, null, infoObjectsListToShow, 500, infoDisplay);
+        "Art der Information", "Information", null, null, infoObjectsListToShow, 400, infoDisplay);
     createLinkListView(linkObjectsListToShow, infoDisplay);
     setAllButtonStateDisable(false);
     System.out.println(webView.getEngine().getOnError());
