@@ -185,7 +185,7 @@ public class StationManager {
         return foundObject;
       }
     }
-    throw new NoSuchElementException("Object: " + id + "not found");
+    throw new NoSuchElementException("Object: " + id + " not found");
   }
 
   public TuerObject searchTuerById(String id) {

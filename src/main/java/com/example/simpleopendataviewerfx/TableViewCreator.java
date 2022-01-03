@@ -98,6 +98,7 @@ public class TableViewCreator {
     return infoObjectTableView;
   }
 
+
   protected TableView<InfoObject> createInfoObjectInfoTableView(
       ObservableList<InfoObject> listToShow, int hight, VBox positionToDisplay) {
     String description1stColumn = "Art der Information";
