@@ -10,13 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.Separator;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
@@ -26,6 +20,7 @@ import java.util.ResourceBundle;
 
 public class HaltestelleController implements Initializable {
   private HaltestelleObject haltestelleObject;
+  private final TableViewCreator tableViewCreator = new TableViewCreator(this);
 
   public HaltestelleController() {
     this.manager = new StationManager();
@@ -61,8 +56,7 @@ public class HaltestelleController implements Initializable {
   private final StationManager manager;
 
   private TableView<InfoObject> infoObjectTableView;
-  private ListView<LinkObject> linkListView;
-  private WebView webView;
+  protected WebView webView;
   private VBox infoDisplay;
   private String activeObject;
 
@@ -83,15 +77,11 @@ public class HaltestelleController implements Initializable {
     this.activeObject = "Haltesteig";
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
-        createInfoTableView(
-            "Objekt-ID",
-            "Bezeichnung",
-            null,
-            null,
+        tableViewCreator.createClickableObjectInfoTableView(
             manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
             400,
             vboxRight);
-    createMenuFooter(true, null, null);
+    createMenuFooter(null, null);
   }
 
   @FXML
@@ -101,15 +91,11 @@ public class HaltestelleController implements Initializable {
     this.activeObject = "Aufzug";
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
-        createInfoTableView(
-            "Objekt-ID",
-            "Bezeichnung",
-            null,
-            null,
-            manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
-            400,
-            vboxRight);
-    createMenuFooter(true, null, null);
+            tableViewCreator.createClickableObjectInfoTableView(
+                    manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
+                    400,
+                    vboxRight);
+    createMenuFooter(null, null);
   }
 
   @FXML
@@ -119,15 +105,11 @@ public class HaltestelleController implements Initializable {
     this.activeObject = "Engstelle";
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
-        createInfoTableView(
-            "Objekt-ID",
-            "Bezeichnung",
-            null,
-            null,
-            manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
-            400,
-            vboxRight);
-    createMenuFooter(true, null, null);
+            tableViewCreator.createClickableObjectInfoTableView(
+                    manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
+                    400,
+                    vboxRight);
+    createMenuFooter( null, null);
   }
 
   @FXML
@@ -137,15 +119,11 @@ public class HaltestelleController implements Initializable {
     activeObject = "Fahrkartenautomat";
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
-        createInfoTableView(
-            "Objekt-ID",
-            "Bezeichnung",
-            null,
-            null,
-            manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
-                400,
-            vboxRight);
-    createMenuFooter(true, null, null);
+            tableViewCreator.createClickableObjectInfoTableView(
+                    manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
+                    400,
+                    vboxRight);
+    createMenuFooter(null, null);
   }
 
   @FXML
@@ -155,15 +133,11 @@ public class HaltestelleController implements Initializable {
     this.activeObject = "Fahrradanlage";
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
-        createInfoTableView(
-            "Objekt-ID",
-            "Bezeichnung",
-            null,
-            null,
-            manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
-            400,
-            vboxRight);
-    createMenuFooter(true, null, null);
+            tableViewCreator.createClickableObjectInfoTableView(
+                    manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
+                    400,
+                    vboxRight);
+    createMenuFooter(null, null);
   }
 
   @FXML
@@ -173,15 +147,11 @@ public class HaltestelleController implements Initializable {
     this.activeObject = "Gleisquerung";
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
-        createInfoTableView(
-            "Objekt-ID",
-            "Bezeichnung",
-            null,
-            null,
-            manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
-            400,
-            vboxRight);
-    createMenuFooter(true, null, null);
+            tableViewCreator.createClickableObjectInfoTableView(
+                    manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
+                    400,
+                    vboxRight);
+    createMenuFooter(null, null);
   }
 
   @FXML
@@ -191,15 +161,11 @@ public class HaltestelleController implements Initializable {
     this.activeObject = "Informationsstelle";
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
-        createInfoTableView(
-            "Objekt-ID",
-            "Bezeichnung",
-            null,
-            null,
-            manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
-            400,
-            vboxRight);
-    createMenuFooter(true, null, null);
+            tableViewCreator.createClickableObjectInfoTableView(
+                    manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
+                    400,
+                    vboxRight);
+    createMenuFooter(null, null);
   }
 
   @FXML
@@ -209,15 +175,11 @@ public class HaltestelleController implements Initializable {
     this.activeObject = "Leihradanlage";
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
-        createInfoTableView(
-            "Objekt-ID",
-            "Bezeichnung",
-            null,
-            null,
-            manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
-            400,
-            vboxRight);
-    createMenuFooter(true, null, null);
+            tableViewCreator.createClickableObjectInfoTableView(
+                    manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
+                    400,
+                    vboxRight);
+    createMenuFooter(null, null);
   }
 
   @FXML
@@ -227,15 +189,11 @@ public class HaltestelleController implements Initializable {
     this.activeObject = "Parkplatz";
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
-        createInfoTableView(
-            "Objekt-ID",
-            "Bezeichnung",
-            null,
-            null,
-            manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
-            400,
-            vboxRight);
-    createMenuFooter(true, null, null);
+            tableViewCreator.createClickableObjectInfoTableView(
+                    manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
+                    400,
+                    vboxRight);
+    createMenuFooter(null, null);
   }
 
   @FXML
@@ -245,15 +203,11 @@ public class HaltestelleController implements Initializable {
     this.activeObject = "Rampe";
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
-        createInfoTableView(
-            "Objekt-ID",
-            "Bezeichnung",
-            null,
-            null,
-            manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
-            400,
-            vboxRight);
-    createMenuFooter(true, null, null);
+            tableViewCreator.createClickableObjectInfoTableView(
+                    manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
+                    400,
+                    vboxRight);
+    createMenuFooter(null, null);
   }
 
   @FXML
@@ -263,15 +217,11 @@ public class HaltestelleController implements Initializable {
     this.activeObject = "Rolltreppe";
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
-        createInfoTableView(
-            "Objekt-ID",
-            "Bezeichnung",
-            null,
-            null,
-            manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
-            400,
-            vboxRight);
-    createMenuFooter(true, null, null);
+            tableViewCreator.createClickableObjectInfoTableView(
+                    manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
+                    400,
+                    vboxRight);
+    createMenuFooter(null, null);
   }
 
   @FXML
@@ -281,15 +231,11 @@ public class HaltestelleController implements Initializable {
     this.activeObject = "Stationsplan";
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
-        createInfoTableView(
-            "Objekt-ID",
-            "Bezeichnung",
-            null,
-            null,
-            manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
-            400,
-            vboxRight);
-    createMenuFooter(true, null, null);
+            tableViewCreator.createClickableObjectInfoTableView(
+                    manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
+                    400,
+                    vboxRight);
+    createMenuFooter(null, null);
   }
 
   @FXML
@@ -299,15 +245,11 @@ public class HaltestelleController implements Initializable {
     this.activeObject = "Taxi";
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
-        createInfoTableView(
-            "Objekt-ID",
-            "Bezeichnung",
-            null,
-            null,
-            manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
-            400,
-            vboxRight);
-    createMenuFooter(true, null, null);
+            tableViewCreator.createClickableObjectInfoTableView(
+                    manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
+                    400,
+                    vboxRight);
+    createMenuFooter(null, null);
   }
 
   @FXML
@@ -317,15 +259,11 @@ public class HaltestelleController implements Initializable {
     this.activeObject = "Toilette";
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
-        createInfoTableView(
-            "Objekt-ID",
-            "Bezeichnung",
-            null,
-            null,
-            manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
-            400,
-            vboxRight);
-    createMenuFooter(true, null, null);
+            tableViewCreator.createClickableObjectInfoTableView(
+                    manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
+                    400,
+                    vboxRight);
+    createMenuFooter(null, null);
   }
 
   @FXML
@@ -335,15 +273,11 @@ public class HaltestelleController implements Initializable {
     this.activeObject = "Treppe";
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
-        createInfoTableView(
-            "Objekt-ID",
-            "Bezeichnung",
-            null,
-            null,
-            manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
-            400,
-            vboxRight);
-    createMenuFooter(true, null, null);
+            tableViewCreator.createClickableObjectInfoTableView(
+                    manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
+                    400,
+                    vboxRight);
+    createMenuFooter(null, null);
   }
 
   @FXML
@@ -353,15 +287,11 @@ public class HaltestelleController implements Initializable {
     this.activeObject = "Tuer";
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
-        createInfoTableView(
-            "Objekt-ID",
-            "Bezeichnung",
-            null,
-            null,
-            manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
-            400,
-            vboxRight);
-    createMenuFooter(true, null, null);
+            tableViewCreator.createClickableObjectInfoTableView(
+                    manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
+                    400,
+                    vboxRight);
+    createMenuFooter(null, null);
   }
 
   @FXML
@@ -371,15 +301,11 @@ public class HaltestelleController implements Initializable {
     this.activeObject = "Verkaufsstelle";
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
-        createInfoTableView(
-            "Objekt-ID",
-            "Bezeichnung",
-            null,
-            null,
-            manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
-            400,
-            vboxRight);
-    createMenuFooter(true, null, null);
+            tableViewCreator.createClickableObjectInfoTableView(
+                    manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
+                    400,
+                    vboxRight);
+    createMenuFooter(null, null);
   }
 
   @FXML
@@ -389,15 +315,11 @@ public class HaltestelleController implements Initializable {
     this.activeObject = "Weg";
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
-        createInfoTableView(
-            "Objekt-ID",
-            "Bezeichnung",
-            null,
-            null,
-            manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
-            400,
-            vboxRight);
-    createMenuFooter(true, null, null);
+            tableViewCreator.createClickableObjectInfoTableView(
+                    manager.getObjekteList(this.haltestelleObject.getID(), this.activeObject),
+                    400,
+                    vboxRight);
+    createMenuFooter(null, null);
   }
 
   @FXML
@@ -406,8 +328,7 @@ public class HaltestelleController implements Initializable {
     setAllButtonStateDisable(true);
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
-        createInfoTableView(
-            "Objekt-ID", "Name", "Landkreis", "Ort", manager.getHaltestelleList(), 900, vboxRight);
+        tableViewCreator.createStationSelectInfoTableView(manager.getHaltestelleList(), 900, vboxRight);
     Button btnOk = new Button("gewählten Bahnhof anzeigen");
     btnOk.setStyle("-fx-font-weight: bold;");
     btnOk.setPrefSize(180, 50);
@@ -422,26 +343,6 @@ public class HaltestelleController implements Initializable {
     refreshStation();
   }
 
-  /*
-
-  class ButtonBackClickHandler implements EventHandler<ActionEvent> {
-    @Override
-    public void handle(final ActionEvent event) {
-      System.out.println("btnBack pressed");
-      refreshStation();
-    }
-  }
-  */
-
-  /*
-  class ButtonSelectObjectClickHandler implements EventHandler<ActionEvent> {
-    @Override
-    public void handle(final ActionEvent event) {
-      loadObject();
-    }
-  }
-   */
-
   class ButtonOkClickHandler implements EventHandler<ActionEvent> {
     @Override
     public void handle(final ActionEvent event) {
@@ -453,7 +354,7 @@ public class HaltestelleController implements Initializable {
     }
   }
 
-  private void loadObject() {
+  protected void loadObject() {
     System.out.println("btnSelect pressed");
     setAllButtonStateDisable(true);
     System.out.println(activeObject);
@@ -487,7 +388,7 @@ public class HaltestelleController implements Initializable {
     } else {
       webView.getEngine().load(haltestelleObject.getPosLink(haltestelleObject.getPos()));
     }
-    createMenuFooter(false, haltestelleObject.getInfo(), haltestelleObject.getLink());
+    createMenuFooter(haltestelleObject.getInfo(), haltestelleObject.getLink());
   }
 
   private void refreshHaltesteig() {
@@ -497,7 +398,7 @@ public class HaltestelleController implements Initializable {
             infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
     webView.getEngine().load(haltesteigObject.getPosLink(haltesteigObject.getPos()));
     infoDisplay.getChildren().clear();
-    createMenuFooter(false, haltesteigObject.getInfo(), haltesteigObject.getLink());
+    createMenuFooter(haltesteigObject.getInfo(), haltesteigObject.getLink());
   }
 
   private void refreshAufzug() {
@@ -507,7 +408,7 @@ public class HaltestelleController implements Initializable {
             infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
     webView.getEngine().load(aufzugObject.getPosLink(aufzugObject.getPos()));
     infoDisplay.getChildren().clear();
-    createMenuFooter(false, aufzugObject.getInfo(), aufzugObject.getLink());
+    createMenuFooter(aufzugObject.getInfo(), aufzugObject.getLink());
   }
 
   private void refreshEngstelle() {
@@ -517,7 +418,7 @@ public class HaltestelleController implements Initializable {
             infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
     webView.getEngine().load(engstelleObject.getPosLink(engstelleObject.getPos()));
     infoDisplay.getChildren().clear();
-    createMenuFooter(false, engstelleObject.getInfo(), engstelleObject.getLink());
+    createMenuFooter(engstelleObject.getInfo(), engstelleObject.getLink());
   }
 
   private void refreshFahrkartenautomat() {
@@ -527,7 +428,7 @@ public class HaltestelleController implements Initializable {
             infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
     webView.getEngine().load(fahrkartenautomatObject.getPosLink(fahrkartenautomatObject.getPos()));
     infoDisplay.getChildren().clear();
-    createMenuFooter(false, fahrkartenautomatObject.getInfo(), fahrkartenautomatObject.getLink());
+    createMenuFooter(fahrkartenautomatObject.getInfo(), fahrkartenautomatObject.getLink());
   }
 
   private void refreshFahrradanlage() {
@@ -537,7 +438,7 @@ public class HaltestelleController implements Initializable {
             infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
     webView.getEngine().load(fahrradanlageObject.getPosLink(fahrradanlageObject.getPos()));
     infoDisplay.getChildren().clear();
-    createMenuFooter(false, fahrradanlageObject.getInfo(), fahrradanlageObject.getLink());
+    createMenuFooter(fahrradanlageObject.getInfo(), fahrradanlageObject.getLink());
   }
 
   private void refreshGleisquerung() {
@@ -547,7 +448,7 @@ public class HaltestelleController implements Initializable {
             infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
     webView.getEngine().load(gleisquerungObject.getPosLink(gleisquerungObject.getPos()));
     infoDisplay.getChildren().clear();
-    createMenuFooter(false, gleisquerungObject.getInfo(), gleisquerungObject.getLink());
+    createMenuFooter(gleisquerungObject.getInfo(), gleisquerungObject.getLink());
   }
 
   private void refreshInformationsstelle() {
@@ -559,7 +460,7 @@ public class HaltestelleController implements Initializable {
         .getEngine()
         .load(informationsstelleObject.getPosLink(informationsstelleObject.getPos()));
     infoDisplay.getChildren().clear();
-    createMenuFooter(false, informationsstelleObject.getInfo(), informationsstelleObject.getLink());
+    createMenuFooter(informationsstelleObject.getInfo(), informationsstelleObject.getLink());
   }
 
   private void refreshLeihradanlage() {
@@ -569,7 +470,7 @@ public class HaltestelleController implements Initializable {
             infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
     webView.getEngine().load(leihradanlageObject.getPosLink(leihradanlageObject.getPos()));
     infoDisplay.getChildren().clear();
-    createMenuFooter(false, leihradanlageObject.getInfo(), leihradanlageObject.getLink());
+    createMenuFooter(leihradanlageObject.getInfo(), leihradanlageObject.getLink());
     webView.getEngine().load(leihradanlageObject.getPosLink(leihradanlageObject.getPos()));
   }
 
@@ -580,7 +481,7 @@ public class HaltestelleController implements Initializable {
             infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
     webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
     infoDisplay.getChildren().clear();
-    createMenuFooter(false, foundObject.getInfo(), foundObject.getLink());
+    createMenuFooter(foundObject.getInfo(), foundObject.getLink());
     webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
   }
 
@@ -591,7 +492,7 @@ public class HaltestelleController implements Initializable {
             infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
     webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
     infoDisplay.getChildren().clear();
-    createMenuFooter(false, foundObject.getInfo(), foundObject.getLink());
+    createMenuFooter(foundObject.getInfo(), foundObject.getLink());
     webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
   }
 
@@ -603,7 +504,7 @@ public class HaltestelleController implements Initializable {
     webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
     System.out.println(webView.getEngine().getLocation());
     infoDisplay.getChildren().clear();
-    createMenuFooter(false, foundObject.getInfo(), foundObject.getLink());
+    createMenuFooter(foundObject.getInfo(), foundObject.getLink());
   }
 
   private void refreshStationsplan() {
@@ -613,7 +514,7 @@ public class HaltestelleController implements Initializable {
             infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
     webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
     infoDisplay.getChildren().clear();
-    createMenuFooter(false, foundObject.getInfo(), foundObject.getLink());
+    createMenuFooter(foundObject.getInfo(), foundObject.getLink());
   }
 
   private void refreshTaxi() {
@@ -623,7 +524,7 @@ public class HaltestelleController implements Initializable {
             infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
     webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
     infoDisplay.getChildren().clear();
-    createMenuFooter(false, foundObject.getInfo(), foundObject.getLink());
+    createMenuFooter(foundObject.getInfo(), foundObject.getLink());
   }
 
   private void refreshToilette() {
@@ -633,7 +534,7 @@ public class HaltestelleController implements Initializable {
             infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
     webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
     infoDisplay.getChildren().clear();
-    createMenuFooter(false, foundObject.getInfo(), foundObject.getLink());
+    createMenuFooter(foundObject.getInfo(), foundObject.getLink());
   }
 
   private void refreshTreppe() {
@@ -643,7 +544,7 @@ public class HaltestelleController implements Initializable {
             infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
     webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
     infoDisplay.getChildren().clear();
-    createMenuFooter(false, foundObject.getInfo(), foundObject.getLink());
+    createMenuFooter(foundObject.getInfo(), foundObject.getLink());
   }
 
   private void refreshTuer() {
@@ -653,7 +554,7 @@ public class HaltestelleController implements Initializable {
             infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
     webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
     infoDisplay.getChildren().clear();
-    createMenuFooter(false, foundObject.getInfo(), foundObject.getLink());
+    createMenuFooter(foundObject.getInfo(), foundObject.getLink());
   }
 
   private void refreshVerkaufsstelle() {
@@ -663,7 +564,7 @@ public class HaltestelleController implements Initializable {
             infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
     webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
     infoDisplay.getChildren().clear();
-    createMenuFooter(false, foundObject.getInfo(), foundObject.getLink());
+    createMenuFooter(foundObject.getInfo(), foundObject.getLink());
   }
 
   private void refreshWeg() {
@@ -673,116 +574,16 @@ public class HaltestelleController implements Initializable {
             infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
     webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
     infoDisplay.getChildren().clear();
-    createMenuFooter(false, foundObject.getInfo(), foundObject.getLink());
-  }
-
-  static class LinkCell extends ListCell<LinkObject> {
-    private final HaltestelleController controller;
-
-    public LinkCell(final HaltestelleController haltestelleController) {
-      this.controller = haltestelleController;
-    }
-
-    @Override
-    public void updateItem(LinkObject item, boolean empty) {
-      super.updateItem(item, empty);
-      if (empty || item == null) {
-        textProperty().setValue(null);
-        setGraphic(null);
-      } else if (item.getLink() == null) {
-        Button removeButton = new Button("Anzeigen");
-        removeButton.setOnAction((event) -> controller.onActionShow(item, controller));
-        removeButton.setDisable(true);
-        textProperty().setValue("NICHT VORHANDEN " + item.getBezeichnung());
-        setGraphic(removeButton);
-      } else {
-        Button removeButton = new Button("Anzeigen");
-        removeButton.setOnAction((event) -> controller.onActionShow(item, controller));
-        textProperty().setValue("" + item.getBezeichnung());
-        setGraphic(removeButton);
-      }
-    }
-  }
-
-  private void onActionShow(LinkObject item, HaltestelleController controller) {
-    controller.webView.getEngine().load(item.getLink());
-  }
-
-  private TableView<InfoObject> createInfoTableView(
-      String description1stColumn,
-      String description2ndColumn,
-      String description3stColumn,
-      String description4thColumn,
-      ObservableList<InfoObject> listToShow,
-      int hight,
-      VBox positionToDisplay) {
-    String name1stColumn = "infoType";
-    String name2ndColumn = "info";
-    String name3stColumn = "extra1";
-    String name4thColumn = "extra2";
-    TableView<InfoObject> infoObjectTableView;
-
-    TableColumn<InfoObject, String> infoTypeColumn = new TableColumn<>(description1stColumn);
-    infoTypeColumn.setCellValueFactory(new PropertyValueFactory<>(name1stColumn));
-
-    TableColumn<InfoObject, String> infoColumn = new TableColumn<>(description2ndColumn);
-    infoColumn.setCellValueFactory(new PropertyValueFactory<>(name2ndColumn));
-
-    infoObjectTableView = new TableView<>();
-    infoObjectTableView.setPrefSize(400, hight);
-    infoObjectTableView.setItems(listToShow);
-    if (description3stColumn == null) {
-      infoObjectTableView.getColumns().addAll(infoTypeColumn, infoColumn);
-    }
-    if (description3stColumn != null) {
-      TableColumn<InfoObject, String> extra1 = new TableColumn<>(description3stColumn);
-      extra1.setCellValueFactory(new PropertyValueFactory<>(name3stColumn));
-
-      TableColumn<InfoObject, String> extra2 = new TableColumn<>(description4thColumn);
-      extra2.setCellValueFactory(new PropertyValueFactory<>(name4thColumn));
-      infoObjectTableView.getColumns().addAll(infoTypeColumn, extra1, extra2, infoColumn);
-      extra2.setSortType(TableColumn.SortType.ASCENDING);
-      infoObjectTableView.getSortOrder().add(extra2);
-      infoObjectTableView.sort();
-    }
-    if (description2ndColumn.equals("Bezeichnung")) {
-      infoObjectTableView.setOnMouseClicked(
-          new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-              System.out.println("gedrückt");
-              loadObject();
-            }
-          });
-    }
-    Separator separator1 = new Separator();
-    positionToDisplay.getChildren().add(separator1);
-    positionToDisplay.getChildren().add(infoObjectTableView);
-    Separator separator2 = new Separator();
-    positionToDisplay.getChildren().add(separator2);
-    return infoObjectTableView;
-  }
-
-  private void createLinkListView(ObservableList<LinkObject> linkObjects, VBox positionToDisplay) {
-    linkListView = new ListView<>();
-    linkListView.setCellFactory(list -> new LinkCell(HaltestelleController.this));
-    linkListView.setItems(linkObjects);
-    positionToDisplay.getChildren().add(linkListView);
+    createMenuFooter(foundObject.getInfo(), foundObject.getLink());
   }
 
   private void createMenuFooter(
-      boolean withButton,
       ObservableList<InfoObject> infoObjectsListToShow,
       ObservableList<LinkObject> linkObjectsListToShow) {
-    // if (withButton) {
-    // Not used
-    // createButtons();
-    // }
     infoDisplay = new VBox();
     vboxRight.getChildren().add(infoDisplay);
-    createInfoTableView(
-        "Art der Information", "Information", null, null, infoObjectsListToShow, 400, infoDisplay);
-    createLinkListView(linkObjectsListToShow, infoDisplay);
+    tableViewCreator.createInfoObjectInfoTableView(infoObjectsListToShow, 400, infoDisplay);
+    tableViewCreator.createLinkListView(linkObjectsListToShow, infoDisplay);
     setAllButtonStateDisable(false);
     System.out.println(webView.getEngine().getOnError());
   }
@@ -812,7 +613,7 @@ public class HaltestelleController implements Initializable {
   }
 
   private void setAllButtonStateDisable(boolean state){
-    if(state==true){
+    if(state){
       for (Button button: createButtonList()){
         button.setDisable(true);
     }}
@@ -863,21 +664,4 @@ public class HaltestelleController implements Initializable {
     btn_otherStation.setDisable(false);
     btn_back.setDisable(false);
   }
-  /*
-  private void createButtons() {
-    HBox buttonbox = new HBox();
-    Button btnSelect = new Button("ausgewähltes Objekt anzeigen");
-    btnSelect.setPrefSize(180, 45);
-    btnSelect.setMinSize(180, 40);
-    btnSelect.setOnAction(new ButtonSelectObjectClickHandler());
-    Button btnBack = new Button("Zurück zu Bahnhof");
-    btnBack.setPrefSize(180, 45);
-    btnBack.setMinSize(180, 40);
-    btnBack.setOnAction(new ButtonBackClickHandler());
-    vboxRight.getChildren().add(buttonbox);
-    buttonbox.getChildren().add(btnSelect);
-    buttonbox.getChildren().add(btnBack);
-  }
-  */
-
 }
