@@ -348,12 +348,21 @@ public class StationManager {
     }
   }
 
-  public ObservableList<InfoObject> getHaltestelleList() {
+  public ObservableList<InfoObject> getHaltestelleList(String town) {
     ObservableList<InfoObject> info = FXCollections.observableArrayList();
+    if (town==null){
     for (HaltestelleObject foundObject : this.haltestelleList) {
       info.add(new InfoObject(foundObject.getID(), foundObject.getHST_Name(),
               foundObject.getDistrict(),foundObject.getTown()));
-    }
+    }}
+    else {
+      town = town.replaceAll("\\p{C}", "");
+      for (HaltestelleObject foundObject : this.haltestelleList) {
+      if ((foundObject.getTown().toLowerCase().matches(town.toLowerCase()+"(.*)"))||
+              (foundObject.getTown().toLowerCase().matches("(.*)"+town.toLowerCase()+"(.*)"))){
+        info.add(new InfoObject(foundObject.getID(), foundObject.getHST_Name(),
+                foundObject.getDistrict(),foundObject.getTown()));
+    }}}
     return info;
   }
 

@@ -16,6 +16,7 @@ import javafx.scene.layout.VBox;
 
 public class TableViewCreator {
   private final HaltestelleController controller;
+  TableView<InfoObject> stationSelectTableView = null;
 
   public TableViewCreator(HaltestelleController controller) {
     this.controller = controller;
@@ -97,7 +98,6 @@ public class TableViewCreator {
     positionToDisplay.getChildren().add(separator2);
     return infoObjectTableView;
   }
-
 
   protected TableView<InfoObject> createInfoObjectInfoTableView(
       ObservableList<InfoObject> listToShow, int hight, VBox positionToDisplay) {

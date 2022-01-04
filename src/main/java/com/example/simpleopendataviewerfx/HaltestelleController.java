@@ -11,6 +11,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
@@ -59,6 +61,8 @@ public class HaltestelleController implements Initializable {
   private VBox infoDisplay;
   protected String activeObject;
   private ObjectLoader objectLoader;
+  private TextField textFieldSearchStationByTown;
+
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -333,13 +337,28 @@ public class HaltestelleController implements Initializable {
     vboxRight.getChildren().clear();
     this.infoObjectTableView =
         tableViewCreator.createStationSelectInfoTableView(
-            manager.getHaltestelleList(), 900, vboxRight);
+            manager.getHaltestelleList(null), 900, vboxRight);
+    createStationViewFooter();
+  }
+
+  private void createStationViewFooter(){
     Button btnOk = new Button("gewählten Bahnhof anzeigen");
+    textFieldSearchStationByTown = new TextField("Stadt");
+    textFieldSearchStationByTown.setPrefWidth(700);
+    Button btnSearchStationByTown = new Button("nach Stadt suchen");
     btnOk.setStyle("-fx-font-weight: bold;");
+    btnSearchStationByTown.setStyle("-fx-font-weight: bold;");
     btnOk.setPrefSize(180, 50);
     btnOk.setMinSize(180, 45);
+    btnSearchStationByTown.setPrefSize(180, 50);
+    btnSearchStationByTown.setMinSize(180, 45);
     btnOk.setOnAction(new ButtonOkClickHandler());
-    vboxRight.getChildren().add(btnOk);
+    btnSearchStationByTown.setOnAction(new ButtonSearchStationByTownClickHandler());
+    HBox buttonHBox = new HBox();
+    vboxRight.getChildren().add(buttonHBox);
+    buttonHBox.getChildren().add(btnOk);
+    buttonHBox.getChildren().add(textFieldSearchStationByTown);
+    buttonHBox.getChildren().add(btnSearchStationByTown);
   }
 
   @FXML
@@ -356,6 +375,21 @@ public class HaltestelleController implements Initializable {
           manager.searchById(
               infoObjectTableView.getSelectionModel().getSelectedItem().getInfoType());
       objectLoader.refreshStation(haltestelleObject);
+    }
+  }
+
+  class ButtonSearchStationByTownClickHandler implements EventHandler<ActionEvent> {
+    @Override
+    public void handle(final ActionEvent event) {
+      System.out.println("Button SearchStationByTownClick pressed");
+      System.out.println("Bahnhof gesucht: "+textFieldSearchStationByTown.getText());
+      System.out.println("btn_otherStation pressed...");
+      setAllButtonStateDisable(true);
+      vboxRight.getChildren().clear();
+      infoObjectTableView =
+              tableViewCreator.createStationSelectInfoTableView(
+                      manager.getHaltestelleList(textFieldSearchStationByTown.getText()), 900, vboxRight);
+      createStationViewFooter();
     }
   }
 
