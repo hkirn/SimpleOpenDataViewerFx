@@ -343,8 +343,10 @@ public class HaltestelleController implements Initializable {
 
   private void createStationViewFooter(){
     Button btnOk = new Button("gewählten Bahnhof anzeigen");
-    textFieldSearchStationByTown = new TextField("Stadt");
+    textFieldSearchStationByTown = new TextField();
     textFieldSearchStationByTown.setPrefWidth(700);
+    textFieldSearchStationByTown.setPromptText("Ortsname oder Teil davon eingeben");
+    textFieldSearchStationByTown.setOnAction(new ButtonSearchStationByTownClickHandler());
     Button btnSearchStationByTown = new Button("nach Stadt suchen");
     btnOk.setStyle("-fx-font-weight: bold;");
     btnSearchStationByTown.setStyle("-fx-font-weight: bold;");
