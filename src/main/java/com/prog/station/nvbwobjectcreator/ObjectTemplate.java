@@ -102,7 +102,7 @@ public class ObjectTemplate {
   }
 
   protected boolean convertToBool(String stringToCovert) {
-    if (stringToCovert.equals("ja")) {
+    if ((stringToCovert.equals("ja"))||stringToCovert.equals("true")) {
       return true;
     } else return false;
   }
