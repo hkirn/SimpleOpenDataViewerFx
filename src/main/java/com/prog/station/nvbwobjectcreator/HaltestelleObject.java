@@ -41,7 +41,7 @@ public class HaltestelleObject extends ObjectTemplate {
     System.out.println(this + "angelegt");
     String[] newValueString = Arrays.copyOf(valueString, 36);
     setSameVariables(newValueString);
-    setSameVariablesWithOffset(valueString,0);
+    setSameVariablesWithOffset(valueString, 0);
     setVariables(newValueString);
   }
 

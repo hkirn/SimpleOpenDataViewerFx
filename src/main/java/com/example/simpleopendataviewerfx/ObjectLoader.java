@@ -60,84 +60,83 @@ public class ObjectLoader {
 
     private void refreshHaltesteig(VBox infoDisplay, String id) {
         System.out.println(id);
-        HaltesteigObject haltesteigObject =
+        HaltesteigObject foundObject =
                 manager.searchHaltesteigById(id);
-        webView.getEngine().load(haltesteigObject.getPosLink(haltesteigObject.getPos()));
+        webView.getEngine().load(foundObject.getFotoToShow());
         infoDisplay.getChildren().clear();
-        controller.createMenuFooter(haltesteigObject.getInfo(), haltesteigObject.getLink());
+        controller.createMenuFooter(foundObject.getInfo(), foundObject.getLink());
     }
 
     private void refreshAufzug(VBox infoDisplay, String id) {
         System.out.println(id);
-        AufzugObject aufzugObject =
+        AufzugObject foundObject =
                 manager.searchAufzugById(
                         id);
-        webView.getEngine().load(aufzugObject.getPosLink(aufzugObject.getPos()));
+        webView.getEngine().load(foundObject.getFotoToShow());
         infoDisplay.getChildren().clear();
-        controller.createMenuFooter(aufzugObject.getInfo(), aufzugObject.getLink());
+        controller.createMenuFooter(foundObject.getInfo(), foundObject.getLink());
     }
 
     private void refreshEngstelle(VBox infoDisplay, String id) {
         System.out.println(id);
-        EngstelleObject engstelleObject =
+        EngstelleObject foundObject =
                 manager.searchEngstelleById(
                         id);
-        webView.getEngine().load(engstelleObject.getPosLink(engstelleObject.getPos()));
+        webView.getEngine().load(foundObject.getFotoToShow());
         infoDisplay.getChildren().clear();
-        controller.createMenuFooter(engstelleObject.getInfo(), engstelleObject.getLink());
+        controller.createMenuFooter(foundObject.getInfo(), foundObject.getLink());
     }
 
     private void refreshFahrkartenautomat(VBox infoDisplay, String id) {
         System.out.println(id);
-        FahrkartenautomatObject fahrkartenautomatObject =
+        FahrkartenautomatObject foundObject =
                 manager.searchFahrkartenautomatById(
                         id);
-        webView.getEngine().load(fahrkartenautomatObject.getPosLink(fahrkartenautomatObject.getPos()));
+        webView.getEngine().load(foundObject.getFotoToShow());
         infoDisplay.getChildren().clear();
-        controller.createMenuFooter(fahrkartenautomatObject.getInfo(), fahrkartenautomatObject.getLink());
+        controller.createMenuFooter(foundObject.getInfo(), foundObject.getLink());
     }
 
     private void refreshFahrradanlage(VBox infoDisplay, String id) {
         System.out.println(id);
-        FahrradanlageObject fahrradanlageObject =
+        FahrradanlageObject foundObject =
                 manager.searchFahrradanlageById(
                         id);
-        webView.getEngine().load(fahrradanlageObject.getPosLink(fahrradanlageObject.getPos()));
+        webView.getEngine().load(foundObject.getFotoToShow());
         infoDisplay.getChildren().clear();
-        controller.createMenuFooter(fahrradanlageObject.getInfo(), fahrradanlageObject.getLink());
+        controller.createMenuFooter(foundObject.getInfo(), foundObject.getLink());
     }
 
     private void refreshGleisquerung(VBox infoDisplay, String id) {
         System.out.println(id);
-        GleisquerungObject gleisquerungObject =
+        GleisquerungObject foundObject =
                 manager.searchGleisquerungById(
                         id);
-        webView.getEngine().load(gleisquerungObject.getPosLink(gleisquerungObject.getPos()));
+        webView.getEngine().load(foundObject.getFotoToShow());
         infoDisplay.getChildren().clear();
-        controller.createMenuFooter(gleisquerungObject.getInfo(), gleisquerungObject.getLink());
+        controller.createMenuFooter(foundObject.getInfo(), foundObject.getLink());
     }
 
     private void refreshInformationsstelle(VBox infoDisplay, String id) {
         System.out.println(id);
-        InformationsstelleObject informationsstelleObject =
+        InformationsstelleObject foundObject =
                 manager.searchInformationsstelleById(
                         id);
         webView
                 .getEngine()
-                .load(informationsstelleObject.getPosLink(informationsstelleObject.getPos()));
+                .load(foundObject.getFotoToShow());
         infoDisplay.getChildren().clear();
-        controller.createMenuFooter(informationsstelleObject.getInfo(), informationsstelleObject.getLink());
+        controller.createMenuFooter(foundObject.getInfo(), foundObject.getLink());
     }
 
     private void refreshLeihradanlage(VBox infoDisplay, String id) {
         System.out.println(id);
-        LeihradanlageObject leihradanlageObject =
+        LeihradanlageObject foundObject =
                 manager.searchLeihradanlageById(
                         id);
-        webView.getEngine().load(leihradanlageObject.getPosLink(leihradanlageObject.getPos()));
+        webView.getEngine().load(foundObject.getFotoToShow());
         infoDisplay.getChildren().clear();
-        controller.createMenuFooter(leihradanlageObject.getInfo(), leihradanlageObject.getLink());
-        webView.getEngine().load(leihradanlageObject.getPosLink(leihradanlageObject.getPos()));
+        controller.createMenuFooter(foundObject.getInfo(), foundObject.getLink());
     }
 
     private void refreshParkplatz(VBox infoDisplay, String id) {
@@ -145,10 +144,9 @@ public class ObjectLoader {
         ParkplatzObject foundObject =
                 manager.searchParkplatzById(
                         id);
-        webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
+        webView.getEngine().load(foundObject.getFotoToShow());
         infoDisplay.getChildren().clear();
         controller.createMenuFooter(foundObject.getInfo(), foundObject.getLink());
-        webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
     }
 
     private void refreshRampe(VBox infoDisplay, String id) {
@@ -156,10 +154,9 @@ public class ObjectLoader {
         RampeObject foundObject =
                 manager.searchRampeById(
                         id);
-        webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
+        webView.getEngine().load(foundObject.getFotoToShow());
         infoDisplay.getChildren().clear();
         controller.createMenuFooter(foundObject.getInfo(), foundObject.getLink());
-        webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
     }
 
     private void refreshRolltreppe(VBox infoDisplay, String id) {
@@ -167,8 +164,7 @@ public class ObjectLoader {
         RolltreppeObject foundObject =
                 manager.searchRolltreppeById(
                         id);
-        webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
-        System.out.println(webView.getEngine().getLocation());
+        webView.getEngine().load(foundObject.getFotoToShow());
         infoDisplay.getChildren().clear();
         controller.createMenuFooter(foundObject.getInfo(), foundObject.getLink());
     }
@@ -178,7 +174,7 @@ public class ObjectLoader {
         StationsplanObject foundObject =
                 manager.searchStationsplanById(
                         id);
-        webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
+        webView.getEngine().load(foundObject.getFotoToShow());
         infoDisplay.getChildren().clear();
         controller.createMenuFooter(foundObject.getInfo(), foundObject.getLink());
     }
@@ -188,7 +184,7 @@ public class ObjectLoader {
         TaxiObject foundObject =
                 manager.searchTaxiById(
                         id);
-        webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
+        webView.getEngine().load(foundObject.getFotoToShow());
         infoDisplay.getChildren().clear();
         controller.createMenuFooter(foundObject.getInfo(), foundObject.getLink());
     }
@@ -198,7 +194,7 @@ public class ObjectLoader {
         ToiletteObject foundObject =
                 manager.searchToiletteById(
                         id);
-        webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
+        webView.getEngine().load(foundObject.getFotoToShow());
         infoDisplay.getChildren().clear();
         controller.createMenuFooter(foundObject.getInfo(), foundObject.getLink());
     }
@@ -208,7 +204,7 @@ public class ObjectLoader {
         TreppeObject foundObject =
                 manager.searchTreppeById(
                         id);
-        webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
+        webView.getEngine().load(foundObject.getFotoToShow());
         infoDisplay.getChildren().clear();
         controller.createMenuFooter(foundObject.getInfo(), foundObject.getLink());
     }
@@ -218,7 +214,7 @@ public class ObjectLoader {
         TuerObject foundObject =
                 manager.searchTuerById(
                         id);
-        webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
+        webView.getEngine().load(foundObject.getFotoToShow());
         infoDisplay.getChildren().clear();
         controller.createMenuFooter(foundObject.getInfo(), foundObject.getLink());
     }
@@ -228,7 +224,7 @@ public class ObjectLoader {
         VerkaufsstelleObject foundObject =
                 manager.searchVerkaufsstelleById(
                         id);
-        webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
+        webView.getEngine().load(foundObject.getFotoToShow());
         infoDisplay.getChildren().clear();
         controller.createMenuFooter(foundObject.getInfo(), foundObject.getLink());
     }
@@ -238,7 +234,7 @@ public class ObjectLoader {
         WegObject foundObject =
                 manager.searchWegById(
                         id);
-        webView.getEngine().load(foundObject.getPosLink(foundObject.getPos()));
+        webView.getEngine().load(foundObject.getFotoToShow());
         infoDisplay.getChildren().clear();
         controller.createMenuFooter(foundObject.getInfo(), foundObject.getLink());
     }

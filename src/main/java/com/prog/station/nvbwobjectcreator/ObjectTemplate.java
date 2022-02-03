@@ -5,15 +5,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class ObjectTemplate {
-  protected String ID;
-  protected String HST_DHID;
-  protected String HST_Name;
-  protected String Datenquelle;
-  protected String Datenstatus;
-  protected double Longitude;
-  protected double Latitude;
-  protected String Koordinatenquelle;
-  protected String OSM_ID;
+  private String ID;
+  private String HST_DHID;
+  private String HST_Name;
+  private String Datenquelle;
+  private String Datenstatus;
+  private double Longitude;
+  private double Latitude;
+  private String Koordinatenquelle;
+  private String OSM_ID;
+  protected String fotoToShow;
 
   protected void setSameVariables(String[] valueString) {
     this.ID = convertToNull(valueString[0]);
@@ -22,18 +23,18 @@ public class ObjectTemplate {
   }
 
   protected void setSameVariablesWithOffset(String[] valueString, int offset) {
-    this.Datenquelle = convertToNull(valueString[3+offset]);
-    this.Datenstatus = convertToNull(valueString[4+offset]);
-    if ((convertToNull(valueString[5+offset])==null)||(convertToNull(valueString[6+offset])==null)){
+    this.Datenquelle = convertToNull(valueString[3 + offset]);
+    this.Datenstatus = convertToNull(valueString[4 + offset]);
+    if ((convertToNull(valueString[5 + offset]) == null)
+        || (convertToNull(valueString[6 + offset]) == null)) {
       this.Longitude = 0;
       this.Latitude = 0;
+    } else {
+      this.Longitude = convertToDouble(valueString[5 + offset]);
+      this.Latitude = convertToDouble(valueString[6 + offset]);
     }
-    else{
-      this.Longitude = convertToDouble(valueString[5+offset]);
-      this.Latitude = convertToDouble(valueString[6+offset]);
-    }
-    this.Koordinatenquelle = convertToNull(valueString[7+offset]);
-    this.OSM_ID = convertToNull(valueString[8+offset]);
+    this.Koordinatenquelle = convertToNull(valueString[7 + offset]);
+    this.OSM_ID = convertToNull(valueString[8 + offset]);
   }
 
   protected ObservableList<InfoObject> getInfoTemplate() {
@@ -60,49 +61,39 @@ public class ObjectTemplate {
     return this.HST_Name;
   }
 
-  public String getDatenquelle() {
-    return this.Datenquelle;
-  }
-
-  public String getDatenstatus() {
-    return this.Datenstatus;
-  }
-
   public double[] getPos() {
     double[] arr = {this.Latitude, this.Longitude};
     return arr;
   }
 
+  public String getFotoToShow() {
+    if (fotoToShow != null) {
+      return fotoToShow;
+    } else return getPosLink(getPos());
+  }
+
   public String getPosLink(double[] pos) {
-    if (pos[0]==0){
+    if (pos[0] == 0) {
       return null;
+    } else {
+      double posOffset = 0.001;
+      return "https://www.openstreetmap.org/export/embed.html?bbox="
+          + (pos[1] - posOffset)
+          + ","
+          + (pos[0] - posOffset)
+          + ","
+          + (pos[1] + posOffset)
+          + ","
+          + (pos[0] + posOffset)
+          + "&layer=mapnik&marker="
+          + pos[0]
+          + ","
+          + pos[1];
     }
-    else {
-    double posOffset = 0.001;
-    return "https://www.openstreetmap.org/export/embed.html?bbox="
-        + (pos[1] - posOffset)
-        + ","
-        + (pos[0] - posOffset)
-        + ","
-        + (pos[1] + posOffset)
-        + ","
-        + (pos[0] + posOffset)
-        + "&layer=mapnik&marker="
-        + pos[0]
-        + ","
-        + pos[1];}
-  }
-
-  public String getKoordinatenquelle() {
-    return Koordinatenquelle;
-  }
-
-  public String getOSM_ID() {
-    return OSM_ID;
   }
 
   protected boolean convertToBool(String stringToCovert) {
-    if ((stringToCovert.equals("ja"))||stringToCovert.equals("true")) {
+    if ((stringToCovert.equals("ja")) || stringToCovert.equals("true")) {
       return true;
     } else return false;
   }
@@ -123,21 +114,19 @@ public class ObjectTemplate {
     }
   }
 
-  protected double convertToDouble(String toConvert){
-    if (convertToNull(toConvert)==null){
+  protected double convertToDouble(String toConvert) {
+    if (convertToNull(toConvert) == null) {
       return 0;
-    }
-    else return Double.valueOf(toConvert.replace(",", "."));
+    } else return Double.valueOf(toConvert.replace(",", "."));
   }
 
-  protected int convertToInt(String toConvert){
-    return (int)convertToDouble(toConvert);
+  protected int convertToInt(String toConvert) {
+    return (int) convertToDouble(toConvert);
   }
 
-  protected String convertToPosString(double[] pos){
-    if (pos[0]==0){
+  protected String convertToPosString(double[] pos) {
+    if (pos[0] == 0) {
       return null;
-    }
-    else return pos[0]+" : "+pos[1];
+    } else return pos[0] + " : " + pos[1];
   }
 }

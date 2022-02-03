@@ -38,13 +38,14 @@ public class AufzugObject extends ObjectTemplate {
     this.fotoEbene1 = convertToNull(valueString[16]);
     this.fotoEbene2 = convertToNull(valueString[17]);
     this.fotoEbene3 = convertToNull(valueString[18]);
+    this.fotoToShow = this.fotoAufzug;
   }
 
   public ObservableList<InfoObject> getInfo() {
     ObservableList<InfoObject> info = getInfoTemplate();
-    info.add(new InfoObject("Türweite in cm",""+this.tuerweiteInCm));
-    info.add(new InfoObject("Kabinenbreite in cm", ""+this.kabinenbreiteInCm));
-    info.add(new InfoObject("Kabinenlaenge in cm", ""+this.kabinenlaengeInCm));
+    info.add(new InfoObject("Türweite in cm", "" + this.tuerweiteInCm));
+    info.add(new InfoObject("Kabinenbreite in cm", "" + this.kabinenbreiteInCm));
+    info.add(new InfoObject("Kabinenlaenge in cm", "" + this.kabinenlaengeInCm));
     info.add(new InfoObject("Verbindungsfunktion", this.verbindungsfunktion));
     return info;
   }
@@ -61,7 +62,7 @@ public class AufzugObject extends ObjectTemplate {
     return link;
   }
 
-    public String getDescription() {
-        return verbindungsfunktion;
-    }
+  public String getDescription() {
+    return verbindungsfunktion;
+  }
 }

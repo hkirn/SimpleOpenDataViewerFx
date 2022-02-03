@@ -9,26 +9,25 @@ import java.util.Arrays;
 
 public class ObjectTemplateToCopy extends ObjectTemplate {
 
-    public ObjectTemplateToCopy(String[] valueString) {
-        String[] newValueString = Arrays.copyOf(valueString, 18);
-        setSameVariables(newValueString);
-        setSameVariablesWithOffset(newValueString, 0);
-        setVariables(newValueString);
-        System.out.println(this + "angelegt");
-    }
+  public ObjectTemplateToCopy(String[] valueString) {
+    String[] newValueString = Arrays.copyOf(valueString, 18);
+    setSameVariables(newValueString);
+    setSameVariablesWithOffset(newValueString, 0);
+    setVariables(newValueString);
+    System.out.println(this + "angelegt");
+  }
 
-    private void setVariables(String[] newValueString){
-    }
+  private void setVariables(String[] newValueString) {}
 
-    public ObservableList<InfoObject> getInfo() {
-        ObservableList<InfoObject> info = getInfoTemplate();
-        return info;
-    }
+  public ObservableList<InfoObject> getInfo() {
+    ObservableList<InfoObject> info = getInfoTemplate();
+    return info;
+  }
 
-    public ObservableList<LinkObject> getLink() {
-        ObservableList<LinkObject> link = FXCollections.observableArrayList();
+  public ObservableList<LinkObject> getLink() {
+    ObservableList<LinkObject> link = FXCollections.observableArrayList();
 
-        link.add(new LinkObject("Objektposition OpenStreetMaps", getPosLink(getPos())));
-        return link;
-    }
+    link.add(new LinkObject("Objektposition OpenStreetMaps", getPosLink(getPos())));
+    return link;
+  }
 }

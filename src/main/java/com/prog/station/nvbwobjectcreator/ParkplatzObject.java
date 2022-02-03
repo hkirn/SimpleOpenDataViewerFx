@@ -41,6 +41,7 @@ public class ParkplatzObject extends ObjectTemplate {
     this.fotoOeffungszeiten = convertToNull(valueString[18]);
     this.fotoNutzungsbedingungen = convertToNull(valueString[19]);
     this.fotoWegzuHaltestelle = convertToNull(valueString[20]);
+    this.fotoToShow = this.fotoParkplatz;
   }
 
   public ObservableList<InfoObject> getInfo() {
@@ -59,7 +60,9 @@ public class ParkplatzObject extends ObjectTemplate {
   public ObservableList<LinkObject> getLink() {
     ObservableList<LinkObject> link = FXCollections.observableArrayList();
     link.add(new LinkObject("Objektposition OpenStreetMaps", getPosLink(getPos())));
-    link.add(new LinkObject("Position Behindertenparkplätze", getPosLink(this.posBehindertenparkplaetze)));
+    link.add(
+        new LinkObject(
+            "Position Behindertenparkplätze", getPosLink(this.posBehindertenparkplaetze)));
     link.add(new LinkObject("Foto Parkplatz", this.fotoParkplatz));
     link.add(new LinkObject("Foto Behindertenparkplatz", this.fotoBehindertenParkplatz));
     link.add(new LinkObject("Foto Öffnungszeiten", this.fotoOeffungszeiten));

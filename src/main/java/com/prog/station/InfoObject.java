@@ -18,6 +18,7 @@ public class InfoObject {
     this.extra1 = extra1;
     this.extra2 = extra2;
   }
+
   public String getInfoType() {
     return infoType;
   }

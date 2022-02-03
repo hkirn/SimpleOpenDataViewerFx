@@ -46,11 +46,12 @@ public class FahrradanlageObject extends ObjectTemplate {
     this.fotoWegzurAnlage = convertToNull(valueString[18]);
     this.fotoHindernissZufahrt = convertToNull(valueString[19]);
     this.fotoBesonderheiten = convertToNull(valueString[20]);
+    this.fotoToShow = this.fotoAnlage;
   }
 
   public ObservableList<InfoObject> getInfo() {
     ObservableList<InfoObject> info = getInfoTemplate();
-    info.add(new InfoObject("Anzahl Stellplätze",""+stellplatzzahl));
+    info.add(new InfoObject("Anzahl Stellplätze", "" + stellplatzzahl));
     info.add(new InfoObject("Anlagentyp", this.anlagentyp));
     info.add(new InfoObject("Überdacht", boolToString(ueberdacht)));
     info.add(new InfoObject("Beleuchtet", boolToString(beleuchtet)));

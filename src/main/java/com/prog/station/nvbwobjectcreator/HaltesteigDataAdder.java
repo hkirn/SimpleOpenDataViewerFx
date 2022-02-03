@@ -13,13 +13,13 @@ public class HaltesteigDataAdder {
   ArrayList<HaltestelleObject> haltestelleObjectArrayList;
   ArrayList<String[]> dataset = new ArrayList<>();
 
-  public HaltesteigDataAdder(ArrayList<HaltestelleObject> haltestelleObjectArrayList){
+  public HaltesteigDataAdder(ArrayList<HaltestelleObject> haltestelleObjectArrayList) {
     this.haltestelleObjectArrayList = haltestelleObjectArrayList;
     createList();
   }
 
-  public void addInformation(){
-    for (HaltestelleObject haltestelleObject: haltestelleObjectArrayList){
+  public void addInformation() {
+    for (HaltestelleObject haltestelleObject : haltestelleObjectArrayList) {
       String[] found = searchData(haltestelleObject.getID());
       haltestelleObject.setTown(found[2]);
       haltestelleObject.setDistrict(found[1]);
@@ -31,7 +31,8 @@ public class HaltesteigDataAdder {
     boolean firstLine = true;
 
     try (InputStream inputStream = this.getClass().getResourceAsStream("/haltestellen-2.csv");
-        InputStreamReader inputStreamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
+        InputStreamReader inputStreamReader =
+            new InputStreamReader(inputStream, StandardCharsets.UTF_8);
         BufferedReader br = new BufferedReader(inputStreamReader)) {
 
       String line;
@@ -41,7 +42,7 @@ public class HaltesteigDataAdder {
           firstLine = false;
         } else {
           String[] values = line.split(";");
-          String[] arr =  {values[6], values[0], values[1]};
+          String[] arr = {values[6], values[0], values[1]};
           dataset.add(arr);
         }
       }
@@ -50,15 +51,13 @@ public class HaltesteigDataAdder {
     }
   }
 
-
-
-  private String[] searchData(String id){
-    for (String[] found: dataset){
-      if (id.equals(found[0])){
+  private String[] searchData(String id) {
+    for (String[] found : dataset) {
+      if (id.equals(found[0])) {
         return found;
       }
     }
-    String[] arr = {id, "",""};
+    String[] arr = {id, "", ""};
     return arr;
   }
 }

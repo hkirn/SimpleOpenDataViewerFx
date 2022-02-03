@@ -34,13 +34,14 @@ public class RolltreppeObject extends ObjectTemplate {
     this.fotoRolltreppeId = convertToNull(valueString[14]);
     this.fotoRolltreppeRichtung1 = convertToNull(valueString[15]);
     this.fotoRolltreppeRichtung2 = convertToNull(valueString[16]);
+    this.fotoToShow = this.fotoRolltreppe;
   }
 
   public ObservableList<InfoObject> getInfo() {
     ObservableList<InfoObject> info = getInfoTemplate();
     info.add(new InfoObject("Transportrichtung", this.transportrichtung));
     info.add(new InfoObject("Laufrichtung kann wechseln", boolToString(this.wechselnd)));
-    info.add(new InfoObject("Laufzeit in sec", ""+this.laufzeit));
+    info.add(new InfoObject("Laufzeit in sec", "" + this.laufzeit));
     info.add(new InfoObject("Verbindungsfunktion", this.verbindungsfunktion));
     return info;
   }
@@ -51,7 +52,7 @@ public class RolltreppeObject extends ObjectTemplate {
     link.add(new LinkObject("Foto Rolltreppe", this.fotoRolltreppe));
     link.add(new LinkObject("Foto ID Rolltreppe", this.fotoRolltreppeId));
     link.add(new LinkObject("Foto Rolltreppe Richtung 1", this.fotoRolltreppeRichtung1));
-    link.add(new LinkObject("Foto Rolltreppe Richtung 2",this.fotoRolltreppeRichtung2));
+    link.add(new LinkObject("Foto Rolltreppe Richtung 2", this.fotoRolltreppeRichtung2));
     return link;
   }
 
