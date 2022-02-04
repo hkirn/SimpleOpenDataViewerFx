@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class HaltesteigObject extends ObjectTemplate {
   private String steig_Name;
@@ -27,12 +28,9 @@ public class HaltesteigObject extends ObjectTemplate {
   private boolean rollstuhlflaecheImUnterstand;
   private boolean unterstandWaendeBodennah;
   private boolean unterstandKontrastelemente;
-  private boolean unterstandOffiziell;
   private int sitzplaetzeSumme;
   private boolean abfallbehaelter;
   private boolean uhr;
-  private int tuer2FreieLaenge_cm;
-  private int tuer2FreieBreite_cm;
   private boolean fahrzielanzeiger;
   private boolean fahrzielanzeigerAkustisch;
   private boolean fahrkartenautomat;
@@ -120,12 +118,9 @@ public class HaltesteigObject extends ObjectTemplate {
     this.rollstuhlflaecheImUnterstand = convertToBool(valueString[26]);
     this.unterstandWaendeBodennah = convertToBool(valueString[27]);
     this.unterstandKontrastelemente = convertToBool(valueString[28]);
-    this.unterstandOffiziell = convertToBool(valueString[29]);
     this.sitzplaetzeSumme = convertToInt(valueString[30]);
     this.abfallbehaelter = convertToBool(valueString[31]);
     this.uhr = convertToBool(valueString[32]);
-    this.tuer2FreieLaenge_cm = convertToInt(valueString[33]);
-    this.tuer2FreieBreite_cm = convertToInt(valueString[34]);
     this.fahrzielanzeiger = convertToBool(valueString[35]);
     this.fahrzielanzeigerAkustisch = convertToBool(valueString[36]);
     this.fahrkartenautomat = convertToBool(valueString[37]);
@@ -200,11 +195,14 @@ public class HaltesteigObject extends ObjectTemplate {
   }
 
   public String getDescription() {
-    if (this.steig_Name != null) {
-      return this.steig_Name;
-    } else {
-      return "Bahnsteig ?";
-    }
+    return Objects.requireNonNullElseGet(this.steig_Name, this::createHaltesteigName);
+  }
+
+  private String createHaltesteigName() {
+    String[] idStringArray = super.getID().split(":");
+    if (idStringArray[4] != null) {
+      return "Haltesteig: " + idStringArray[4];
+    } else return "Haltesteig: ?";
   }
 
   public ObservableList<InfoObject> getInfo() {
@@ -232,12 +230,9 @@ public class HaltesteigObject extends ObjectTemplate {
     info.add(
         new InfoObject("Unterstand Kontrastelemente", boolToString(unterstandKontrastelemente)));
     info.add(new InfoObject("Unterstand Wände bodennahn", boolToString(unterstandWaendeBodennah)));
-    // info.add(new InfoObject("Unterstand offiziell", boolToString(unterstandOffiziell)));
     info.add(new InfoObject("Sitzplätze Summe", "" + sitzplaetzeSumme));
     info.add(new InfoObject("Abfallbehälter", boolToString(abfallbehaelter)));
     info.add(new InfoObject("Uhr", boolToString(uhr)));
-    // info.add(new InfoObject("Tür 2 freie Länge cm", "" + tuer2FreieLaenge_cm));
-    // info.add(new InfoObject("Tür 2 freie Breite cm", "" + tuer2FreieBreite_cm));
     info.add(new InfoObject("Fahrzielanzeiger", boolToString(fahrzielanzeiger)));
     info.add(new InfoObject("Fahrzielanzeiger akustisch", boolToString(fahrzielanzeigerAkustisch)));
     info.add(new InfoObject("Fahrkartenautomat", boolToString(fahrkartenautomat)));
