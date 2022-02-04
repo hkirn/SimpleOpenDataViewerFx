@@ -39,7 +39,7 @@ public class StationManager {
 
   public StationManager() {
     createHaltestellen(readCsv(urlNvbw + "BFRK_Haltestelle.csv"));
-    HaltesteigDataAdder haltesteigDataAdder = new HaltesteigDataAdder(haltestelleList);
+    HaltestelleDataAdder haltesteigDataAdder = new HaltestelleDataAdder(haltestelleList);
     haltesteigDataAdder.addInformation();
   }
 
