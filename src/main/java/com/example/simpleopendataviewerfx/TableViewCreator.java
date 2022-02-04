@@ -77,6 +77,8 @@ public class TableViewCreator {
     infoObjectTableView.setItems(listToShow);
 
     infoObjectTableView.getColumns().addAll(infoTypeColumn, infoColumn);
+    infoObjectTableView.getSortOrder().add(infoTypeColumn);
+    infoObjectTableView.sort();
 
     infoObjectTableView.setOnMouseClicked(
             event -> {
