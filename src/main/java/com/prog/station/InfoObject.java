@@ -2,8 +2,8 @@ package com.prog.station;
 
 public class InfoObject {
 
-  private String infoType;
-  private String info;
+  private final String infoType;
+  private final String info;
   private String extra1;
   private String extra2;
 

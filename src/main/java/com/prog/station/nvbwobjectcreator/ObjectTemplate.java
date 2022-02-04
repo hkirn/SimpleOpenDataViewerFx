@@ -62,8 +62,7 @@ public class ObjectTemplate {
   }
 
   public double[] getPos() {
-    double[] arr = {this.Latitude, this.Longitude};
-    return arr;
+    return new double[]{this.Latitude, this.Longitude};
   }
 
   public String getFotoToShow() {
@@ -72,7 +71,7 @@ public class ObjectTemplate {
     } else return getPosLink(getPos());
   }
 
-  public String getPosLink(double[] pos) {
+  protected String getPosLink(double[] pos) {
     if (pos[0] == 0) {
       return null;
     } else {
@@ -93,9 +92,7 @@ public class ObjectTemplate {
   }
 
   protected boolean convertToBool(String stringToCovert) {
-    if ((stringToCovert.equals("ja")) || stringToCovert.equals("true")) {
-      return true;
-    } else return false;
+    return (stringToCovert.equals("ja")) || stringToCovert.equals("true");
   }
 
   protected String convertToNull(String stringToConvert) {
@@ -117,7 +114,7 @@ public class ObjectTemplate {
   protected double convertToDouble(String toConvert) {
     if (convertToNull(toConvert) == null) {
       return 0;
-    } else return Double.valueOf(toConvert.replace(",", "."));
+    } else return Double.parseDouble(toConvert.replace(",", "."));
   }
 
   protected int convertToInt(String toConvert) {

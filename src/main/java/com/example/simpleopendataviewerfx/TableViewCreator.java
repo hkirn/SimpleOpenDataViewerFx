@@ -3,7 +3,6 @@ package com.example.simpleopendataviewerfx;
 import com.prog.station.InfoObject;
 import com.prog.station.LinkObject;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -11,13 +10,10 @@ import javafx.scene.control.Separator;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
 public class TableViewCreator {
   private final HaltestelleController controller;
-  TableView<InfoObject> stationSelectTableView = null;
-
   public TableViewCreator(HaltestelleController controller) {
     this.controller = controller;
   }
@@ -83,13 +79,10 @@ public class TableViewCreator {
     infoObjectTableView.getColumns().addAll(infoTypeColumn, infoColumn);
 
     infoObjectTableView.setOnMouseClicked(
-        new EventHandler<>() {
-          @Override
-          public void handle(MouseEvent event) {
-            System.out.println("gedrückt");
-            controller.loadObject();
-          }
-        });
+            event -> {
+              System.out.println("gedrückt");
+              controller.loadObject();
+            });
 
     Separator separator1 = new Separator();
     positionToDisplay.getChildren().add(separator1);

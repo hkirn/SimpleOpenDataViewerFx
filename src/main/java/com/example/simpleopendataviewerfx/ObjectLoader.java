@@ -6,11 +6,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 
 public class ObjectLoader {
-    private HaltestelleController controller;
-    private StationManager manager;
-    private VBox vboxRight;
-    private Label lbl_hstName;
-    private WebView webView;
+    private final HaltestelleController controller;
+    private final StationManager manager;
+    private final VBox vboxRight;
+    private final Label lbl_hstName;
+    private final WebView webView;
 
     public ObjectLoader(HaltestelleController controller, StationManager manager,
                         VBox vboxRight, Label lbl_hstName, WebView webView){
@@ -50,11 +50,7 @@ public class ObjectLoader {
     protected void refreshStation(HaltestelleObject haltestelleObject) {
         vboxRight.getChildren().clear();
         lbl_hstName.setText(haltestelleObject.getHST_Name());
-        if (haltestelleObject.getHaltestelleTotale_Foto() != null) {
-            webView.getEngine().load(haltestelleObject.getHaltestelleTotale_Foto());
-        } else {
-            webView.getEngine().load(haltestelleObject.getPosLink(haltestelleObject.getPos()));
-        }
+        webView.getEngine().load(haltestelleObject.getFotoToShow());
         controller.createMenuFooter(haltestelleObject.getInfo(), haltestelleObject.getLink());
     }
 

@@ -2,8 +2,8 @@ package com.prog.station;
 
 public class LinkObject {
 
-  private String bezeichnung;
-  private String link;
+  private final String bezeichnung;
+  private final String link;
 
   public LinkObject(String bezeichnung, String link) {
     this.bezeichnung = bezeichnung;

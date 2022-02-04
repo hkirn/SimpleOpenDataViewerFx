@@ -73,6 +73,7 @@ public class HaltestelleObject extends ObjectTemplate {
     this.WeitereBilder1_Foto = convertToNull(valueString[33]);
     this.WeitereBilder2_Foto = convertToNull(valueString[34]);
     this.WeitereBilder3_Foto = convertToNull(valueString[35]);
+    this.fotoToShow = this.HaltestelleTotale_Foto;
   }
 
   public String getDistrict() {
