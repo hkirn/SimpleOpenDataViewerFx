@@ -54,6 +54,7 @@ public class HaltestelleController implements Initializable {
   @FXML private Button btn_displayWeg;
   @FXML private Button btn_otherStation;
   @FXML private Button btn_back;
+  @FXML private Button btn_license;
   @FXML private Label lbl_status;
 
   private TableView<InfoObject> infoObjectTableView;
@@ -76,6 +77,14 @@ public class HaltestelleController implements Initializable {
     objectLoader =
         new ObjectLoader(
             this, this.manager, vboxRight, lbl_hstName, webView);
+  }
+
+  @FXML
+  protected void onActionBtnLicensePressed() {
+    System.out.println("displayLicence pressed");
+    URL url = HaltestelleController.class.getResource("/license.html");
+    System.out.println(url);
+    webView.getEngine().load(String.valueOf(url));
   }
 
   @FXML
