@@ -200,9 +200,12 @@ public class HaltesteigObject extends ObjectTemplate {
 
   private String createHaltesteigName() {
     String[] idStringArray = super.getID().split(":");
+    if (idStringArray.length>3){
     if (idStringArray[4] != null) {
       return "Haltesteig: " + idStringArray[4];
-    } else return "Haltesteig: ?";
+    }
+    else return "Haltesteig: ?";}
+    else return "Haltesteig: ?";
   }
 
   public ObservableList<InfoObject> getInfo() {
