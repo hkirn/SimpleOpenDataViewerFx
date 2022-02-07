@@ -24,3 +24,5 @@ OpenStreetMaps mit der Position des gewählten Objekts an.
 
 Diese Software und der genutzte Datensatz können Fehler enthalten. Ich möchte darauf hinweisen, dass ich keinerlei Haftung übernehme.
 Diese Software ist noch in einem sehr frühen Stadium, es können noch Fehler vorhanden sein!
+
+Bei Fragen können Sie mich unter sodw@kirn-net.de erreichen.
