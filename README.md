@@ -42,3 +42,6 @@ B+R und Leihradanlagen enthält.
 Da diese Software komplett in Java entwickelt ist, wäre ein Großteil des Codes auch für Android nutzbar.
 
 Bei Fragen können Sie mich unter sodw@kirn-net.de erreichen.
+
+Bitte beachten Sie zusätzlich die Lizenzinformationen über die verwendeten Daten: 
+https://github.com/hkirn/SimpleOpenDataViewerFx/blob/main/src/main/resources/license.html
