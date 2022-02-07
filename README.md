@@ -45,3 +45,10 @@ Bei Fragen können Sie mich unter sodw@kirn-net.de erreichen.
 
 Bitte beachten Sie zusätzlich die Lizenzinformationen über die verwendeten Daten: 
 https://github.com/hkirn/SimpleOpenDataViewerFx/blob/main/src/main/resources/license.html
+
+Screenshots:
+![ScreenShot Startscreen](Screenshots/startscreen.png)
+![ScreenShot Bahnhof gewählt](Screenshots/bahnhofSelected.png)
+![ScreenShot Bahnsteig gewählt](Screenshots/haltesteigSelected.png)
+![ScreenShot Aufzug gewählt](Screenshots/aufzugSelected.png)
+![ScreenShot B+R gewählt](Screenshots/BuRSelected.png)
