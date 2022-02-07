@@ -68,7 +68,8 @@ public class HaltestelleController implements Initializable {
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     webView = new WebView();
-    // webView.getEngine().load(haltestelleObject.getHaltestelleTotale_Foto());
+    URL url = HaltestelleController.class.getResource("/startscreen.html");
+    webView.getEngine().load(String.valueOf(url));
     pane_pictureView.getChildren().add(webView);
     onActionBtnOtherStationPressed();
     lbl_status.setText(
