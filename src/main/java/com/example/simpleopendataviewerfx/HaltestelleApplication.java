@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HaltestelleApplicatio extends Application {
+public class HaltestelleApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HaltestelleApplication.class.getResource("haltestelle-view.fxml"));
