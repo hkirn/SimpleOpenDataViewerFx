@@ -1,4 +1,4 @@
-package com.prog.station;
+package com;
 
 import com.example.simpleopendataviewerfx.HaltestelleApplication;
 

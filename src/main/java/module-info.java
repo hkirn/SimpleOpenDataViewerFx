@@ -13,4 +13,6 @@ module com.example.simpleopendataviewerfx {
     opens com.prog.station to javafx.fxml;
     exports com.prog.station.nvbwobjectcreator;
     opens com.prog.station.nvbwobjectcreator to javafx.fxml;
+    exports com;
+    opens com to javafx.fxml;
 }
