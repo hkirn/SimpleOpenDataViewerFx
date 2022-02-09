@@ -21,6 +21,8 @@ Server oder Clouddienste eingesetzt.
 Für Windows wird ein ZIP-File mit allen erforderlichen Librarys zur Verfügung gestellt, auf anderen Betriebssystemen sollte die
 bereitgestellte jar-Datei ebenfalls einsetzbar sein. Das ist aber im Moment noch nicht getestet. Es wird Java in der Version 17 benötigt.
 
+Link zu Windows-Paket: https://github.com/hkirn/SimpleOpenDataViewerFx/releases/tag/windows
+
 Nach dem Start den benötigten Bahnhof auswählen, in der Suchfunktion können Sie nach Ortsnamen filtern. Bitte hierbei beachten, dass
 die Suchfunktion wirklich nur Ortsnamen berücksichtigt, statt z.B. "Österfeld" müssen Sie "Stuttgart" suchen.
 Nach der Auswahl des ersten Orts führt "OpenDataViewerFx" eine komplette Synchronisation der Daten durch, es werden ca. 2MB heruntergeladen
