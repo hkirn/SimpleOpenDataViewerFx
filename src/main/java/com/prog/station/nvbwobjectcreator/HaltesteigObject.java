@@ -95,6 +95,7 @@ public class HaltesteigObject extends ObjectTemplate {
     setSameVariables(newValueString);
     setSameVariablesWithOffset(newValueString, 1);
     setVariables(newValueString);
+    fixIdIfWrong();
     System.out.println(this + "angelegt");
   }
 
@@ -199,14 +200,11 @@ public class HaltesteigObject extends ObjectTemplate {
   }
 
   private String createHaltesteigName() {
-    String[] idStringArray = super.getID().split(":");
-    if (idStringArray.length>3){
-    if (idStringArray[4] != null) {
+    String[] idStringArray = getIdAsArray(super.getID());
+    if (isIdArrayStringValid(idStringArray)==true){
       return "Haltesteig: " + idStringArray[4];
     }
-    else return "Haltesteig: ?";}
-    else return "Haltesteig: ?";
-  }
+    else return "Haltesteig: Unbekannt";}
 
   public ObservableList<InfoObject> getInfo() {
     ObservableList<InfoObject> info = getInfoTemplate();

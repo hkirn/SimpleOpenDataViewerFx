@@ -41,11 +41,12 @@ public class HaltestelleObject extends ObjectTemplate {
     System.out.println(this + "angelegt");
     String[] newValueString = Arrays.copyOf(valueString, 36);
     setSameVariables(newValueString);
-    setSameVariablesWithOffset(valueString, 0);
+    setSameVariablesWithOffset(newValueString, 0);
     setVariables(newValueString);
   }
 
   private void setVariables(String[] valueString) {
+
     this.Sitzplaetze = convertToBool(valueString[9]);
     this.Unterstand = convertToBool(valueString[10]);
     this.RollstuhlflaecheImUnterstand = convertToBool(valueString[11]);

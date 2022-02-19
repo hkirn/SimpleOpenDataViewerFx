@@ -36,8 +36,10 @@ public class StationManager {
   private final ArrayList<VerkaufsstelleObject> verkaufsstelleObjects = new ArrayList<>();
   private final ArrayList<WegObject> wegObjects = new ArrayList<>();
   private final String urlNvbw = "https://www.nvbw.de/fileadmin/user_upload/service/open_data/haltestellen/SPNV/";
+  public static int pseudoIdCounter;
 
   public StationManager() {
+    pseudoIdCounter = 1000;
     createHaltestellen(readCsv(urlNvbw + "BFRK_Haltestelle.csv"));
     HaltestelleDataAdder haltesteigDataAdder = new HaltestelleDataAdder(haltestelleList);
     haltesteigDataAdder.addInformation();

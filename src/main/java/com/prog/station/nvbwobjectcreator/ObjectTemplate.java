@@ -4,6 +4,8 @@ import com.prog.station.InfoObject;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import static com.prog.station.nvbwobjectcreator.StationManager.pseudoIdCounter;
+
 public class ObjectTemplate {
   private String ID;
   private String HST_DHID;
@@ -20,6 +22,10 @@ public class ObjectTemplate {
     this.ID = convertToNull(valueString[0]);
     this.HST_DHID = convertToNull(valueString[1]);
     this.HST_Name = convertToNull(valueString[2]);
+  }
+
+  protected void overwriteIfHaltestelle(String[] valueString) {
+    this.ID = convertToNull(valueString[0]);
   }
 
   protected void setSameVariablesWithOffset(String[] valueString, int offset) {
@@ -62,7 +68,7 @@ public class ObjectTemplate {
   }
 
   public double[] getPos() {
-    return new double[]{this.Latitude, this.Longitude};
+    return new double[] {this.Latitude, this.Longitude};
   }
 
   public String getFotoToShow() {
@@ -125,5 +131,32 @@ public class ObjectTemplate {
     if (pos[0] == 0) {
       return null;
     } else return pos[0] + " : " + pos[1];
+  }
+
+  protected String[] getIdAsArray(String id) {
+    String[] idStringArray = id.split(":");
+    return idStringArray;
+  }
+
+  protected boolean isIdArrayStringValid(String[] idArrayToCheck) {
+    if (idArrayToCheck.length < 5) {
+      System.out.println("zu kurz...");
+      return false;
+    }
+    int tempId = 9999;
+    try {
+      tempId = Integer.parseInt(idArrayToCheck[4]);
+    } catch (NumberFormatException e) {
+      return true;
+    }
+    return tempId < 1000;
+  }
+
+  protected void fixIdIfWrong() {
+    if (isIdArrayStringValid(getIdAsArray(this.ID)) == false) {
+      String fixedId = this.ID + ":0:" + pseudoIdCounter;
+      pseudoIdCounter++;
+      this.ID = fixedId;
+    }
   }
 }
