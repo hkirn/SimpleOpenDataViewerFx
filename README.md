@@ -23,6 +23,8 @@ bereitgestellte jar-Datei ebenfalls einsetzbar sein. Das ist aber im Moment noch
 
 Link zu Windows-Paket: https://github.com/hkirn/SimpleOpenDataViewerFx/releases/tag/windows
 
+Aktuelle JAR können Sie direkt von der Build-Pipeline herunterladen: https://github.com/hkirn/SimpleOpenDataViewerFx/actions/workflows/maven.yml
+
 Nach dem Start den benötigten Bahnhof auswählen, in der Suchfunktion können Sie nach Ortsnamen filtern. Bitte hierbei beachten, dass
 die Suchfunktion wirklich nur Ortsnamen berücksichtigt, statt z.B. "Österfeld" müssen Sie "Stuttgart" suchen.
 Nach der Auswahl des ersten Orts führt "OpenDataViewerFx" eine komplette Synchronisation der Daten durch, es werden ca. 2MB heruntergeladen
