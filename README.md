@@ -21,7 +21,7 @@ Server oder Clouddienste eingesetzt.
 Für Windows wird ein ZIP-File mit allen erforderlichen Librarys zur Verfügung gestellt, auf anderen Betriebssystemen sollte die
 bereitgestellte jar-Datei ebenfalls einsetzbar sein. Das ist aber im Moment noch nicht getestet. Es wird Java in der Version 17 benötigt.
 
-Link zu Windows-Paket: https://github.com/hkirn/SimpleOpenDataViewerFx/releases/tag/windows
+Link zu Windows-Paket: https://github.com/hkirn/SimpleOpenDataViewerFx/releases/tag/
 
 Aktuelle JAR können Sie direkt von der Build-Pipeline herunterladen: https://github.com/hkirn/SimpleOpenDataViewerFx/actions/workflows/maven.yml
 
