@@ -12,6 +12,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
@@ -350,18 +351,20 @@ public class StationManager {
     }
   }
 
-  public ObservableList<InfoObject> getHaltestelleList(String town) {
+  public ObservableList<InfoObject> getHaltestelleList(String searchString) {
     ObservableList<InfoObject> info = FXCollections.observableArrayList();
-    if (town==null){
+    if (searchString==null){
     for (HaltestelleObject foundObject : this.haltestelleList) {
       info.add(new InfoObject(foundObject.getID(), foundObject.getHST_Name(),
               foundObject.getDistrict(),foundObject.getTown()));
     }}
-    else {
-      town = town.replaceAll("\\p{C}", "");
+    else if (searchString!=null){
+      searchString = searchString.replaceAll("\\p{C}", "").toLowerCase();
       for (HaltestelleObject foundObject : this.haltestelleList) {
-      if ((foundObject.getTown().toLowerCase().matches(town.toLowerCase()+"(.*)"))||
-              (foundObject.getTown().toLowerCase().matches("(.*)"+town.toLowerCase()+"(.*)"))){
+      if ((foundObject.getTown().toLowerCase().matches(searchString+"(.*)"))||
+              (foundObject.getTown().toLowerCase().matches("(.*)"+searchString+"(.*)")) ||
+              (foundObject.getHST_Name().toLowerCase().matches(searchString+"(.*)"))||
+        (foundObject.getHST_Name().toLowerCase().matches("(.*)"+searchString+"(.*)"))){
         info.add(new InfoObject(foundObject.getID(), foundObject.getHST_Name(),
                 foundObject.getDistrict(),foundObject.getTown()));
     }}}
