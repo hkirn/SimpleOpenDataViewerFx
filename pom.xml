@@ -67,13 +67,6 @@
             <groupId>org.controlsfx</groupId>
             <artifactId>controlsfx</artifactId>
             <version>11.1.0</version>
-            <classifier>win</classifier>
-        </dependency>
-        <dependency>
-            <groupId>org.controlsfx</groupId>
-            <artifactId>controlsfx</artifactId>
-            <version>11.1.0</version>
-            <classifier>linux</classifier>
         </dependency>
         <dependency>
             <groupId>com.dlsc.formsfx</groupId>
