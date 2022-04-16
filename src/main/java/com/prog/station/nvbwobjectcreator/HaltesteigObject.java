@@ -25,7 +25,7 @@ public class HaltesteigObject extends ObjectTemplate {
   private String beleuchtungAmSteig;
   private boolean sitzplaetze;
   private boolean unterstand;
-  private boolean rollstuhlflaecheImUnterstand;
+  private String rollstuhlflaecheImUnterstand;
   private boolean unterstandWaendeBodennah;
   private boolean unterstandKontrastelemente;
   private int sitzplaetzeSumme;
@@ -116,7 +116,7 @@ public class HaltesteigObject extends ObjectTemplate {
     this.beleuchtungAmSteig = valueString[23];
     this.sitzplaetze = convertToBool(valueString[24]);
     this.unterstand = convertToBool(valueString[25]);
-    this.rollstuhlflaecheImUnterstand = convertToBool(valueString[26]);
+    this.rollstuhlflaecheImUnterstand = valueString[26];
     this.unterstandWaendeBodennah = convertToBool(valueString[27]);
     this.unterstandKontrastelemente = convertToBool(valueString[28]);
     this.sitzplaetzeSumme = convertToInt(valueString[30]);
@@ -227,7 +227,7 @@ public class HaltesteigObject extends ObjectTemplate {
     info.add(new InfoObject("Unterstand", boolToString(unterstand)));
     info.add(
         new InfoObject(
-            "Rollstuhlfläche im Unterstand", boolToString(rollstuhlflaecheImUnterstand)));
+            "Rollstuhlfläche im Unterstand", rollstuhlflaecheImUnterstand));
     info.add(
         new InfoObject("Unterstand Kontrastelemente", boolToString(unterstandKontrastelemente)));
     info.add(new InfoObject("Unterstand Wände bodennahn", boolToString(unterstandWaendeBodennah)));
