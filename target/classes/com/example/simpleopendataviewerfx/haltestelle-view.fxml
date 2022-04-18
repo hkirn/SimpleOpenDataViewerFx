@@ -31,17 +31,17 @@
             <Separator prefHeight="0.0" prefWidth="903.0" />
             <HBox alignment="TOP_RIGHT" prefHeight="123.0" prefWidth="903.0">
                <children>
-                  <Label fx:id="lbl_status" prefHeight="45.0" prefWidth="459.0" textFill="#ee0b0b" />
+                  <Label fx:id="lbl_status" prefHeight="45.0" prefWidth="200.0" textFill="#ee0b0b" />
                   <Button fx:id="btn_license" mnemonicParsing="false" onAction="#onActionBtnLicensePressed" prefHeight="47.0" prefWidth="144.0" text="Lizenzen">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btn_otherStation" mnemonicParsing="false" onAction="#onActionBtnOtherStationPressed" prefHeight="47.0" prefWidth="144.0" text="Bahnhof wechseln">
+                  <Button fx:id="btn_otherStation" mnemonicParsing="false" onAction="#onActionBtnOtherStationPressed" prefHeight="47.0" prefWidth="180.0" text="Bahnhof wechseln">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font></Button>
-                  <Button fx:id="btn_back" layoutX="756.0" layoutY="10.0" mnemonicParsing="false" onAction="#onActionBtnBackPressed" prefHeight="47.0" prefWidth="144.0" text="Zurück zu Bahnhof">
+                  <Button fx:id="btn_back" layoutX="756.0" layoutY="10.0" mnemonicParsing="false" onAction="#onActionBtnBackPressed" prefHeight="47.0" prefWidth="180.0" text="Zurück zu Bahnhof">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -64,16 +64,16 @@
                   <Button fx:id="btn_displayRampe" mnemonicParsing="false" onAction="#onActionBtnDisplayRampe" prefHeight="47.0" prefWidth="144.0" text="Rampe" />
                   <Button fx:id="btn_displayTuer" mnemonicParsing="false" onAction="#onActionBtnDisplayTuer" prefHeight="47.0" prefWidth="144.0" text="Tür" />
                   <Button fx:id="btn_displayEngstelle" mnemonicParsing="false" onAction="#onActionBtnDisplayEngstelle" prefHeight="47.0" prefWidth="144.0" text="Engstellen" />
-                  <Button fx:id="btn_displayWeg" mnemonicParsing="false" onAction="#onActionBtnDisplayWeg" prefHeight="47.0" prefWidth="173.0" text="Unterführung/Weg/Brücke" />
+                  <Button fx:id="btn_displayWeg" mnemonicParsing="false" onAction="#onActionBtnDisplayWeg" prefHeight="47.0" prefWidth="200.0" text="Unterführung/Weg/Brücke" />
                </children>
             </HBox>
             <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="123.0" prefWidth="903.0">
                <children>
-                  <Button fx:id="btn_displayFahrkartenautomat" mnemonicParsing="false" onAction="#onActionBtnDisplayFahrkartenautomat" prefHeight="47.0" prefWidth="144.0" text="Fahrkartenautomaten " />
                   <Button fx:id="btn_displayVerkaufsstelle" mnemonicParsing="false" onAction="#onActionBtnDisplayVerkaufsstelle" prefHeight="47.0" prefWidth="144.0" text="Verkaufsstelle" />
                   <Button fx:id="btn_displayInformationsstelle" mnemonicParsing="false" onAction="#onActionBtnDisplayInformationsstelle" prefHeight="47.0" prefWidth="144.0" text="Informationsstelle" />
                   <Button fx:id="btn_displayToilette" mnemonicParsing="false" onAction="#onActionBtnDisplayToilette" prefHeight="47.0" prefWidth="144.0" text="Toilette" />
                   <Button fx:id="btn_displayStationsplan" mnemonicParsing="false" onAction="#onActionBtnDisplayStationsplan" prefHeight="47.0" prefWidth="144.0" text="Stationsplan" />
+                  <Button fx:id="btn_displayFahrkartenautomat" mnemonicParsing="false" onAction="#onActionBtnDisplayFahrkartenautomat" prefHeight="47.0" prefWidth="200.0" text="Fahrkartenautomaten " />
                </children>
             </HBox>
             <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="123.0" prefWidth="903.0">

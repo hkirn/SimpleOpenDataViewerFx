@@ -84,7 +84,6 @@ public class TableViewCreator {
 
         infoObjectTableView.setOnMouseClicked(
                 event -> {
-                    System.out.println("gedrückt");
                     controller.loadObject();
                 });
 
