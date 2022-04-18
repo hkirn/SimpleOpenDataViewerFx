@@ -28,7 +28,6 @@ public class HaltestelleController implements Initializable {
 
     public HaltestelleController() {
         this.manager = new StationManager();
-        this.haltestelleObject = manager.searchById("de:08111:6115");
     }
 
     @FXML
@@ -99,7 +98,7 @@ public class HaltestelleController implements Initializable {
         pane_pictureView.getChildren().add(webView);
         onActionBtnOtherStationPressed();
         lbl_status.setText(
-                "Nach der Wahl werden die Daten synchronisiert. Das kann Wartezeit verursachen.");
+                "Bitte Bahnhof wählen");
         btn_back.setDisable(true);
         objectLoader =
                 new ObjectLoader(
