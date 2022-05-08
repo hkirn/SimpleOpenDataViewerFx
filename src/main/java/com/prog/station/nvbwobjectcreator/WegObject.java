@@ -15,7 +15,7 @@ public class WegObject extends ObjectTemplate {
   private double querneigung;
   private int hoehe;
   private boolean beleuchtet;
-  private boolean ueberdacht;
+  private String ueberdacht;
   private String verbindungsfunktion;
   private String foto;
   private String fotoRichtung1;
@@ -37,7 +37,7 @@ public class WegObject extends ObjectTemplate {
     this.querneigung = convertToDouble(valueString[13]);
     this.hoehe = convertToInt(valueString[14]);
     this.beleuchtet = convertToBool(valueString[15]);
-    this.ueberdacht = convertToBool(valueString[16]);
+    this.ueberdacht = convertToNull(valueString[16]);
     this.verbindungsfunktion = convertToNull(valueString[17]);
     this.foto = convertToNull(valueString[18]);
     this.fotoRichtung1 = convertToNull(valueString[19]);
@@ -55,7 +55,7 @@ public class WegObject extends ObjectTemplate {
     info.add(new InfoObject("Querneigung %", "" + this.querneigung));
     info.add(new InfoObject("Höhe in cm", "" + this.hoehe));
     info.add(new InfoObject("Beleuchtet", boolToString(this.beleuchtet)));
-    info.add(new InfoObject("Überdacht", boolToString(this.ueberdacht)));
+    info.add(new InfoObject("Überdacht", ""+(this.ueberdacht)));
     info.add(new InfoObject("Verbindungsfunktion", this.verbindungsfunktion));
     return info;
   }
