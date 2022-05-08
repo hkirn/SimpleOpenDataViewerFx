@@ -26,10 +26,12 @@ public class TableViewCreator {
         String description2ndColumn = "Name";
         String description3stColumn = "Landkreis";
         String description4thColumn = "Ort";
+        String description5thColumn = "Fotos";
         String name1stColumn = "infoType";
         String name2ndColumn = "info";
         String name3stColumn = "extra1";
         String name4thColumn = "extra2";
+        String name5thColumn = "extra3";
         TableView<InfoObject> infoObjectTableView;
 
         TableColumn<InfoObject, String> infoTypeColumn = new TableColumn<>(description1stColumn);
@@ -47,7 +49,12 @@ public class TableViewCreator {
 
         TableColumn<InfoObject, String> extra2 = new TableColumn<>(description4thColumn);
         extra2.setCellValueFactory(new PropertyValueFactory<>(name4thColumn));
-        infoObjectTableView.getColumns().addAll(infoTypeColumn, extra1, extra2, infoColumn);
+
+
+        TableColumn<InfoObject, String> extra3 = new TableColumn<>(description5thColumn);
+        extra3.setCellValueFactory(new PropertyValueFactory<>(name5thColumn));
+
+        infoObjectTableView.getColumns().addAll(infoTypeColumn, extra1, extra2, infoColumn, extra3);
         extra2.setSortType(TableColumn.SortType.ASCENDING);
         infoObjectTableView.getSortOrder().add(extra2);
         infoObjectTableView.sort();
@@ -75,7 +82,7 @@ public class TableViewCreator {
         infoColumn.setCellValueFactory(new PropertyValueFactory<>(name2ndColumn));
 
         infoObjectTableView = new TableView<>();
-        infoObjectTableView.setPrefSize(400, hight);
+        infoObjectTableView.setPrefSize(500, hight);
         infoObjectTableView.setItems(listToShow);
 
         infoObjectTableView.getColumns().addAll(infoTypeColumn, infoColumn);

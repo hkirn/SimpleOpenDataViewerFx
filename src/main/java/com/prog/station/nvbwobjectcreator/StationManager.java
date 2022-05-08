@@ -356,7 +356,7 @@ public class StationManager {
     if (searchString==null){
     for (HaltestelleObject foundObject : this.haltestelleList) {
       info.add(new InfoObject(foundObject.getID(), foundObject.getHST_Name(),
-              foundObject.getDistrict(),foundObject.getTown()));
+              foundObject.getDistrict(),foundObject.getTown(),foundObject.getFotoStatus()));
     }}
     else if (searchString!=null){
       searchString = searchString.replaceAll("\\p{C}", "").toLowerCase();
@@ -366,7 +366,7 @@ public class StationManager {
               (foundObject.getHST_Name().toLowerCase().matches(searchString+"(.*)"))||
         (foundObject.getHST_Name().toLowerCase().matches("(.*)"+searchString+"(.*)"))){
         info.add(new InfoObject(foundObject.getID(), foundObject.getHST_Name(),
-                foundObject.getDistrict(),foundObject.getTown()));
+                foundObject.getDistrict(),foundObject.getTown(), foundObject.getFotoStatus()));
     }}}
     return info;
   }

@@ -11,7 +11,7 @@ public class HaltestelleApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HaltestelleApplication.class.getResource("haltestelle-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1280, 720);
+        Scene scene = new Scene(fxmlLoader.load(), 1320, 720);
         stage.setTitle("SimpleOpenDataViewer1");
         stage.setScene(scene);
         stage.show();

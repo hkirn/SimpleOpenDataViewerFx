@@ -85,8 +85,13 @@ public class HaltestelleObject extends ObjectTemplate {
     return town;
   }
 
-  public String getHaltestelleTotale_Foto() {
-    return HaltestelleTotale_Foto;
+  public String getFotoStatus(){
+    if (this.HaltestelleTotale_Foto == null){
+      return "Nein";
+    }
+    else {
+      return "Ja";
+    }
   }
 
   public void setDistrict(String district) {
