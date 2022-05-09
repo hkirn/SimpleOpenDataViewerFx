@@ -3,3 +3,13 @@
 /target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
 /target/maven-archiver/pom.properties
 /target/SimpleOpenDataViewerFx-1.0-SNAPSHOT-jar-with-dependencies.jar
+*.class
+*.jar
+*.war
+*.ear
+*.logs
+*.iml
+.idea/
+.eclipse
+
+
