@@ -22,9 +22,9 @@ public class ObjectLoader {
     }
 
     protected void loadObject(VBox infoDisplay, String id) {
-        System.out.println("btnSelect pressed");
+        //System.out.println("btnSelect pressed");
         controller.setAllButtonStateDisable(true);
-        System.out.println(controller.activeObject);
+        //System.out.println(controller.activeObject);
         switch (controller.activeObject) {
             case "Haltesteig" -> refreshHaltesteig(infoDisplay, id);
             case "Aufzug" -> refreshAufzug(infoDisplay, id);
@@ -55,7 +55,7 @@ public class ObjectLoader {
     }
 
     private void refreshHaltesteig(VBox infoDisplay, String id) {
-        System.out.println(id);
+        //System.out.println(id);
         HaltesteigObject foundObject =
                 manager.searchHaltesteigById(id);
         webView.getEngine().load(foundObject.getFotoToShow());
@@ -64,7 +64,7 @@ public class ObjectLoader {
     }
 
     private void refreshAufzug(VBox infoDisplay, String id) {
-        System.out.println(id);
+        //System.out.println(id);
         AufzugObject foundObject =
                 manager.searchAufzugById(
                         id);
@@ -74,7 +74,7 @@ public class ObjectLoader {
     }
 
     private void refreshEngstelle(VBox infoDisplay, String id) {
-        System.out.println(id);
+        //System.out.println(id);
         EngstelleObject foundObject =
                 manager.searchEngstelleById(
                         id);
@@ -84,7 +84,7 @@ public class ObjectLoader {
     }
 
     private void refreshFahrkartenautomat(VBox infoDisplay, String id) {
-        System.out.println(id);
+        //System.out.println(id);
         FahrkartenautomatObject foundObject =
                 manager.searchFahrkartenautomatById(
                         id);
@@ -94,7 +94,7 @@ public class ObjectLoader {
     }
 
     private void refreshFahrradanlage(VBox infoDisplay, String id) {
-        System.out.println(id);
+        //System.out.println(id);
         FahrradanlageObject foundObject =
                 manager.searchFahrradanlageById(
                         id);
@@ -104,7 +104,7 @@ public class ObjectLoader {
     }
 
     private void refreshGleisquerung(VBox infoDisplay, String id) {
-        System.out.println(id);
+        //System.out.println(id);
         GleisquerungObject foundObject =
                 manager.searchGleisquerungById(
                         id);
@@ -114,7 +114,7 @@ public class ObjectLoader {
     }
 
     private void refreshInformationsstelle(VBox infoDisplay, String id) {
-        System.out.println(id);
+        //System.out.println(id);
         InformationsstelleObject foundObject =
                 manager.searchInformationsstelleById(
                         id);
@@ -126,7 +126,7 @@ public class ObjectLoader {
     }
 
     private void refreshLeihradanlage(VBox infoDisplay, String id) {
-        System.out.println(id);
+        //System.out.println(id);
         LeihradanlageObject foundObject =
                 manager.searchLeihradanlageById(
                         id);
@@ -136,7 +136,7 @@ public class ObjectLoader {
     }
 
     private void refreshParkplatz(VBox infoDisplay, String id) {
-        System.out.println(id);
+        //System.out.println(id);
         ParkplatzObject foundObject =
                 manager.searchParkplatzById(
                         id);
@@ -146,7 +146,7 @@ public class ObjectLoader {
     }
 
     private void refreshRampe(VBox infoDisplay, String id) {
-        System.out.println(id);
+        //System.out.println(id);
         RampeObject foundObject =
                 manager.searchRampeById(
                         id);
@@ -156,7 +156,7 @@ public class ObjectLoader {
     }
 
     private void refreshRolltreppe(VBox infoDisplay, String id) {
-        System.out.println(id);
+        //System.out.println(id);
         RolltreppeObject foundObject =
                 manager.searchRolltreppeById(
                         id);
@@ -166,7 +166,7 @@ public class ObjectLoader {
     }
 
     private void refreshStationsplan(VBox infoDisplay, String id) {
-        System.out.println(id);
+        //System.out.println(id);
         StationsplanObject foundObject =
                 manager.searchStationsplanById(
                         id);
@@ -176,7 +176,7 @@ public class ObjectLoader {
     }
 
     private void refreshTaxi(VBox infoDisplay, String id) {
-        System.out.println(id);
+        //System.out.println(id);
         TaxiObject foundObject =
                 manager.searchTaxiById(
                         id);
@@ -186,7 +186,7 @@ public class ObjectLoader {
     }
 
     private void refreshToilette(VBox infoDisplay, String id) {
-        System.out.println(id);
+        //System.out.println(id);
         ToiletteObject foundObject =
                 manager.searchToiletteById(
                         id);
@@ -196,7 +196,7 @@ public class ObjectLoader {
     }
 
     private void refreshTreppe(VBox infoDisplay, String id) {
-        System.out.println(id);
+        //System.out.println(id);
         TreppeObject foundObject =
                 manager.searchTreppeById(
                         id);
@@ -206,7 +206,7 @@ public class ObjectLoader {
     }
 
     private void refreshTuer(VBox infoDisplay, String id) {
-        System.out.println(id);
+        //System.out.println(id);
         TuerObject foundObject =
                 manager.searchTuerById(
                         id);
@@ -216,7 +216,7 @@ public class ObjectLoader {
     }
 
     private void refreshVerkaufsstelle(VBox infoDisplay, String id) {
-        System.out.println(id);
+        //System.out.println(id);
         VerkaufsstelleObject foundObject =
                 manager.searchVerkaufsstelleById(
                         id);
@@ -226,7 +226,7 @@ public class ObjectLoader {
     }
 
     private void refreshWeg(VBox infoDisplay, String id) {
-        System.out.println(id);
+        //System.out.println(id);
         WegObject foundObject =
                 manager.searchWegById(
                         id);

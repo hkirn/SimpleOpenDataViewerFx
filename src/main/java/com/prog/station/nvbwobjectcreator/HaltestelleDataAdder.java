@@ -36,7 +36,7 @@ public class HaltestelleDataAdder {
       String line;
       while ((line = br.readLine()) != null) {
         if (firstLine) {
-          System.out.println("first Line - ignored");
+          //System.out.println("first Line - ignored");
           firstLine = false;
         } else {
           String[] values = line.split(";");

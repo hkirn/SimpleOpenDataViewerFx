@@ -96,7 +96,7 @@ public class HaltesteigObject extends ObjectTemplate {
     setSameVariablesWithOffset(newValueString, 1);
     setVariables(newValueString);
     fixIdIfWrong();
-    System.out.println(this + "angelegt");
+    //System.out.println(this + "angelegt");
   }
 
   private void setVariables(String[] valueString) {

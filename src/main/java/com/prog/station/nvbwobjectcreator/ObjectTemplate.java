@@ -140,7 +140,7 @@ public class ObjectTemplate {
 
   protected boolean isIdArrayStringValid(String[] idArrayToCheck) {
     if (idArrayToCheck.length < 5) {
-      System.out.println("zu kurz...");
+      //System.out.println("zu kurz...");
       return false;
     }
     int tempId = 9999;

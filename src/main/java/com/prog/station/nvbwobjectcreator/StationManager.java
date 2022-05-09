@@ -49,7 +49,7 @@ public class StationManager {
   public HaltestelleObject searchById(String id) {
     for (HaltestelleObject haltestelleObject : haltestelleList) {
       if (haltestelleObject.getID().equals(id)) {
-        System.out.println("Haltestelle found");
+        //System.out.println("Haltestelle found");
         return haltestelleObject;
       }
     }
@@ -583,7 +583,7 @@ public class StationManager {
         String line;
         while ((line = br.readLine()) != null) {
           if (firstLine) {
-            System.out.println("first Line - ignored");
+            //System.out.println("first Line - ignored");
             firstLine = false;
           } else {
             String[] values = line.split(";");

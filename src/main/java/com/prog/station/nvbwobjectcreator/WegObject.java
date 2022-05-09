@@ -26,7 +26,7 @@ public class WegObject extends ObjectTemplate {
     setSameVariables(newValueString);
     setSameVariablesWithOffset(newValueString, 0);
     setVariables(newValueString);
-    System.out.println(this + "angelegt");
+    //System.out.println(this + "angelegt");
   }
 
   private void setVariables(String[] valueString) {
