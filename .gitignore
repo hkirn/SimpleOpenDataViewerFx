@@ -8,8 +8,5 @@
 *.war
 *.ear
 *.logs
-*.iml
-.idea/
-.eclipse
 
 
