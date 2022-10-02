@@ -50,15 +50,23 @@ public class ObjectLoader {
     protected void refreshStation(HaltestelleObject haltestelleObject) {
         vboxRight.getChildren().clear();
         lbl_hstName.setText(haltestelleObject.getHST_Name());
-        webView.getEngine().load(haltestelleObject.getFotoToShow());
+        webView.getEngine().load(fixLink(haltestelleObject.getFotoToShow()));
         controller.createMenuFooter(haltestelleObject.getInfo(), haltestelleObject.getLink());
+    }
+
+    private String fixLink(String link){
+        if (link.startsWith("http://10.70.190.33")){
+            String linkWithoutHostname = link.substring(19);
+            link = "https://mobidata-bw.de"+linkWithoutHostname;
+        }
+        return link;
     }
 
     private void refreshHaltesteig(VBox infoDisplay, String id) {
         //System.out.println(id);
         HaltesteigObject foundObject =
                 manager.searchHaltesteigById(id);
-        webView.getEngine().load(foundObject.getFotoToShow());
+        webView.getEngine().load(fixLink(foundObject.getFotoToShow()));
         infoDisplay.getChildren().clear();
         controller.createMenuFooter(foundObject.getInfo(), foundObject.getLink());
     }
@@ -68,7 +76,7 @@ public class ObjectLoader {
         AufzugObject foundObject =
                 manager.searchAufzugById(
                         id);
-        webView.getEngine().load(foundObject.getFotoToShow());
+        webView.getEngine().load(fixLink(foundObject.getFotoToShow()));
         infoDisplay.getChildren().clear();
         controller.createMenuFooter(foundObject.getInfo(), foundObject.getLink());
     }
@@ -78,7 +86,7 @@ public class ObjectLoader {
         EngstelleObject foundObject =
                 manager.searchEngstelleById(
                         id);
-        webView.getEngine().load(foundObject.getFotoToShow());
+        webView.getEngine().load(fixLink(foundObject.getFotoToShow()));
         infoDisplay.getChildren().clear();
         controller.createMenuFooter(foundObject.getInfo(), foundObject.getLink());
     }
@@ -88,7 +96,7 @@ public class ObjectLoader {
         FahrkartenautomatObject foundObject =
                 manager.searchFahrkartenautomatById(
                         id);
-        webView.getEngine().load(foundObject.getFotoToShow());
+        webView.getEngine().load(fixLink(foundObject.getFotoToShow()));
         infoDisplay.getChildren().clear();
         controller.createMenuFooter(foundObject.getInfo(), foundObject.getLink());
     }
@@ -98,7 +106,7 @@ public class ObjectLoader {
         FahrradanlageObject foundObject =
                 manager.searchFahrradanlageById(
                         id);
-        webView.getEngine().load(foundObject.getFotoToShow());
+        webView.getEngine().load(fixLink(foundObject.getFotoToShow()));
         infoDisplay.getChildren().clear();
         controller.createMenuFooter(foundObject.getInfo(), foundObject.getLink());
     }
@@ -108,7 +116,7 @@ public class ObjectLoader {
         GleisquerungObject foundObject =
                 manager.searchGleisquerungById(
                         id);
-        webView.getEngine().load(foundObject.getFotoToShow());
+        webView.getEngine().load(fixLink(foundObject.getFotoToShow()));
         infoDisplay.getChildren().clear();
         controller.createMenuFooter(foundObject.getInfo(), foundObject.getLink());
     }
@@ -120,7 +128,7 @@ public class ObjectLoader {
                         id);
         webView
                 .getEngine()
-                .load(foundObject.getFotoToShow());
+                .load(fixLink(foundObject.getFotoToShow()));
         infoDisplay.getChildren().clear();
         controller.createMenuFooter(foundObject.getInfo(), foundObject.getLink());
     }
@@ -130,7 +138,7 @@ public class ObjectLoader {
         LeihradanlageObject foundObject =
                 manager.searchLeihradanlageById(
                         id);
-        webView.getEngine().load(foundObject.getFotoToShow());
+        webView.getEngine().load(fixLink(foundObject.getFotoToShow()));
         infoDisplay.getChildren().clear();
         controller.createMenuFooter(foundObject.getInfo(), foundObject.getLink());
     }
@@ -140,7 +148,7 @@ public class ObjectLoader {
         ParkplatzObject foundObject =
                 manager.searchParkplatzById(
                         id);
-        webView.getEngine().load(foundObject.getFotoToShow());
+        webView.getEngine().load(fixLink(foundObject.getFotoToShow()));
         infoDisplay.getChildren().clear();
         controller.createMenuFooter(foundObject.getInfo(), foundObject.getLink());
     }
@@ -150,7 +158,7 @@ public class ObjectLoader {
         RampeObject foundObject =
                 manager.searchRampeById(
                         id);
-        webView.getEngine().load(foundObject.getFotoToShow());
+        webView.getEngine().load(fixLink(foundObject.getFotoToShow()));
         infoDisplay.getChildren().clear();
         controller.createMenuFooter(foundObject.getInfo(), foundObject.getLink());
     }
@@ -160,7 +168,7 @@ public class ObjectLoader {
         RolltreppeObject foundObject =
                 manager.searchRolltreppeById(
                         id);
-        webView.getEngine().load(foundObject.getFotoToShow());
+        webView.getEngine().load(fixLink(foundObject.getFotoToShow()));
         infoDisplay.getChildren().clear();
         controller.createMenuFooter(foundObject.getInfo(), foundObject.getLink());
     }
@@ -170,7 +178,7 @@ public class ObjectLoader {
         StationsplanObject foundObject =
                 manager.searchStationsplanById(
                         id);
-        webView.getEngine().load(foundObject.getFotoToShow());
+        webView.getEngine().load(fixLink(foundObject.getFotoToShow()));
         infoDisplay.getChildren().clear();
         controller.createMenuFooter(foundObject.getInfo(), foundObject.getLink());
     }
@@ -180,7 +188,7 @@ public class ObjectLoader {
         TaxiObject foundObject =
                 manager.searchTaxiById(
                         id);
-        webView.getEngine().load(foundObject.getFotoToShow());
+        webView.getEngine().load(fixLink(foundObject.getFotoToShow()));
         infoDisplay.getChildren().clear();
         controller.createMenuFooter(foundObject.getInfo(), foundObject.getLink());
     }
@@ -190,7 +198,7 @@ public class ObjectLoader {
         ToiletteObject foundObject =
                 manager.searchToiletteById(
                         id);
-        webView.getEngine().load(foundObject.getFotoToShow());
+        webView.getEngine().load(fixLink(foundObject.getFotoToShow()));
         infoDisplay.getChildren().clear();
         controller.createMenuFooter(foundObject.getInfo(), foundObject.getLink());
     }
@@ -200,7 +208,7 @@ public class ObjectLoader {
         TreppeObject foundObject =
                 manager.searchTreppeById(
                         id);
-        webView.getEngine().load(foundObject.getFotoToShow());
+        webView.getEngine().load(fixLink(foundObject.getFotoToShow()));
         infoDisplay.getChildren().clear();
         controller.createMenuFooter(foundObject.getInfo(), foundObject.getLink());
     }
@@ -210,7 +218,7 @@ public class ObjectLoader {
         TuerObject foundObject =
                 manager.searchTuerById(
                         id);
-        webView.getEngine().load(foundObject.getFotoToShow());
+        webView.getEngine().load(fixLink(foundObject.getFotoToShow()));
         infoDisplay.getChildren().clear();
         controller.createMenuFooter(foundObject.getInfo(), foundObject.getLink());
     }
@@ -220,7 +228,7 @@ public class ObjectLoader {
         VerkaufsstelleObject foundObject =
                 manager.searchVerkaufsstelleById(
                         id);
-        webView.getEngine().load(foundObject.getFotoToShow());
+        webView.getEngine().load(fixLink(foundObject.getFotoToShow()));
         infoDisplay.getChildren().clear();
         controller.createMenuFooter(foundObject.getInfo(), foundObject.getLink());
     }
@@ -230,7 +238,7 @@ public class ObjectLoader {
         WegObject foundObject =
                 manager.searchWegById(
                         id);
-        webView.getEngine().load(foundObject.getFotoToShow());
+        webView.getEngine().load(fixLink(foundObject.getFotoToShow()));
         infoDisplay.getChildren().clear();
         controller.createMenuFooter(foundObject.getInfo(), foundObject.getLink());
     }

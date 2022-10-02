@@ -158,7 +158,14 @@ public class TableViewCreator {
     }
 
     private void onActionShow(LinkObject item, HaltestelleController controller) {
-        controller.webView.getEngine().load(item.getLink());
+        String link = item.getLink();
+        //fix wrong link in dataset from 28.09.22...
+        if (link.startsWith("http://10.70.190.33")){
+            String linkWithoutHostname = link.substring(19);
+            link = "https://mobidata-bw.de"+linkWithoutHostname;
+        }
+        System.out.println(link);
+        controller.webView.getEngine().load(link);
     }
 
     protected void createLinkListView(
