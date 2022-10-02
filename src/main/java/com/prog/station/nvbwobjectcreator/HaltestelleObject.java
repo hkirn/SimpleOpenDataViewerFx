@@ -39,41 +39,42 @@ public class HaltestelleObject extends ObjectTemplate {
 
   public HaltestelleObject(String[] valueString) {
     //System.out.println(this + "angelegt");
-    String[] newValueString = Arrays.copyOf(valueString, 36);
+    String[] newValueString = Arrays.copyOf(valueString, 38);
     setSameVariables(newValueString);
-    setSameVariablesWithOffset(newValueString, 0);
+    setSameVariablesWithOffset(newValueString, 2);
     setVariables(newValueString);
   }
 
   private void setVariables(String[] valueString) {
-
-    this.Sitzplaetze = convertToBool(valueString[9]);
-    this.Unterstand = convertToBool(valueString[10]);
-    this.RollstuhlflaecheImUnterstand = convertToBool(valueString[11]);
-    this.Fahrplananzeigetafel = convertToBool(valueString[12]);
-    this.Fahrplananzeigetafel_akustisch = convertToBool(valueString[13]);
-    this.Ansagen_vorhanden = convertToBool(valueString[14]);
-    this.Defibrillator = convertToBool(valueString[15]);
-    this.Defibrilator_Lagebeschreibung = convertToNull(valueString[16]);
-    this.Gepaeckaufbewahrung = convertToBool(valueString[17]);
-    this.Gepaecktransport = convertToBool(valueString[18]);
-    this.InduktiveHoeranlage = convertToBool(valueString[19]);
-    this.InduktiveHoeranlageStandort = convertToNull(valueString[20]);
-    this.InfoNotrufsaeule = convertToNull(valueString[21]);
-    this.Bahnhofsmission = convertToBool(valueString[22]);
-    this.HaltestelleTotale_Foto = convertToNull(valueString[23]);
-    this.SitzeOderUnterstand_Foto = convertToNull(valueString[24]);
-    this.SitzeOderUnterstandUmgebung_Foto = convertToNull(valueString[25]);
-    this.Fahrplananzeigetafel_Foto = convertToNull(valueString[26]);
-    this.Defibrillator_Foto = convertToNull(valueString[27]);
-    this.Gepaeckaufbewahrung_Foto = convertToNull(valueString[28]);
-    this.InfoNotrufsaeule_Foto = convertToNull(valueString[29]);
-    this.Bahnhofsmision_Foto = convertToNull(valueString[30]);
-    this.BahnhofsmissionWeg_Foto = convertToNull(valueString[31]);
-    this.BahnhofsmissionOeffunungszeiten_Foto = convertToNull(valueString[32]);
-    this.WeitereBilder1_Foto = convertToNull(valueString[33]);
-    this.WeitereBilder2_Foto = convertToNull(valueString[34]);
-    this.WeitereBilder3_Foto = convertToNull(valueString[35]);
+    //because the new version of dataset has more columns...
+    int offset = 2;
+    this.Sitzplaetze = convertToBool(valueString[9+offset]);
+    this.Unterstand = convertToBool(valueString[10+offset]);
+    this.RollstuhlflaecheImUnterstand = convertToBool(valueString[11+offset]);
+    this.Fahrplananzeigetafel = convertToBool(valueString[12+offset]);
+    this.Fahrplananzeigetafel_akustisch = convertToBool(valueString[13+offset]);
+    this.Ansagen_vorhanden = convertToBool(valueString[14+offset]);
+    this.Defibrillator = convertToBool(valueString[15+offset]);
+    this.Defibrilator_Lagebeschreibung = convertToNull(valueString[16+offset]);
+    this.Gepaeckaufbewahrung = convertToBool(valueString[17+offset]);
+    this.Gepaecktransport = convertToBool(valueString[18+offset]);
+    this.InduktiveHoeranlage = convertToBool(valueString[19+offset]);
+    this.InduktiveHoeranlageStandort = convertToNull(valueString[20+offset]);
+    this.InfoNotrufsaeule = convertToNull(valueString[21+offset]);
+    this.Bahnhofsmission = convertToBool(valueString[22+offset]);
+    this.HaltestelleTotale_Foto = convertToNull(valueString[23+offset]);
+    this.SitzeOderUnterstand_Foto = convertToNull(valueString[24+offset]);
+    this.SitzeOderUnterstandUmgebung_Foto = convertToNull(valueString[25+offset]);
+    this.Fahrplananzeigetafel_Foto = convertToNull(valueString[26+offset]);
+    this.Defibrillator_Foto = convertToNull(valueString[27+offset]);
+    this.Gepaeckaufbewahrung_Foto = convertToNull(valueString[28+offset]);
+    this.InfoNotrufsaeule_Foto = convertToNull(valueString[29+offset]);
+    this.Bahnhofsmision_Foto = convertToNull(valueString[30+offset]);
+    this.BahnhofsmissionWeg_Foto = convertToNull(valueString[31+offset]);
+    this.BahnhofsmissionOeffunungszeiten_Foto = convertToNull(valueString[32+offset]);
+    this.WeitereBilder1_Foto = convertToNull(valueString[33+offset]);
+    this.WeitereBilder2_Foto = convertToNull(valueString[34+offset]);
+    this.WeitereBilder3_Foto = convertToNull(valueString[35+offset]);
     this.fotoToShow = this.HaltestelleTotale_Foto;
   }
 
