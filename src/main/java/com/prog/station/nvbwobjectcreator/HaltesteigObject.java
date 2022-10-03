@@ -61,6 +61,7 @@ public class HaltesteigObject extends ObjectTemplate {
   private double[] posAbschnitt8;
   private String fotoSteig;
   private String fotoSteig2;
+  private String fotoSonstigerSteigtyp;
   private String fotoSteigGegenueber;
   private String fotoHochboardartSonstiges;
   private String fotoSteigbreite;
@@ -70,6 +71,7 @@ public class HaltesteigObject extends ObjectTemplate {
   private String fotoBodenindikatorenAuffindestreifen;
   private String fotoUnterstand;
   private String fotoUhr;
+  private String fotoUhrSteig;
   private String fotoHaltesteigmast;
   private String fotoFahrgastinfoNichtBarrierefrei;
   private String fotoInfoNotrufsaeule;
@@ -91,7 +93,7 @@ public class HaltesteigObject extends ObjectTemplate {
   private String fotoAbschnitt8;
 
   public HaltesteigObject(String[] valueString) {
-    String[] newValueString = Arrays.copyOf(valueString, 106);
+    String[] newValueString = Arrays.copyOf(valueString, 111);
     setSameVariables(newValueString);
     setSameVariablesWithOffset(newValueString, 1);
     setVariables(newValueString);
@@ -165,34 +167,40 @@ public class HaltesteigObject extends ObjectTemplate {
         new double[] {convertToDouble(valueString[75]), convertToDouble(valueString[74])};
     this.fotoSteig = convertToNull(valueString[76]);
     this.fotoSteig2 = convertToNull(valueString[77]);
+    this.fotoSonstigerSteigtyp = convertToNull(valueString[78]);
     this.fotoSteigGegenueber = convertToNull(valueString[78]);
-    this.fotoHochboardartSonstiges = convertToNull(valueString[79]);
-    this.fotoSteigbreite = convertToNull(valueString[80]);
-    this.fotoSteigbreiteEngstelle = convertToNull(valueString[81]);
-    this.fotoBodenindikatorenEinstiegsbereich = convertToNull(valueString[82]);
-    this.fotoBodenindikatorenLeitstreifen = convertToNull(valueString[83]);
-    this.fotoBodenindikatorenAuffindestreifen = convertToNull(valueString[84]);
-    this.fotoUnterstand = convertToNull(valueString[85]);
-    this.fotoUhr = convertToNull(valueString[86]);
-    this.fotoHaltesteigmast = convertToNull(valueString[87]);
-    this.fotoFahrgastinfoNichtBarrierefrei = convertToNull(valueString[88]);
-    this.fotoInfoNotrufsaeule = convertToNull(valueString[89]);
-    this.fotoMobileRampeLage = convertToNull(valueString[90]);
-    this.fotoHubliftLage = convertToNull(valueString[91]);
-    this.fotoZuwegungVon = convertToNull(valueString[92]);
-    this.fotoZuwegungNach = convertToNull(valueString[93]);
-    this.fotoHaltepunkt1 = convertToNull(valueString[94]);
-    this.fotoHaltepunkt2 = convertToNull(valueString[95]);
-    this.fotoHaltepunkt3 = convertToNull(valueString[96]);
-    this.fotoHaltepunkt4 = convertToNull(valueString[97]);
-    this.fotoAbschnitt1 = convertToNull(valueString[98]);
-    this.fotoAbschnitt2 = convertToNull(valueString[99]);
-    this.fotoAbschnitt3 = convertToNull(valueString[100]);
-    this.fotoAbschnitt4 = convertToNull(valueString[101]);
-    this.fotoAbschnitt5 = convertToNull(valueString[102]);
-    this.fotoAbschnitt6 = convertToNull(valueString[103]);
-    this.fotoAbschnitt7 = convertToNull(valueString[104]);
-    this.fotoAbschnitt8 = convertToNull(valueString[105]);
+    int offset = 1;
+    this.fotoHochboardartSonstiges = convertToNull(valueString[79+offset]);
+    this.fotoSteigbreite = convertToNull(valueString[80+offset]);
+    this.fotoSteigbreiteEngstelle = convertToNull(valueString[81+offset]);
+    this.fotoBodenindikatorenEinstiegsbereich = convertToNull(valueString[82+offset]);
+    this.fotoBodenindikatorenLeitstreifen = convertToNull(valueString[83+offset]);
+    this.fotoBodenindikatorenAuffindestreifen = convertToNull(valueString[84+offset]);
+    this.fotoUnterstand = convertToNull(valueString[85+offset]);
+    this.fotoUhr = convertToNull(valueString[86+offset]);
+    this.fotoHaltesteigmast = convertToNull(valueString[87+offset]);
+    this.fotoFahrgastinfoNichtBarrierefrei = convertToNull(valueString[88+offset]);
+    this.fotoUhrSteig = convertToNull(valueString[89+offset]);
+    offset++;
+    this.fotoInfoNotrufsaeule = convertToNull(valueString[89+offset]);
+    this.fotoMobileRampeLage = convertToNull(valueString[90+offset]);
+    this.fotoHubliftLage = convertToNull(valueString[91+offset]);
+    this.fotoZuwegungVon = convertToNull(valueString[92+offset]);
+    this.fotoZuwegungNach = convertToNull(valueString[93+offset]);
+
+    offset = offset+3;
+    this.fotoHaltepunkt1 = convertToNull(valueString[94+offset]);
+    this.fotoHaltepunkt2 = convertToNull(valueString[95+offset]);
+    this.fotoHaltepunkt3 = convertToNull(valueString[96+offset]);
+    this.fotoHaltepunkt4 = convertToNull(valueString[97+offset]);
+    this.fotoAbschnitt1 = convertToNull(valueString[98+offset]);
+    this.fotoAbschnitt2 = convertToNull(valueString[99+offset]);
+    this.fotoAbschnitt3 = convertToNull(valueString[100+offset]);
+    this.fotoAbschnitt4 = convertToNull(valueString[101+offset]);
+    this.fotoAbschnitt5 = convertToNull(valueString[102+offset]);
+    this.fotoAbschnitt6 = convertToNull(valueString[103+offset]);
+    this.fotoAbschnitt7 = convertToNull(valueString[104+offset]);
+    this.fotoAbschnitt8 = convertToNull(valueString[105+offset]);
   }
 
   public String getDescription() {
