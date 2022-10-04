@@ -71,6 +71,8 @@ public class HaltesteigObject extends ObjectTemplate {
   private String fotoBodenindikatorenAuffindestreifen;
   private String fotoUnterstand;
   private String fotoUhr;
+  private String fotoFahrkartenautomat;
+  private String fotoFahrzielanzeiger;
   private String fotoUhrSteig;
   private String fotoHaltesteigmast;
   private String fotoFahrgastinfoNichtBarrierefrei;
@@ -93,7 +95,7 @@ public class HaltesteigObject extends ObjectTemplate {
   private String fotoAbschnitt8;
 
   public HaltesteigObject(String[] valueString) {
-    String[] newValueString = Arrays.copyOf(valueString, 111);
+    String[] newValueString = Arrays.copyOf(valueString, 121);
     setSameVariables(newValueString);
     setSameVariablesWithOffset(newValueString, 1);
     setVariables(newValueString);
@@ -168,8 +170,8 @@ public class HaltesteigObject extends ObjectTemplate {
     this.fotoSteig = convertToNull(valueString[76]);
     this.fotoSteig2 = convertToNull(valueString[77]);
     this.fotoSonstigerSteigtyp = convertToNull(valueString[78]);
-    this.fotoSteigGegenueber = convertToNull(valueString[78]);
     int offset = 1;
+    this.fotoSteigGegenueber = convertToNull(valueString[78+offset]);
     this.fotoHochboardartSonstiges = convertToNull(valueString[79+offset]);
     this.fotoSteigbreite = convertToNull(valueString[80+offset]);
     this.fotoSteigbreiteEngstelle = convertToNull(valueString[81+offset]);
@@ -177,30 +179,31 @@ public class HaltesteigObject extends ObjectTemplate {
     this.fotoBodenindikatorenLeitstreifen = convertToNull(valueString[83+offset]);
     this.fotoBodenindikatorenAuffindestreifen = convertToNull(valueString[84+offset]);
     this.fotoUnterstand = convertToNull(valueString[85+offset]);
+    offset++;
     this.fotoUhr = convertToNull(valueString[86+offset]);
     this.fotoHaltesteigmast = convertToNull(valueString[87+offset]);
-    this.fotoFahrgastinfoNichtBarrierefrei = convertToNull(valueString[88+offset]);
-    this.fotoUhrSteig = convertToNull(valueString[89+offset]);
-    offset++;
-    this.fotoInfoNotrufsaeule = convertToNull(valueString[89+offset]);
-    this.fotoMobileRampeLage = convertToNull(valueString[90+offset]);
-    this.fotoHubliftLage = convertToNull(valueString[91+offset]);
-    this.fotoZuwegungVon = convertToNull(valueString[92+offset]);
-    this.fotoZuwegungNach = convertToNull(valueString[93+offset]);
-
-    offset = offset+3;
-    this.fotoHaltepunkt1 = convertToNull(valueString[94+offset]);
-    this.fotoHaltepunkt2 = convertToNull(valueString[95+offset]);
-    this.fotoHaltepunkt3 = convertToNull(valueString[96+offset]);
-    this.fotoHaltepunkt4 = convertToNull(valueString[97+offset]);
-    this.fotoAbschnitt1 = convertToNull(valueString[98+offset]);
-    this.fotoAbschnitt2 = convertToNull(valueString[99+offset]);
-    this.fotoAbschnitt3 = convertToNull(valueString[100+offset]);
-    this.fotoAbschnitt4 = convertToNull(valueString[101+offset]);
-    this.fotoAbschnitt5 = convertToNull(valueString[102+offset]);
-    this.fotoAbschnitt6 = convertToNull(valueString[103+offset]);
-    this.fotoAbschnitt7 = convertToNull(valueString[104+offset]);
-    this.fotoAbschnitt8 = convertToNull(valueString[105+offset]);
+    this.fotoFahrzielanzeiger = convertToNull(valueString[90]);
+    this.fotoFahrkartenautomat = convertToNull(valueString[91]);
+    this.fotoFahrgastinfoNichtBarrierefrei = convertToNull(valueString[92]);
+    this.fotoUhrSteig = convertToNull(valueString[93]);
+    this.fotoInfoNotrufsaeule = convertToNull(valueString[94]);
+    this.fotoMobileRampeLage = convertToNull(valueString[95]);
+    this.fotoHubliftLage = convertToNull(valueString[96]);
+    this.fotoZuwegungVon = convertToNull(valueString[97]);
+    this.fotoZuwegungNach = convertToNull(valueString[98]);
+    //ToDo98-109 (only Bus stations....)
+    this.fotoHaltepunkt1 = convertToNull(valueString[110]);
+    this.fotoHaltepunkt2 = convertToNull(valueString[111]);
+    this.fotoHaltepunkt3 = convertToNull(valueString[112]);
+    this.fotoHaltepunkt4 = convertToNull(valueString[113]);
+    this.fotoAbschnitt1 = convertToNull(valueString[114]);
+    this.fotoAbschnitt2 = convertToNull(valueString[115]);
+    this.fotoAbschnitt3 = convertToNull(valueString[116]);
+    this.fotoAbschnitt4 = convertToNull(valueString[117]);
+    this.fotoAbschnitt5 = convertToNull(valueString[118]);
+    this.fotoAbschnitt6 = convertToNull(valueString[119]);
+    this.fotoAbschnitt7 = convertToNull(valueString[120]);
+    this.fotoAbschnitt8 = convertToNull(valueString[120]);
   }
 
   public String getDescription() {
@@ -298,6 +301,8 @@ public class HaltesteigObject extends ObjectTemplate {
     link.add(new LinkObject("Foto Unterstand", fotoUnterstand));
     link.add(new LinkObject("Foto Uhr", fotoUhr));
     link.add(new LinkObject("Foto Haltesteigmast", fotoHaltesteigmast));
+    link.add(new LinkObject("Foto Fahrkartenautomat", fotoFahrkartenautomat));
+    link.add(new LinkObject("Foto Fahrzielanzeiger", fotoFahrzielanzeiger));
     link.add(
         new LinkObject("Foto Fahrgastinfo nicht barrierefrei", fotoFahrgastinfoNichtBarrierefrei));
     link.add(new LinkObject("Foto Info/Notrufsäule", fotoInfoNotrufsaeule));
@@ -314,21 +319,21 @@ public class HaltesteigObject extends ObjectTemplate {
     link.add(new LinkObject("Foto Haltepunkt 4", fotoHaltepunkt4));
     link.add(new LinkObject("Position Haltepunkt 4", getPosLink(posHaltepunkt4)));
     link.add(new LinkObject("Foto Abschnitt 1", fotoAbschnitt1));
-    link.add(new LinkObject("Position Abschnitt 1", getPosLink(posAbschnitt1)));
+    //link.add(new LinkObject("Position Abschnitt 1", getPosLink(posAbschnitt1)));
     link.add(new LinkObject("Foto Abschnitt 2", fotoAbschnitt2));
-    link.add(new LinkObject("Position Abschnitt 2", getPosLink(posAbschnitt2)));
+    //link.add(new LinkObject("Position Abschnitt 2", getPosLink(posAbschnitt2)));
     link.add(new LinkObject("Foto Abschnitt 3", fotoAbschnitt3));
-    link.add(new LinkObject("Position Abschnitt 3", getPosLink(posAbschnitt3)));
+    //link.add(new LinkObject("Position Abschnitt 3", getPosLink(posAbschnitt3)));
     link.add(new LinkObject("Foto Abschnitt 4", fotoAbschnitt4));
-    link.add(new LinkObject("Position Abschnitt 4", getPosLink(posAbschnitt4)));
+    //link.add(new LinkObject("Position Abschnitt 4", getPosLink(posAbschnitt4)));
     link.add(new LinkObject("Foto Abschnitt 5", fotoAbschnitt5));
-    link.add(new LinkObject("Position Abschnitt 5", getPosLink(posAbschnitt5)));
+    //link.add(new LinkObject("Position Abschnitt 5", getPosLink(posAbschnitt5)));
     link.add(new LinkObject("Foto Abschnitt 6", fotoAbschnitt6));
-    link.add(new LinkObject("Position Abschnitt 6", getPosLink(posAbschnitt6)));
+    //link.add(new LinkObject("Position Abschnitt 6", getPosLink(posAbschnitt6)));
     link.add(new LinkObject("Foto Abschnitt 7", fotoAbschnitt7));
-    link.add(new LinkObject("Position Abschnitt 7", getPosLink(posAbschnitt7)));
+    //link.add(new LinkObject("Position Abschnitt 7", getPosLink(posAbschnitt7)));
     link.add(new LinkObject("Foto Abschnitt 8", fotoAbschnitt8));
-    link.add(new LinkObject("Position Abschnitt 8", getPosLink(posAbschnitt8)));
+    //link.add(new LinkObject("Position Abschnitt 8", getPosLink(posAbschnitt8)));
     return link;
   }
 }
